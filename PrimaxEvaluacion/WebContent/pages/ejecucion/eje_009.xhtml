@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_009" id="dlg_eje_009"
+		appendTo="@(body)" width="600px" height="480px" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Procedimientos Estaciones de Servicio " />
+			<p:outputLabel value="eje_009.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_009">
+			<h:outputScript library="js" name="calendar.js" />
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_009"
+					action="#{CheckListEjecucionCtrlBn.guardarControlAdministrativo()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab00" title="Control Administrativo">
+					<p:dataTable id="fdt01" emptyMessage="Controles administrativos"
+						var="checkListA" scrollHeight="250" scrollable="true"
+						value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionProcedimientoS.checkListKpiEjecucionA}">
+						<f:facet name="header">
+							<div align="center">
+								<p:outputLabel value="Procedimientos Estaciones de Servicio"></p:outputLabel>
+							</div>
+						</f:facet>
+						<p:column headerText="Controles administrativos"
+							style="width:30px">
+							<p:outputLabel value="#{checkListA.descripcion}"></p:outputLabel>
+						</p:column>
+						<p:column headerText="Criterio" style="width:20px">
+							<div align="center">
+								<p:selectOneMenu id="cmbTipoCriterio"
+									style="width:85% !important"
+									value="#{checkListA.parametroCriterio}"
+									converter="#{parametrosConverter}">
+									<f:selectItem itemLabel="Seleccione" />
+									<f:selectItems
+										value="#{CheckListEjecucionCtrlBn.tipoCriterioList}"
+										var="tipoCriterio" itemValue="#{tipoCriterio}"
+										itemLabel="#{tipoCriterio.nombreLista}" />
+								</p:selectOneMenu>
+							</div>
+						</p:column>
+						<p:column headerText="Observación" style="width:50px">
+							<p:inputTextarea value="#{checkListA.observacion}"
+								maxlength="500" styleClass="w100" rows="4" autoResize="false" />
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+				<p:tab id="tab01" title="Permisos">
+					<p:dataTable id="fdt02"
+						emptyMessage="No Existen Permisos de funcionamiento"
+						var="checkListB" scrollHeight="250" scrollable="true"
+						value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionProcedimientoS.checkListKpiEjecucionB}">
+						<f:facet name="header">
+							<div align="center">
+								<p:outputLabel
+									value="Permisos De Funcionamiento Estación De Servicios"></p:outputLabel>
+							</div>
+						</f:facet>
+						<p:column headerText="Permiso de funcionamiento"
+							style="width:50px">
+							<p:outputLabel value="#{checkListB.descripcion}"></p:outputLabel>
+						</p:column>
+						<p:column headerText="Criterio" style="width:30px">
+							<div align="center">
+								<p:selectOneMenu id="cmbTipoCriterio"
+									style="width:85% !important"
+									value="#{checkListB.parametroCriterio}"
+									converter="#{parametrosConverter}">
+									<f:selectItem itemLabel="Seleccione" />
+									<f:selectItems
+										value="#{CheckListEjecucionCtrlBn.tipoCriterioList}"
+										var="tipoCriterio" itemValue="#{tipoCriterio}"
+										itemLabel="#{tipoCriterio.nombreLista}" />
+									<p:ajax event="change" update="fdt02" process="@this fdt02"
+										listener="#{CheckListEjecucionCtrlBn.desabilitar(checkListB.parametroCriterio,checkListB)}"></p:ajax>
+								</p:selectOneMenu>
+							</div>
+						</p:column>
+						<p:column headerText="Año" style="width:20px">
+							<div align="center">
+								<p:calendar value="#{checkListB.fechaCaducidad}" size="5"
+									yearRange="1900:2030" disabled="#{checkListB.bloqueo}"
+									title="Año Permiso" pattern="yyyy" navigator="true" locale="es"></p:calendar>
+							</div>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</p:dialog>
+</ui:composition>

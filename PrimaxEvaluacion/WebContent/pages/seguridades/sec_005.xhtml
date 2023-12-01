@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Políticas de seguridad [sec-005]</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:outputLabel value="Políticas de seguridad"></p:outputLabel>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+					<p:commandButton title="Guardar"
+						label="Confirmar cambios de política de seguridad" value="Guardar"
+						icon="ui-icon-check" action="#{PoliticaSeguridadBn.getGuardar()}"
+						update="mensajes">
+					</p:commandButton>
+					<p:commandButton title="Cancelar" icon="ui-icon-closethick"
+						process="@this" action="#{PoliticaSeguridadBn.cancelar()}"
+						label="Cancelar Cambios" value="Cancelar" update="mensajes">
+					</p:commandButton>
+				</f:facet>
+			</p:toolbar>
+			<div align="center">
+				<h2>Políticas de seguridad</h2>
+			</div>
+			<div align="center">
+				<p:panelGrid styleClass="sinborde w75" columns="2">
+					<p:row>
+						<p:fieldset legend="Usuario">
+							<p:panelGrid columns="2" styleClass="sinborde">
+								<p:outputLabel style="width:90px">Longitud mínima de Nombre de usuario</p:outputLabel>
+								<p:spinner id="spnMix" min="1" max="20"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.longitudNombreUsuario}" />
+								<p:outputLabel style="width:90px">Número máximo de intentos en iniciar sesión</p:outputLabel>
+								<p:spinner id="spnIntentos" min="1" max="20"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.intentosSesion}"
+									title="Ingrese número de intentos " />
+							</p:panelGrid>
+						</p:fieldset>
+					</p:row>
+					<p:row></p:row>
+					<p:row>
+						<p:fieldset legend="Contraseña">
+							<p:panelGrid columns="4" styleClass="sinborde">
+								<p:outputLabel style="width:90px">Longitud mínimo de contraseña</p:outputLabel>
+								<p:spinner id="spnContrasenaMm" min="1" max="20"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.longitudMinContrasena}"
+									title="Ingrese longitud mínimo de contraseña" required="true" />
+								<p:outputLabel style="width:90px">Longitud máximo de contraseña</p:outputLabel>
+								<p:spinner id="spnContrasenaMx" min="1" max="20"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.longitudMaxContrasena}"
+									title="Ingrese longitud máximo de contraseña" required="true" />
+								<p:outputLabel style="width:90px">Dias de recordatorio antes de cambio de contraseña</p:outputLabel>
+								<p:spinner id="spnCambioContrasenaMx" min="1" max="20"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.recordatorioContrasena}"
+									title="Ingrese días de cambio de contraseña" required="true" />
+								<p:outputLabel style="width:90px">Días de vigencia de contraseña</p:outputLabel>
+								<p:spinner id="spnVigenciaContrasena" min="1"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.periodoRenovacionContrasena}"
+									title="Ingrese días de renovacion de contraseña"
+									required="true" />
+							</p:panelGrid>
+						</p:fieldset>
+					</p:row>
+					<p:row></p:row>
+					<p:row>
+						<p:fieldset legend="Complejidad">
+							<p:panelGrid columns="2" styleClass="sinborde">
+								<p:outputLabel style="width:90px" value="Permitir Simbolos"></p:outputLabel>
+								<p:selectBooleanButton onLabel="SI" offLabel="No"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.simbolos}"></p:selectBooleanButton>
+								<p:outputLabel style="width:90px" value="Permitir Números"></p:outputLabel>
+								<p:selectBooleanButton onLabel="SI" offLabel="No"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.numeros}"></p:selectBooleanButton>
+								<p:outputLabel style="width:90px" value="Permitir Minusculas"></p:outputLabel>
+								<p:selectBooleanButton onLabel="SI" offLabel="No"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.minusculas}"></p:selectBooleanButton>
+								<p:outputLabel style="width:90px" value="Permitir Mayusculas"></p:outputLabel>
+								<p:selectBooleanButton onLabel="SI" offLabel="No"
+									value="#{PoliticaSeguridadBn.politicaSeguridad.mayusculas}"></p:selectBooleanButton>
+							</p:panelGrid>
+						</p:fieldset>
+					</p:row>
+				</p:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

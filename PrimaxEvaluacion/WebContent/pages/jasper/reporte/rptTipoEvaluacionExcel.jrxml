@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteEvaluacionPuntaje" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="1364a67e-f9ee-42f8-a2ec-de8420e77aca">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="1128"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ConsultaReporte" uuid="8d39dd25-f2d8-4683-b73c-e909468dc0ab">
+		<parameter name="par_id_usuario" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes01c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes02c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes03c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes04c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes05c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes06c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes07c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes08c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes09c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes10c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes11c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes12c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+rpt.zona ,
+rpt.tipo,
+rpt.codigo_agencia as bodega,
+rpt.nombre_agencia as nombre,
+rpt.ciudad as ciudad,
+rpt.fecha_ejecucion as anio,
+rpt.mes_01::numeric as m01,
+rpt.mes_02::numeric as m02,
+rpt.mes_03::numeric as m03,
+rpt.mes_04::numeric as m04,
+rpt.mes_05::numeric as m05,
+rpt.mes_06::numeric as m06,
+rpt.mes_07::numeric as m07,
+rpt.mes_08::numeric as m08,
+rpt.mes_09::numeric as m09,
+rpt.mes_10::numeric as m10,
+rpt.mes_11::numeric as m11,
+rpt.mes_12::numeric as m12,
+rpt.mes_01_s as m01s,
+rpt.mes_02_s as m02s,
+rpt.mes_03_s as m03s,
+rpt.mes_04_s as m04s,
+rpt.mes_05_s as m05s,
+rpt.mes_06_s as m06s,
+rpt.mes_07_s as m07s,
+rpt.mes_08_s as m08s,
+rpt.mes_09_s as m09s,
+rpt.mes_10_s as m10s,
+rpt.mes_11_s as m11s,
+rpt.mes_12_s as m12s,
+round((((COALESCE(NULL ,rpt.mes_01, '0')::numeric + COALESCE(NULL ,rpt.mes_02, '0')::numeric + COALESCE(NULL ,rpt.mes_03, '0')::numeric + COALESCE(NULL ,rpt.mes_04, '0')::numeric + COALESCE(NULL ,rpt.mes_05, '0')::numeric + COALESCE(NULL ,rpt.mes_06, '0')::numeric +
+COALESCE(NULL ,rpt.mes_07, '0')::numeric + COALESCE(NULL ,rpt.mes_08, '0')::numeric + COALESCE(NULL ,rpt.mes_09, '0')::numeric + COALESCE(NULL ,rpt.mes_10, '0')::numeric + COALESCE(NULL ,rpt.mes_11, '0')::numeric + COALESCE(NULL ,rpt.mes_12, '0')::numeric)) / ((CASE WHEN rpt.mes_01 is null then 0 else 1 end) + (CASE WHEN rpt.mes_02 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_03 is null then 0 else 1 end) + (CASE WHEN rpt.mes_04 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_05 is null then 0 else 1 end) + (CASE WHEN rpt.mes_06 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_07 is null then 0 else 1 end) + (CASE WHEN rpt.mes_08 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_09 is null then 0 else 1 end) + (CASE WHEN rpt.mes_10 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_11 is null then 0 else 1 end) + (CASE WHEN rpt.mes_12 is null then 0 else 1 end)) ),2) as promedio,
+(select count(*) from reporte_evaluacion_nivel_riesgo_et where aud_usuario=rpt.aud_usuario) as conteo
+from reporte_evaluacion_nivel_riesgo_et rpt
+where rpt.aud_usuario = $P{par_id_usuario}
+order by rpt.zona ,rpt.codigo_agencia;]]>
+		</queryString>
+		<field name="zona" class="java.lang.String"/>
+		<field name="tipo" class="java.lang.String"/>
+		<field name="bodega" class="java.lang.String"/>
+		<field name="nombre" class="java.lang.String"/>
+		<field name="ciudad" class="java.lang.String"/>
+		<field name="anio" class="java.sql.Timestamp"/>
+		<field name="m01" class="java.math.BigDecimal"/>
+		<field name="m02" class="java.math.BigDecimal"/>
+		<field name="m03" class="java.math.BigDecimal"/>
+		<field name="m04" class="java.math.BigDecimal"/>
+		<field name="m05" class="java.math.BigDecimal"/>
+		<field name="m06" class="java.math.BigDecimal"/>
+		<field name="m07" class="java.math.BigDecimal"/>
+		<field name="m08" class="java.math.BigDecimal"/>
+		<field name="m09" class="java.math.BigDecimal"/>
+		<field name="m10" class="java.math.BigDecimal"/>
+		<field name="m11" class="java.math.BigDecimal"/>
+		<field name="m12" class="java.math.BigDecimal"/>
+		<field name="m01s" class="java.lang.String"/>
+		<field name="m02s" class="java.lang.String"/>
+		<field name="m03s" class="java.lang.String"/>
+		<field name="m04s" class="java.lang.String"/>
+		<field name="m05s" class="java.lang.String"/>
+		<field name="m06s" class="java.lang.String"/>
+		<field name="m07s" class="java.lang.String"/>
+		<field name="m08s" class="java.lang.String"/>
+		<field name="m09s" class="java.lang.String"/>
+		<field name="m10s" class="java.lang.String"/>
+		<field name="m11s" class="java.lang.String"/>
+		<field name="m12s" class="java.lang.String"/>
+		<field name="promedio" class="java.math.BigDecimal"/>
+		<field name="conteo" class="java.lang.Long"/>
+		<variable name="mes01c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes1} / $P{mes01c})]]></variableExpression>
+		</variable>
+		<variable name="mes02c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes2} / $P{mes02c})]]></variableExpression>
+		</variable>
+		<variable name="mes03c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes3} / $P{mes03c})]]></variableExpression>
+		</variable>
+		<variable name="mes04c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes4} / $P{mes04c})]]></variableExpression>
+		</variable>
+		<variable name="mes05c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes5} / $P{mes05c})]]></variableExpression>
+		</variable>
+		<variable name="mes06c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes6} / $P{mes06c})]]></variableExpression>
+		</variable>
+		<variable name="mes07c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes7} / $P{mes07c})]]></variableExpression>
+		</variable>
+		<variable name="mes08c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes8} / $P{mes08c})]]></variableExpression>
+		</variable>
+		<variable name="mes09c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes9} / $P{mes09c})]]></variableExpression>
+		</variable>
+		<variable name="mes10c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes10} / $P{mes10c})]]></variableExpression>
+		</variable>
+		<variable name="mes11c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes11} / $P{mes11c})]]></variableExpression>
+		</variable>
+		<variable name="mes12c" class="java.lang.Long">
+			<variableExpression><![CDATA[($V{mes12} / $P{mes12c})]]></variableExpression>
+		</variable>
+		<variable name="mes13c" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{promedio} / $F{conteo}]]></variableExpression>
+		</variable>
+		<variable name="mes01cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes01c} <=59 ? "Crítico" :
+ $V{mes01c}>= 60 && $V{mes01c} <= 69 ? "Alto"  :
+ $V{mes01c}>= 70 && $V{mes01c} <= 84 ? "Medio" :
+ $V{mes01c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes02cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes02c} <=59 ? "Crítico" :
+ $V{mes02c}>= 60 && $V{mes02c} <= 69 ? "Alto"  :
+ $V{mes02c}>= 70 && $V{mes02c} <= 84 ? "Medio" :
+ $V{mes02c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes03cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes03c} <=59 ? "Crítico" :
+ $V{mes03c}>= 60 && $V{mes03c} <= 69 ? "Alto"  :
+ $V{mes03c}>= 70 && $V{mes03c} <= 84 ? "Medio" :
+ $V{mes03c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes04cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes04c} <=59 ? "Crítico" :
+ $V{mes04c}>= 60 && $V{mes04c} <= 69 ? "Alto"  :
+ $V{mes04c}>= 70 && $V{mes04c} <= 84 ? "Medio" :
+ $V{mes04c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes05cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes05c} <=59 ? "Crítico" :
+ $V{mes05c}>= 60 && $V{mes05c} <= 69 ? "Alto"  :
+ $V{mes05c}>= 70 && $V{mes05c} <= 84 ? "Medio" :
+ $V{mes05c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes06cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes06c} <=59 ? "Crítico" :
+ $V{mes06c}>= 60 && $V{mes06c} <= 69 ? "Alto"  :
+ $V{mes06c}>= 70 && $V{mes06c} <= 84 ? "Medio" :
+ $V{mes06c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes07cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes07c} <=59 ? "Crítico" :
+ $V{mes07c}>= 60 && $V{mes07c} <= 69 ? "Alto"  :
+ $V{mes07c}>= 70 && $V{mes07c} <= 84 ? "Medio" :
+ $V{mes07c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes08cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes08c} <=59 ? "Crítico" :
+ $V{mes08c}>= 60 && $V{mes08c} <= 69 ? "Alto"  :
+ $V{mes08c}>= 70 && $V{mes08c} <= 84 ? "Medio" :
+ $V{mes08c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes09cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes09c} <=59 ? "Crítico" :
+ $V{mes09c}>= 60 && $V{mes09c} <= 69 ? "Alto"  :
+ $V{mes09c}>= 70 && $V{mes09c} <= 84 ? "Medio" :
+ $V{mes09c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes10cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes10c} <=59 ? "Crítico" :
+ $V{mes10c}>= 60 && $V{mes10c} <= 69 ? "Alto"  :
+ $V{mes10c}>= 70 && $V{mes10c} <= 84 ? "Medio" :
+ $V{mes10c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes11cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes11c} <=59 ? "Crítico" :
+ $V{mes11c}>= 60 && $V{mes11c} <= 69 ? "Alto"  :
+ $V{mes11c}>= 70 && $V{mes11c} <= 84 ? "Medio" :
+ $V{mes11c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes12cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes12c} <=59 ? "Crítico" :
+ $V{mes12c}>= 60 && $V{mes12c} <= 69 ? "Alto"  :
+ $V{mes12c}>= 70 && $V{mes12c} <= 84 ? "Medio" :
+ $V{mes12c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes13cs" class="java.lang.String">
+			<variableExpression><![CDATA[($V{mes13c} <=59 ? "Crítico" :
+ $V{mes13c}>= 60 && $V{mes13c} <= 69 ? "Alto"  :
+ $V{mes13c}>= 70 && $V{mes13c} <= 84 ? "Medio" :
+ $V{mes13c} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+		<variable name="mes1" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m01}]]></variableExpression>
+		</variable>
+		<variable name="mes2" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m02}]]></variableExpression>
+		</variable>
+		<variable name="mes3" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m03}]]></variableExpression>
+		</variable>
+		<variable name="mes4" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m04}]]></variableExpression>
+		</variable>
+		<variable name="mes5" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m05}]]></variableExpression>
+		</variable>
+		<variable name="mes6" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m06}]]></variableExpression>
+		</variable>
+		<variable name="mes7" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m07}]]></variableExpression>
+		</variable>
+		<variable name="mes8" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m08}]]></variableExpression>
+		</variable>
+		<variable name="mes9" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m09}]]></variableExpression>
+		</variable>
+		<variable name="mes10" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m10}]]></variableExpression>
+		</variable>
+		<variable name="mes11" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m11}]]></variableExpression>
+		</variable>
+		<variable name="mes12" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{m12}]]></variableExpression>
+		</variable>
+		<variable name="conteo" class="java.lang.Double" calculation="Count">
+			<variableExpression><![CDATA[$F{zona}]]></variableExpression>
+		</variable>
+		<variable name="promedios" class="java.lang.String">
+			<variableExpression><![CDATA[($F{promedio} <=59 ? "Crítico" :
+ $F{promedio}>= 60 && $F{promedio} <= 69 ? "Alto"  :
+ $F{promedio}>= 70 && $F{promedio} <= 84 ? "Medio" :
+ $F{promedio} >= 85 ? "Bajo" : "N/A")]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="par_id_usuario" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+rpt.id_check_list_ejecucion as id,
+rpt.fecha_ejecucion as fechaEjecucion,
+rpt.nombre_agencia as estacion,
+rpt.tipo_evaluacion as tipoEvaluacion,
+rpt.tipo_check_list as tipoCheckList,
+rpt.codigo as codigo,
+rpt.color as colorNivel,
+rpt.calificacion as puntaje,
+rpt.nivel_riesgo as nivelRiesgo,
+rpt.nivel_riesgo_s as nivelRiesgoS
+from reporte_tipo_evaluacion_et rpt
+where rpt.aud_usuario= $P{par_id_usuario}
+order by rpt.id_reporte_tipo_evaluacion;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="fechaejecucion" class="java.sql.Timestamp"/>
+	<field name="estacion" class="java.lang.String"/>
+	<field name="tipoevaluacion" class="java.lang.String"/>
+	<field name="tipochecklist" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="colornivel" class="java.lang.String"/>
+	<field name="puntaje" class="java.lang.Long"/>
+	<field name="nivelriesgo" class="java.lang.Long"/>
+	<field name="nivelriesgos" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="85" height="15" backcolor="#FF6600" uuid="75061482-3c9f-485e-8f5e-91a6ef539a22"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[FECHA EJECUCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="85" y="0" width="180" height="15" backcolor="#FF6600" uuid="ea0b786b-4af0-4461-b93b-e6c58eeae287"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[ESTACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="265" y="0" width="110" height="15" backcolor="#FF6600" uuid="1a747f27-f29a-4bba-954a-a01c1dd372ca"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[TIPO EVALUACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="375" y="0" width="190" height="15" backcolor="#FF6600" uuid="255f3c06-b926-412a-ba47-1dd28bed2f15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[TIPO CHECKLIST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="565" y="0" width="77" height="15" backcolor="#FF6600" uuid="2988f4bd-f9ad-4987-bec1-93748e355436"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="642" y="0" width="80" height="15" backcolor="#FF6600" uuid="9c0e3d7b-0197-4f93-b0c0-ce3ecac725b3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[PUNTAJE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="722" y="0" width="80" height="15" backcolor="#FF6600" uuid="fef31c2c-e909-4540-831e-4d4f7cbb6269"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[NIVEL RIESGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH.mm" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="85" height="15" uuid="267bafb7-a6e5-456e-8cf7-38ad799a2659"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaejecucion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="85" y="0" width="180" height="15" uuid="e2966cb5-e257-40f0-8f16-db64faa818cd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="265" y="0" width="110" height="15" uuid="b6601cca-1ede-4449-a8d0-8907686b9717"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoevaluacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="375" y="0" width="190" height="15" uuid="ab03a437-a98f-4ad4-a44b-2f2fd16cade0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipochecklist}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="565" y="0" width="77" height="15" uuid="87f88727-ad5d-4c04-97d9-3fb95a2cc4a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" mode="Opaque" x="642" y="0" width="80" height="15" uuid="b4a00ab5-6a73-4d46-8779-4bc761eaa6b9"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{puntaje}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" mode="Opaque" x="722" y="0" width="80" height="15" uuid="7e02df42-994a-41f6-abaa-0de1d56dfdde"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivelriesgos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

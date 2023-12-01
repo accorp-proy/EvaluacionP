@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_11_1" id="dialog_11_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Tipo Check List " />
+			<p:outputLabel value="par_011_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_011_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{TipoCheckListBn.guardar()}" update=":frm_par_011"
+					oncomplete="PF('dialog_11_1').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:outputLabel value="Evaluación :" />
+				<p:selectOneMenu style="width:80% !important" required="true"
+					value="#{TipoCheckListBn.evaluacionSeleccionado}"
+					converter="#{evaluacionConverter}">
+					<f:selectItem itemLabel="Evaluación" />
+					<f:selectItems value="#{TipoCheckListBn.evaluacionList}"
+						var="evaluacion" itemValue="#{evaluacion}"
+						itemLabel="#{evaluacion.descripcion}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Tipo CheckList " />
+				<p:inputText
+					value="#{TipoCheckListBn.tipoChecListSeleccionado.descripcion}"
+					required="true" requiredMessage="Valor de Nombre es requerido"></p:inputText>
+				<p:outputLabel value="Genera Matríz " />
+				<p:selectBooleanCheckbox
+					value="#{TipoCheckListBn.tipoChecListSeleccionado.generaMatriz}"></p:selectBooleanCheckbox>
+				<p:outputLabel value="Genera R.Novedad " />
+				<p:selectBooleanCheckbox
+					value="#{TipoCheckListBn.tipoChecListSeleccionado.generaReporte}"></p:selectBooleanCheckbox>
+				<p:outputLabel> Estado </p:outputLabel>
+				<p:selectOneMenu style="width:50% !important" editable="false"
+					value="#{TipoCheckListBn.tipoChecListSeleccionado.estado}">
+					<f:selectItems value="#{TipoCheckListBn.estadosActIna}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Reporte Novedad" />
+				<p:commandButton title="Ingresar" icon="ui-icon-open-in-new"
+					rendered="#{TipoCheckListBn.general}" update=":frm_par_011_2"
+					oncomplete="PF('dialog_11_2').show()" />
+			</p:panelGrid>
+		</h:form>
+		<ui:include src="/pages/parametros/par_011_2.xhtml"></ui:include>
+	</p:dialog>
+
+</ui:composition>

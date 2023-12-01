@@ -1,0 +1,182 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Consulta CheckList Ejecutados</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_pln_008">
+			<h:outputScript library="js" name="calendar.js" />
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<p:panelGrid styleClass="sinborde w110" columns="9" layout="grid">
+				<p:row>
+					<p:fieldset legend="Modificación/Eliminación de Checklist">
+						<p:panelGrid columns="9" styleClass="sinborde" layout="grid">
+							<p:column>
+								<p:selectOneMenu style="width:80px !important" id="cmbZona"
+									value="#{CheckListModificacionBn.zonaSeleccionada}"
+									converter="#{zonaConverter}">
+									<f:selectItem itemLabel="Zona" />
+									<f:selectItems value="#{CheckListModificacionBn.tipoZonaList}"
+										var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+									<p:ajax event="change" update="frm_pln_008:cmbEstacion"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbEstacion" style="width:80px !important"
+									value="#{CheckListModificacionBn.estacionSeleccionada}"
+									converter="#{agenciaConverter}" var="t" filter="true"
+									filterMatchMode="contains">
+									<f:selectItem itemLabel="Estación" />
+									<f:selectItems value="#{CheckListModificacionBn.estacionList}"
+										var="estacion" itemLabel="#{estacion.nombreAgencia}"
+										itemValue="#{estacion}" />
+									<p:column>
+										<h:outputText value="#{t.nombreAgencia}" />
+									</p:column>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbEvaluacion"
+									style="width:100px !important"
+									value="#{CheckListModificacionBn.evaluacionSeleccionada}"
+									converter="#{evaluacionConverter}">
+									<f:selectItem itemLabel="Evaluación" />
+									<f:selectItems
+										value="#{CheckListModificacionBn.evaluacionList}"
+										var="evaluacion" itemValue="#{evaluacion}"
+										itemLabel="#{evaluacion.descripcion}" />
+									<p:ajax event="change" update="frm_pln_008:cmbTipoCheck"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbTipoCheck"
+									style="width:100px !important"
+									value="#{CheckListModificacionBn.tipoChecKListSeleccionado}"
+									converter="#{tipoCheckListConverter}">
+									<f:selectItem itemLabel="Tipo CheckList" />
+									<f:selectItems
+										value="#{CheckListModificacionBn.tiposChecKList}"
+										var="tipoCheckList" itemValue="#{tipoCheckList}"
+										itemLabel="#{tipoCheckList.descripcion}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:100px !important"
+									id="cmbNivelEvaluacion"
+									value="#{CheckListModificacionBn.nivelEvaluacionSeleccionado}"
+									converter="#{nivelEvaluacionConverter}">
+									<f:selectItem itemLabel="Nivel Evaluación" />
+									<f:selectItems
+										value="#{CheckListModificacionBn.nivelEvaluacionList}"
+										var="nivelEvaluacion" itemValue="#{nivelEvaluacion}"
+										itemLabel="#{nivelEvaluacion.descripcion}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{CheckListModificacionBn.fDesde}" size="10"
+									placeholder="Fecha Desde" title="Fecha Desde" navigator="true"
+									pattern="dd/MM/yyy" locale="es">
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{CheckListModificacionBn.fHasta}" size="10"
+									placeholder="Fecha Hasta" title="Fecha Hasta" navigator="true"
+									pattern="dd/MM/yyy" locale="es">
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Botón permite realizar busqueda"
+									icon="ui-icon-search"
+									action="#{CheckListModificacionBn.buscar()}"
+									update="dtbCheckListEjecucion">
+								</p:commandButton>
+							</p:column>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:row>
+			</p:panelGrid>
+
+			<div align="center">
+				<p:dataTable paginator="true" rows="7" reflow="true"
+					tableStyle="table-layout: auto;" style="margin-bottom:20px"
+					emptyMessage="No existe CheckList Ejecutados"
+					id="dtbCheckListEjecucion"
+					value="#{CheckListModificacionBn.checkListEjecuciones}"
+					var="checkEjecucion">
+					<p:column headerText="Fecha Ejecución">
+						<h:outputText value="#{checkEjecucion.fechaEjecucion}">
+							<f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Código">
+						<h:outputText value="#{checkEjecucion.codigo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Estación">
+						<h:outputText
+							value="#{checkEjecucion.planificacion.agencia.nombreAgencia}"></h:outputText>
+					</p:column>
+					<p:column headerText="Evaluación">
+						<h:outputText value="#{checkEjecucion.evaluacion.descripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo CheckList">
+						<h:outputText value="#{checkEjecucion.tipoChecKList.descripcion}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Estado">
+						<div align="center">
+							<h:outputText
+								value="#{checkEjecucion.estadoCheckList.descripcion}"></h:outputText>
+						</div>
+					</p:column>
+					<p:column width="30" headerText="Modificar">
+						<div align="center">
+							<p:commandButton icon="fa fa-file-excel-o"
+								update="frm_pln_008:mensajes" onclick="PF('dlg_conf_0').show()"
+								action="#{CheckListModificacionBn.modificar(checkEjecucion)}"></p:commandButton>
+						</div>
+					</p:column>
+					<p:column width="30" headerText="Eliminar">
+						<div align="center">
+							<p:commandButton icon="fa fa-file-excel-o"
+								update="frm_pln_008:mensajes" onclick="PF('dlg_conf_1').show()"
+								action="#{CheckListModificacionBn.eliminar(checkEjecucion)}"></p:commandButton>
+						</div>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+		<p:confirmDialog widgetVar="dlg_conf_0" header="Confirmar"
+			appendTo="@(body)" message="Esta seguro de modificar CheckList ?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf_0').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check"
+					oncomplete="PF('dlg_conf_0').hide()"
+					update="frm_pln_008:mensajes,frm_pln_008:dtbCheckListEjecucion"
+					action="#{CheckListModificacionBn.guardarM()}" process="@this"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+		<p:confirmDialog widgetVar="dlg_conf_1" header="Confirmar"
+			appendTo="@(body)" message="Esta seguro de eliminar CheckList ?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf_1').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check"
+					oncomplete="PF('dlg_conf_1').hide()"
+					update="frm_pln_008:mensajes,frm_pln_008:dtbCheckListEjecucion"
+					action="#{CheckListModificacionBn.guardarE()}" process="@this"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PlantillaCriterioGeneral" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aad255d0-463c-490a-a06a-2080940139f7">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id_check_list" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_nombre_check_list" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_codigo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_usuario" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+che.orden as ordenProceso,
+kpi.orden as ordenKpi,
+che.id_check_list_proceso,
+che.descripcion as proceso,
+kpi.id_check_list_kpi,
+pro.nombre_proceso_detalle as kpi,
+cri.nombre as criterio,
+(case when kpi.id_kpi_critico is null then pro.puntaje else 0 end ) as puntaje,
+kpiC.nombre as condicionCritica,
+consultar_nivel_evaluacion_color(list.id_nivel_evaluacion,100) as colorNivel,
+niv.descripcion as nivelEvaluacion
+from check_list_et list
+inner join check_list_proceso_et che
+on list.id_check_list = che.id_check_list
+inner join check_list_kpi_et kpi
+on che.id_check_list_proceso=kpi.id_check_list_proceso
+inner join proceso_detalle_et pro
+on kpi.id_proceso_detalle = pro.id_proceso_detalle
+inner join criterio_evaluacion_et cri
+on kpi.id_criterio_evaluacion=cri.id_criterio_evaluacion
+left join kpi_critico_et kpiC
+on kpi.id_kpi_critico = kpiC.id_kpi_critico
+inner join nivel_evaluacion_et niv
+on list.id_nivel_evaluacion = niv.id_nivel_evaluacion
+where list.id_check_list=$P{id_check_list}
+and kpi.estado='ACT'
+order by che.orden,kpi.orden ;]]>
+	</queryString>
+	<field name="ordenproceso" class="java.lang.Long"/>
+	<field name="ordenkpi" class="java.lang.Long"/>
+	<field name="id_check_list_proceso" class="java.lang.Long"/>
+	<field name="proceso" class="java.lang.String"/>
+	<field name="id_check_list_kpi" class="java.lang.Long"/>
+	<field name="kpi" class="java.lang.String"/>
+	<field name="criterio" class="java.lang.String"/>
+	<field name="puntaje" class="java.lang.Long"/>
+	<field name="condicioncritica" class="java.lang.String"/>
+	<field name="colornivel" class="java.lang.String"/>
+	<field name="nivelevaluacion" class="java.lang.String"/>
+	<variable name="puntaje_1" class="java.lang.Long" resetType="Group" resetGroup="ProcesoKPI" calculation="Sum">
+		<variableExpression><![CDATA[$F{puntaje}]]></variableExpression>
+	</variable>
+	<variable name="puntaje_2" class="java.lang.Long" resetType="Group" resetGroup="ProcesoKPI" calculation="Sum">
+		<variableExpression><![CDATA[$F{puntaje}]]></variableExpression>
+	</variable>
+	<variable name="puntaje_3" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{puntaje}]]></variableExpression>
+	</variable>
+	<group name="ProcesoKPI">
+		<groupExpression><![CDATA[$F{id_check_list_proceso}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="25" y="0" width="360" height="15" backcolor="#FF9933" uuid="235db708-4631-4948-9ffe-f394e130dad4"/>
+					<box>
+						<topPen lineWidth="0.3"/>
+						<leftPen lineWidth="0.3"/>
+						<bottomPen lineWidth="0.3"/>
+						<rightPen lineWidth="0.3"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="0" y="0" width="25" height="15" backcolor="#FF9933" uuid="6fc67818-f5f0-4a75-b3a6-4bfc8569bcbd"/>
+					<box>
+						<topPen lineWidth="0.3"/>
+						<leftPen lineWidth="0.3"/>
+						<bottomPen lineWidth="0.3"/>
+						<rightPen lineWidth="0.3"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ordenproceso}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="ProcesoKPI" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="490" y="0" width="65" height="15" backcolor="#FF9933" uuid="b7a59e76-0731-4a8e-bf94-12f7fe75534b"/>
+					<box>
+						<topPen lineWidth="0.3"/>
+						<leftPen lineWidth="0.3"/>
+						<bottomPen lineWidth="0.3"/>
+						<rightPen lineWidth="0.3"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{puntaje_1}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="ProcesoKPI" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="450" y="0" width="40" height="15" backcolor="#FF9933" uuid="fe8c56f5-bcaa-471f-856e-3455d9c4de81"/>
+					<box>
+						<topPen lineWidth="0.3"/>
+						<leftPen lineWidth="0.3"/>
+						<bottomPen lineWidth="0.3"/>
+						<rightPen lineWidth="0.3"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{puntaje_1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="385" y="0" width="65" height="15" backcolor="#FF9933" uuid="7952cf73-8479-42ce-8cad-4fa1da0c97b8"/>
+					<box>
+						<topPen lineWidth="0.3"/>
+						<leftPen lineWidth="0.3"/>
+						<bottomPen lineWidth="0.3"/>
+						<rightPen lineWidth="0.3"/>
+					</box>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30">
+			<staticText>
+				<reportElement x="120" y="0" width="370" height="15" uuid="b779f51d-a757-4304-b45b-8c08b16c5627"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHECK LIST]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="195" y="15" width="360" height="15" uuid="daad9bcf-611d-47bb-9ccc-83c582a378e4"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_nombre_check_list}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="120" height="15" uuid="01130df0-3169-469c-855a-3beb103a937f"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="490" y="0" width="65" height="15" uuid="ad3a18b3-0be8-472d-9702-991e065b7dcc"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="120" height="15" uuid="a8379e29-dfd3-4cee-9f9e-23e2168cdd55"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nivel de Evaluación :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="120" y="15" width="75" height="15" uuid="56c2645a-1264-4040-a882-2143c73727a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivelevaluacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="40" height="15" backcolor="#FF6633" uuid="9fc538ee-705e-4dc5-b0b9-f49baeeb0e61"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PUNTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="25" height="15" backcolor="#FF6633" uuid="775e974d-fab6-4070-bae9-f873466c9d7c"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="25" y="0" width="360" height="15" backcolor="#FF6633" uuid="efe7dd2e-be96-4082-a234-d0bccd2262ae"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PUNTOS DE REVISIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="490" y="0" width="65" height="15" backcolor="#FF6633" uuid="6422fd6d-cf6f-440d-a397-00641db584a2"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CALIFICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="385" y="0" width="65" height="15" backcolor="#FF6633" uuid="d3ff3806-a158-4247-9193-23b51b35d658"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIÓN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="25" y="0" width="360" height="15" uuid="b71eef82-e130-4569-989c-d92f40193d54"/>
+				<box>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kpi}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="25" height="15" uuid="9341d268-acac-4271-9e99-484e1e0a1564"/>
+				<box>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ordenkpi}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="490" y="0" width="65" height="15" uuid="5a2cb6f8-c9a2-4606-ac97-a1e89ab2e3e5"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{puntaje}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="40" height="15" uuid="ec0f42ae-2e6e-4ab8-a212-abb247e58998"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{puntaje}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" mode="Opaque" x="385" y="0" width="65" height="15" uuid="51cc333d-13c5-4e21-b6ee-d6f55ebb1cf3"/>
+				<box>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{criterio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="69" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="40" height="15" uuid="040a9675-5fcd-4ddc-95d4-c04db8d1ea78"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{puntaje_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="490" y="0" width="65" height="15" uuid="ae73a669-55df-4229-96e5-56ae4ff07630"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{puntaje_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="0" width="65" height="15" uuid="b22d1490-767e-43f7-8016-bbb8c5b31c9e"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="385" height="15" uuid="2313c138-b3f0-4ad2-ab77-eb6b4c297c64"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="43" width="200" height="15" uuid="adbd6583-2dad-49b8-96aa-f7a8aafdd06e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Inspeccionado por]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="43" width="200" height="15" uuid="be318179-f574-406c-8479-0cf78e619de2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Responsable de tienda]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

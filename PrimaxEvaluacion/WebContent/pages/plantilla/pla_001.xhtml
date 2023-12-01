@@ -1,0 +1,974 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Plantilla de Criterio General</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_pla_001">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:outputLabel value="Plantilla de Criterio General"></p:outputLabel>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+					<p:commandButton title="Guardar" value="Guardar"
+						icon="ui-icon-check"
+						action="#{PlantillaCriterioGeneralBn.guardar()}"
+						update="mensajes,frm_pla_001">
+					</p:commandButton>
+					<p:spacer></p:spacer>
+					<h:outputText
+						value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.evaluacion.descripcion} - #{PlantillaCriterioGeneralBn.checkListSeleccionado.tipoChecKList.descripcion} - #{PlantillaCriterioGeneralBn.checkListSeleccionado.codigo}" />
+				</f:facet>
+			</p:toolbar>
+			<p:tabView id="tabWiwe0">
+
+				<p:tab id="tab00" title="Plantilla">
+
+					<p:fieldset legend="Informaciòn" toggleable="true"
+						toggleSpeed="500">
+						<p:panelGrid columns="9" styleClass="fullsize sinborde"
+							layout="grid">
+							<p:column>
+								<p:inputText placeholder="Código CheckList"
+									title="Permite ingresar un código de un checklist aprobado y obtener una copia"
+									value="#{PlantillaCriterioGeneralBn.codigoCheckList}"></p:inputText>
+								<p:spacer width="5"></p:spacer>
+								<p:commandButton id="btnBuscar" value="Buscar" update="@form"
+									action="#{PlantillaCriterioGeneralBn.buscarCheckList()}"
+									title="Botón usado para agregar KPI's en la plantilla" />
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Comentario"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputSwitch onLabel="Si" offLabel="No"
+									tabindex="En el caso que tenga comentario el CheckList"
+									value="#{PlantillaCriterioGeneralBn.seleccionComentario}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Peso"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputSwitch onLabel="Si" offLabel="No"
+									tabindex="En el caso que tenga comentario el CheckList"
+									value="#{PlantillaCriterioGeneralBn.seleccionPeso}" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbCriterioEvaluacion"
+									style="width:100px !important"
+									value="#{PlantillaCriterioGeneralBn.criterioEvaluacionSeleccionada}"
+									converter="#{criterioEvaluacionConverter}">
+									<f:selectItem itemLabel="Criterio Evaluación" />
+									<f:selectItems
+										value="#{PlantillaCriterioGeneralBn.criterioEvaluacionList}"
+										var="criterioEvaluacion"
+										itemLabel="#{criterioEvaluacion.nombre}"
+										itemValue="#{criterioEvaluacion}" />
+								</p:selectOneMenu>
+							</p:column>
+
+						</p:panelGrid>
+					</p:fieldset>
+					<p:fieldset legend="Procesos" toggleable="true" toggleSpeed="500">
+						<p:panelGrid columnClasses="ui-grid-col-3,ui-grid-col-9"
+							styleClass="sinborde w110" columns="2" layout="grid">
+							<p:row>
+								<p:fieldset legend="Procesos">
+									<p:panelGrid columns="1" styleClass="sinborde">
+										<p:column>
+											<p:selectOneMenu style="width:110px !important"
+												id="cmbNivelEvaluacion"
+												value="#{PlantillaCriterioGeneralBn.nivelEvaluacionSeleccionado}"
+												converter="#{nivelEvaluacionConverter}">
+												<f:selectItem itemLabel="Nivel Evaluación" />
+												<f:selectItems
+													value="#{PlantillaCriterioGeneralBn.nivelEvaluacionList}"
+													var="nivelEvaluacion" itemValue="#{nivelEvaluacion}"
+													itemLabel="#{nivelEvaluacion.descripcion}" />
+											</p:selectOneMenu>
+											<p:commandButton icon="fa fa-eye" update=":frm_pla_001_2"
+												action="#{PlantillaCriterioGeneralBn.guardarNivelE()}"
+												oncomplete="PF('dialog_01_2').show()"></p:commandButton>
+										</p:column>
+
+										<p:column>
+											<p:selectOneMenu style="width:100px !important"
+												value="#{PlantillaCriterioGeneralBn.evaluacionSeleccionado}"
+												converter="#{evaluacionConverter}">
+												<f:selectItem itemLabel="Evaluación" />
+												<f:selectItems
+													value="#{PlantillaCriterioGeneralBn.evaluacionList}"
+													var="evaluacion" itemValue="#{evaluacion}"
+													itemLabel="#{evaluacion.descripcion}" />
+												<p:ajax event="change"
+													update="frm_pla_001:tabWiwe0:cmbTipoCheck"></p:ajax>
+											</p:selectOneMenu>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="cmbTipoCheck"
+												style="width:100px !important"
+												value="#{PlantillaCriterioGeneralBn.tipoChecListSeleccionado}"
+												converter="#{tipoCheckListConverter}">
+												<f:selectItem itemLabel="Tipo CheckList" />
+												<f:selectItems
+													value="#{PlantillaCriterioGeneralBn.tiposChecKList}"
+													var="tipo" itemValue="#{tipo}"
+													itemLabel="#{tipo.descripcion}" />
+												<p:ajax event="change"
+													update="frm_pla_001:tabWiwe0:cmbProceso"></p:ajax>
+											</p:selectOneMenu>
+										</p:column>
+										<p:column>
+											<p:selectOneMenu id="cmbProceso"
+												style="width:100px !important"
+												value="#{PlantillaCriterioGeneralBn.procesoSeleccionado}"
+												converter="#{procesoConverter}">
+												<f:selectItem itemLabel="Proceso" />
+												<f:selectItems
+													value="#{PlantillaCriterioGeneralBn.procesos}"
+													var="proceso" itemValue="#{proceso}"
+													itemLabel="#{proceso.nombreProceso}" />
+												<p:ajax event="change"
+													update="frm_pla_001:tabWiwe0:pickKpiDetail"></p:ajax>
+											</p:selectOneMenu>
+										</p:column>
+										<p:column>
+											<p:commandButton id="btnAgregar" value="Agregar"
+												title="Botón usado para agregar KPI's en la plantilla"
+												process="@form"
+												action="#{PlantillaCriterioGeneralBn.agregar()}"
+												update="frm_pla_001:tabWiwe0:dtbCheckList,frm_pla_001:tabWiwe0:cmbProcesoA,frm_pla_001:mensajes" />
+										</p:column>
+									</p:panelGrid>
+								</p:fieldset>
+							</p:row>
+							<p:row>
+
+								<p:pickList id="pickKpiDetail" effect="bounce"
+									showSourceControls="true" showTargetControls="true"
+									showSourceFilter="true" showTargetFilter="true"
+									filterMatchMode="contains" label="jem" showCheckbox="true"
+									value="#{PlantillaCriterioGeneralBn.procesoDetalles}"
+									var="proceso" itemLabel="#{proceso.nombreProcesoDetalle}"
+									itemValue="#{proceso}"
+									converter="#{procesoDetalleDualConverter}" responsive="true">
+
+									<f:facet name="sourceCaption">KPI’s</f:facet>
+									<f:facet name="targetCaption">KPI’s</f:facet>
+
+									<p:ajax event="transfer" />
+									<p:ajax event="select" />
+									<p:ajax event="unselect" />
+									<p:ajax event="reorder" />
+
+								</p:pickList>
+							</p:row>
+
+
+						</p:panelGrid>
+					</p:fieldset>
+					<p:dataTable id="dtbCheckList" var="detalle"
+						value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.checkListProceso}"
+						emptyMessage="No existen Procesos" tableStyle="table-layout: auto"
+						reflow="true">
+						<f:facet name="header">
+                      #{PlantillaCriterioGeneralBn.checkListSeleccionado.evaluacion.descripcion} - #{PlantillaCriterioGeneralBn.checkListSeleccionado.tipoChecKList.descripcion} - #{PlantillaCriterioGeneralBn.checkListSeleccionado.codigo}
+                         </f:facet>
+						<p:columnGroup type="header">
+							<p:row>
+								<p:column headerText="No." style="width:5px" />
+								<p:column headerText="KPI’s" style="width:75px" />
+								<p:column headerText="Criterio Evaluación" style="width:10px" />
+								<p:column headerText="Puntos" style="width:5px" />
+								<p:column headerText="Calificación" style="width:5px" />
+								<p:column headerText="KPI Crítico" style="width:5px" />
+								<p:column headerText="Eliminar" style="width:5px" />
+							</p:row>
+						</p:columnGroup>
+						<p:subTable id="dtbSubCheckList" var="checkListKpi"
+							value="#{detalle.checkListKpi}">
+							<f:facet name="header">
+								<h:outputText value="#{detalle.descripcion}" />
+							</f:facet>
+							<p:column>
+								<div align="center">
+									<h:outputText value="#{checkListKpi.procesoDetalle.orden}" />
+								</div>
+							</p:column>
+							<p:column>
+								<h:outputText
+									value="#{checkListKpi.procesoDetalle.nombreProcesoDetalle}" />
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:selectOneMenu id="cmbCriterioE"
+										style="width:100% !important"
+										converter="#{criterioEvaluacionDetalleConverter}">
+										<f:selectItems
+											value="#{checkListKpi.criterioEvaluacion.criterioEvaluacionDetalle}"
+											var="criterioD" itemValue="#{criterioD}"
+											itemLabel="#{criterioD.nombre}" />
+									</p:selectOneMenu>
+									<p:selectOneRadio id="rbdCriterioE"
+										rendered="#{checkListKpi.criterioEvaluacion.idCriterioEvaluacion eq 6}"
+										converter="#{criterioEvaluacionDetalleConverter}"
+										layout="grid" columns="3">
+										<f:selectItems
+											value="#{checkListKpi.criterioEvaluacion.criterioEvaluacionDetalle}"
+											var="criterioD" itemValue="#{criterioD}"
+											itemLabel="#{criterioD.nombre}" />
+									</p:selectOneRadio>
+								</div>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<h:outputText value="#{checkListKpi.procesoDetalle.puntaje}"
+										rendered="#{checkListKpi.kPICritico eq null}" />
+								</div>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<h:outputText value="#{checkListKpi.procesoDetalle.puntaje}"
+										rendered="#{checkListKpi.kPICritico eq null}" />
+								</div>
+							</p:column>
+							<p:column style="width:5px">
+								<div align="center">
+									<p:commandButton id="btnComodin" icon="ui-icon-pencil"
+										title="Botón usado para añadir KPI's Crítico"
+										rendered="#{checkListKpi.kPICritico eq null}"
+										update="frm_pla_001:tabWiwe0:dtbCheckList"
+										process="@this frm_pla_001:tabWiwe0:dtbCheckList"
+										action="#{PlantillaCriterioGeneralBn.modificarCheckListKpi(checkListKpi)}"
+										oncomplete="PF('dialog_01_1').show()"></p:commandButton>
+									<p:graphicImage rendered="#{checkListKpi.kPICritico ne null}"
+										value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/iconos/#{checkListKpi.kPICritico.nombreImagen}" />
+								</div>
+							</p:column>
+							<p:column style="width:5px">
+								<div align="center">
+									<p:commandButton id="btnEliminar" icon="ui-icon-delete"
+										title="Botón usado para quitar KPI's de un proceso"
+										tabindex="sds"
+										action="#{PlantillaCriterioGeneralBn.quitarKpi(checkListKpi)}"
+										process="@this frm_pla_001:tabWiwe0:dtbCheckList"
+										update="frm_pla_001:tabWiwe0:dtbCheckList"></p:commandButton>
+								</div>
+							</p:column>
+							<p:columnGroup type="footer">
+								<p:row>
+									<p:column footerText="Total: " style="text-align:right" />
+									<p:column footerText="" />
+									<p:column footerText="" />
+									<p:column
+										footerText="#{PlantillaCriterioGeneralBn.sumarProceso(detalle)}"
+										style="text-align:center" />
+									<p:column
+										footerText="#{PlantillaCriterioGeneralBn.sumarProceso(detalle)}"
+										style="text-align:center" />
+									<p:column footerText="" />
+									<p:column footerText="" />
+								</p:row>
+							</p:columnGroup>
+						</p:subTable>
+						<p:columnGroup type="footer">
+							<p:row>
+								<p:column footerText="Total: " style="text-align:right" />
+								<p:column footerText="" />
+								<p:column footerText="" />
+								<p:column
+									footerText="#{PlantillaCriterioGeneralBn.totalPuntaje}"
+									style="text-align:center" />
+								<p:column
+									footerText="#{PlantillaCriterioGeneralBn.totalPuntaje}"
+									style="text-align:center" />
+								<p:column footerText="" />
+								<p:column footerText="" />
+							</p:row>
+						</p:columnGroup>
+					</p:dataTable>
+				</p:tab>
+				<p:tab id="tab01" title="Formulario">
+					<p:fieldset legend="Agregar Formulario a un Proceso"
+						toggleable="true" toggleSpeed="500">
+						<p:panelGrid columns="4" styleClass="fullsize sinborde"
+							layout="grid">
+							<p:column>
+								<p:outputLabel value="Seleccionar un Proceso :"
+									style="font-weight:bold"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:110px !important" id="cmbProcesoA"
+									disabled="#{PlantillaCriterioGeneralBn.totalPuntaje ne 100}"
+									converter="#{checkListProcesoConverter}"
+									value="#{PlantillaCriterioGeneralBn.checkListProcesoSeleccionado}">
+									<f:selectItem itemLabel="Procesos" />
+									<f:selectItems value="#{PlantillaCriterioGeneralBn.procesosA}"
+										var="proceso" itemValue="#{proceso}"
+										itemLabel="#{proceso.descripcion}" />
+									<p:ajax
+										update="frm_pla_001:tabWiwe0:fil02,frm_pla_001:tabWiwe0:btnFormulario"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Agregar columnas :"
+									style="font-weight:bold"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:commandButton id="btnFormulario" value="Columnas"
+									disabled="#{PlantillaCriterioGeneralBn.checkListProcesoSeleccionado eq null}"
+									oncomplete="PF('dialog_01_7').show()" update=":frm_pla_001_7"
+									action="#{PlantillaCriterioGeneralBn.columna()}"></p:commandButton>
+							</p:column>
+						</p:panelGrid>
+					</p:fieldset>
+					<p:fieldset id="fil02" legend="Formulario Dinámico"
+						toggleable="true" toggleSpeed="500">
+						<p:dataTable id="dtbFormulario1" reflow="true"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							var="checkListF"
+							value="#{PlantillaCriterioGeneralBn.procesoFormulario1}"
+							rendered="#{PlantillaCriterioGeneralBn.frm1 == true}"
+							emptyMessage="No existen formularios">
+							<f:facet name="header">
+								<div align="center">
+									#{PlantillaCriterioGeneralBn.nombreFrm_1}</div>
+							</f:facet>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm0_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm0_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm2_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm2_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm4_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm4_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm6_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm6_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm1_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm1_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm3_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm3_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm5_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm5_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm7_1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm7_1}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnfrm1M" title="Editar"
+										icon="ui-icon-pencil" oncomplete="PF('dialog_01_8').show()"
+										update=":frm_pla_001_8"
+										action="#{PlantillaCriterioGeneralBn.modificarF(checkListF)}"></p:commandButton>
+								</div>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnfrm1E" title="Eliminar"
+										icon="ui-icon-delete" update="frm_pla_001:tabWiwe0:fil02"
+										action="#{PlantillaCriterioGeneralBn.modificarE(checkListF)}"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+						<br />
+						<p:dataTable id="dtbFormulario2" scrollable="true"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							var="checkListF"
+							rendered="#{PlantillaCriterioGeneralBn.frm2 == true}"
+							value="#{PlantillaCriterioGeneralBn.procesoFormulario2}"
+							emptyMessage="No existen formularios">
+							<f:facet name="header">
+								<div align="center">
+									#{PlantillaCriterioGeneralBn.nombreFrm_2}</div>
+							</f:facet>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm0_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm0_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm2_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm2_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm4_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm4_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm6_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm6_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm1_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm1_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm3_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm3_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm5_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm5_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm7_2}"
+								rendered="#{PlantillaCriterioGeneralBn.frm7_2}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnfrm2M" title="Editar"
+										icon="ui-icon-pencil" oncomplete="PF('dialog_01_8').show()"
+										update=":frm_pla_001_8"
+										action="#{PlantillaCriterioGeneralBn.modificarF(checkListF)}"></p:commandButton>
+								</div>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnfrm2E" title="Eliminar"
+										icon="ui-icon-delete" update="frm_pla_001:tabWiwe0"
+										action="#{PlantillaCriterioGeneralBn.modificarE(checkListF)}"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+						<br />
+						<p:dataTable id="dtbFormulario3" reflow="true"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							var="checkListF"
+							rendered="#{PlantillaCriterioGeneralBn.frm3 == true}"
+							value="#{PlantillaCriterioGeneralBn.procesoFormulario3}"
+							emptyMessage="No existen formularios">
+							<f:facet name="header">
+								<div align="center">
+									#{PlantillaCriterioGeneralBn.nombreFrm_3}</div>
+							</f:facet>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm0_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm0_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm2_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm2_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm4_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm4_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm6_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm6_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm1_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm1_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm3_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm3_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm5_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm5_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+
+							<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm7_3}"
+								rendered="#{PlantillaCriterioGeneralBn.frm7_3}">
+								<p:inputText></p:inputText>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnfrm3M" title="Editar"
+										icon="ui-icon-pencil" oncomplete="PF('dialog_01_7').show()"
+										update=":frm_pla_001_8"
+										action="#{PlantillaCriterioGeneralBn.modificarF(checkListF)}"></p:commandButton>
+								</div>
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:commandButton id="btnfrm3E" title="Eliminar"
+										icon="ui-icon-delete" update="frm_pla_001:tabWiwe0"
+										action="#{PlantillaCriterioGeneralBn.modificarE(checkListF)}"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</p:tab>
+				<p:tab id="tab02" title="Informe">
+					<div align="right">
+						<p:commandButton value="Guardar" process="@this frm_pla_001"
+							title="Guardar Informe Dinámico"
+							action="#{PlantillaCriterioGeneralBn.guardarInformeDinamico()}"></p:commandButton>
+						<p:spacer width="5"></p:spacer>
+						<p:commandButton value="Previa" icon="ui-icon-print"
+							title="Generar Vista Previa Informe Dinámico"
+							process="@this frm_pla_001" update=":frm_pla_rpt_001"
+							styleClass="secondary" oncomplete="PF('dlg_pla_rpt_001').show()"
+							action="#{PlantillaCriterioGeneralBn.imprimir()}"></p:commandButton>
+					</div>
+					<p:fieldset id="filCabeceraTop" legend="Encabezado Top"
+						toggleable="true" toggleSpeed="500">
+						<p:panelGrid columns="9" styleClass="sinborde w120" layout="grid">
+
+							<p:column>
+								<p:outputLabel value="Izquierda " style="font-weight:bold"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputTextarea
+									value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.nombre}"
+									placeholder="Nombre Informe"></p:inputTextarea>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Centro" style="font-weight:bold"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputTextarea
+									value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.titulo}"
+									placeholder="Título Informe "></p:inputTextarea>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Derecha " style="font-weight:bold"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:110px !important" id="cmbEmpresa"
+									value="#{PlantillaCriterioGeneralBn.parEmpresaSelecciona}"
+									converter="#{parametrosConverter}">
+									<f:selectItems
+										value="#{PlantillaCriterioGeneralBn.parEmpresaList}"
+										var="empresa" itemValue="#{empresa}"
+										itemLabel="#{empresa.nombreLista}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:commandButton icon="ui-icon-flare"
+									title="Muestra Etiquetas Disponibles" update=":frm_pla_001_5"
+									action="#{PlantillaCriterioGeneralBn.cargarEtiqueta(1)}"
+									styleClass="secondary" oncomplete="PF('dialog_001_5').show()"></p:commandButton>
+							</p:column>
+						</p:panelGrid>
+					</p:fieldset>
+					<p:fieldset id="filCabecera" legend="Encabezado Cuerpo"
+						toggleable="true" toggleSpeed="500">
+						<p:dataTable id="dtbCabecera" reflow="true" var="cabecera"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.checkListInformeCabecera}"
+							emptyMessage="No existe formulario">
+							<f:facet name="header">
+								<div align="right">
+									<p:commandButton icon="ui-icon-add" update="dtbCabecera"
+										process="@this dtbCabecera"
+										action="#{PlantillaCriterioGeneralBn.anadirEncabezado()}"
+										title="Agregar Items a la cabecera "></p:commandButton>
+								</div>
+							</f:facet>
+							<p:column headerText="Título">
+								<div align="center">
+									<p:inputTextarea value="#{cabecera.titulo}" styleClass="w100"></p:inputTextarea>
+								</div>
+							</p:column>
+							<p:column headerText="Contenido">
+								<div align="center">
+									<p:inputTextarea value="#{cabecera.contenido}"
+										styleClass="w100"></p:inputTextarea>
+								</div>
+							</p:column>
+							<p:column headerText="Etiqueta">
+								<div align="center">
+									<p:commandButton icon="ui-icon-flare"
+										title="Muestra Etiquetas Disponibles" update=":frm_pla_001_5"
+										action="#{PlantillaCriterioGeneralBn.cargarEtiqueta(1)}"
+										styleClass="secondary" oncomplete="PF('dialog_001_5').show()"></p:commandButton>
+								</div>
+							</p:column>
+							<p:column headerText="Eliminar">
+								<div align="center">
+									<p:commandButton id="btnEliCabecera" title="Eliminar"
+										icon="ui-icon-delete"
+										update="frm_pla_001:tabWiwe0:dtbCabecera"
+										action="#{PlantillaCriterioGeneralBn.eliminarCab(cabecera)}"></p:commandButton>
+								</div>
+							</p:column>
+
+						</p:dataTable>
+					</p:fieldset>
+					<p:fieldset id="filEvaluacionP" legend="Evaluación de Procesos"
+						toggleable="true" toggleSpeed="500">
+						<p:fieldset legend="Procesos">
+							<p:panelGrid columns="4" styleClass="sinborde">
+								<p:selectOneMenu style="width:110px !important" id="cmbProcesoI"
+									converter="#{checkListProcesoConverter}"
+									value="#{PlantillaCriterioGeneralBn.checkListProcesoSeleccionadoI}">
+									<f:selectItem itemLabel="Procesos" />
+									<f:selectItems value="#{PlantillaCriterioGeneralBn.procesosA}"
+										var="proceso" itemValue="#{proceso}"
+										itemLabel="#{proceso.descripcion}" />
+									<p:ajax update="frm_pla_001:tabWiwe0:filKpi"></p:ajax>
+								</p:selectOneMenu>
+							</p:panelGrid>
+						</p:fieldset>
+
+						<p:fieldset id="filKpi" legend="Sección y Tablas de KPI's">
+							<p:dataTable id="dtbKpi" var="kpi" emptyMessage="No existe KPI's"
+								value="#{PlantillaCriterioGeneralBn.checkListProcesoSeleccionadoI.checkListKpi}"
+								reflow="true" tableStyle="table-layout: auto;">
+								<p:column headerText="Orden KPI">
+									<div align="center">
+										<h:outputText value="#{kpi.ordenReporte}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column headerText="Nombre">
+									<h:outputText
+										value="#{kpi.procesoDetalle.nombreProcesoDetalle}"></h:outputText>
+								</p:column>
+								<p:column headerText="Orden Sección">
+									<div align="center">
+										<h:outputText value="#{kpi.ordenReporte0}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column headerText="Sección">
+									<h:outputText value="#{kpi.seccion}"></h:outputText>
+								</p:column>
+								<p:column headerText="Visualizar">
+									<div align="center">
+										<h:outputText
+											value="#{kpi.visualizarReporte eq true ? 'SI' : 'NO'}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column headerText="Tabla">
+									<div align="center">
+										<h:outputText
+											value="#{kpi.visualizarTabla eq true ? 'SI' : 'NO'}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column width="30" headerText="Acción">
+									<p:commandButton icon="ui-icon-pencil" title="Editar"
+										process="@this dtbKpi"
+										action="#{PlantillaCriterioGeneralBn.kpiSeleccionadoModificar(kpi)}"
+										oncomplete="PF('dialog_001_4').show()" update=":frm_pla_001_4"></p:commandButton>
+								</p:column>
+							</p:dataTable>
+
+						</p:fieldset>
+					</p:fieldset>
+
+					<p:fieldset legend="Formularios" toggleable="true"
+						toggleSpeed="500">
+						<p:fieldset legend="Procesos">
+							<p:panelGrid columns="4" styleClass="sinborde">
+								<p:selectOneMenu style="width:110px !important"
+									id="cmbProcesoInforme"
+									disabled="#{PlantillaCriterioGeneralBn.totalPuntaje ne 100}"
+									converter="#{checkListProcesoConverter}"
+									value="#{PlantillaCriterioGeneralBn.checkListProcesoSeleccionadoT}">
+									<f:selectItem itemLabel="Procesos" />
+									<f:selectItems value="#{PlantillaCriterioGeneralBn.procesosA}"
+										var="proceso" itemValue="#{proceso}"
+										itemLabel="#{proceso.descripcion}" />
+									<p:ajax update="frm_pla_001:tabWiwe0:filFormulario"></p:ajax>
+								</p:selectOneMenu>
+							</p:panelGrid>
+						</p:fieldset>
+
+						<p:fieldset id="filFormulario" legend="Formularios">
+							<p:dataTable id="dtbFormularioI1" reflow="true"
+								tableStyle="table-layout: auto" style="margin-bottom:20px"
+								var="checkListF"
+								value="#{PlantillaCriterioGeneralBn.procesoFormulario1}"
+								rendered="#{PlantillaCriterioGeneralBn.frm1 == true}"
+								emptyMessage="No existen formularios">
+								<f:facet name="header">
+									<div align="center">
+										#{PlantillaCriterioGeneralBn.nombreFrm_1}</div>
+								</f:facet>
+								<p:column headerText="Visualizar">
+									<div align="center">
+										<h:outputText
+											value="#{checkListF.visualizar eq true ? 'SI' : 'NO'}" />
+									</div>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm0_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm0_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm2_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm2_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm4_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm4_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm6_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm6_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm1_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm1_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm3_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm3_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm5_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm5_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm7_1}"
+									rendered="#{PlantillaCriterioGeneralBn.frm7_1}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column>
+									<div align="center">
+										<p:commandButton id="btnfrmI1M" title="Editar"
+											icon="ui-icon-pencil" oncomplete="PF('dialog_001_6').show()"
+											update=":frm_pla_001_6"
+											action="#{PlantillaCriterioGeneralBn.modificarF(checkListF)}"></p:commandButton>
+									</div>
+								</p:column>
+							</p:dataTable>
+							<br />
+							<p:dataTable id="dtbFormularioI2" scrollable="true"
+								tableStyle="table-layout: auto" style="margin-bottom:20px"
+								var="checkListF"
+								rendered="#{PlantillaCriterioGeneralBn.frm2 == true}"
+								value="#{PlantillaCriterioGeneralBn.procesoFormulario2}"
+								emptyMessage="No existen formularios">
+								<f:facet name="header">
+									<div align="center">
+										#{PlantillaCriterioGeneralBn.nombreFrm_2}</div>
+								</f:facet>
+								<p:column headerText="Visualizar">
+									<div align="center">
+										<h:outputText
+											value="#{checkListF.visualizar eq true ? 'SI' : 'NO'}" />
+									</div>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm0_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm0_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm2_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm2_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm4_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm4_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm6_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm6_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm1_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm1_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm3_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm3_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm5_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm5_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm7_2}"
+									rendered="#{PlantillaCriterioGeneralBn.frm7_2}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column>
+									<div align="center">
+										<p:commandButton id="btnfrmI2M" title="Editar"
+											icon="ui-icon-pencil" oncomplete="PF('dialog_001_6').show()"
+											update=":frm_pla_001_6"
+											action="#{PlantillaCriterioGeneralBn.modificarF(checkListF)}"></p:commandButton>
+									</div>
+								</p:column>
+							</p:dataTable>
+							<br />
+							<p:dataTable id="dtbFormularioI3" reflow="true"
+								tableStyle="table-layout: auto" style="margin-bottom:20px"
+								var="checkListF"
+								rendered="#{PlantillaCriterioGeneralBn.frm3 == true}"
+								value="#{PlantillaCriterioGeneralBn.procesoFormulario3}"
+								emptyMessage="No existen formularios">
+								<f:facet name="header">
+									<div align="center">
+										#{PlantillaCriterioGeneralBn.nombreFrm_3}</div>
+								</f:facet>
+								<p:column headerText="Visualizar">
+									<div align="center">
+										<h:outputText
+											value="#{checkListF.visualizar eq true ? 'SI' : 'NO'}" />
+									</div>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm0_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm0_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm2_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm2_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm4_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm4_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm6_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm6_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm1_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm1_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm3_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm3_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm5_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm5_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+
+								<p:column headerText="#{PlantillaCriterioGeneralBn.nombFrm7_3}"
+									rendered="#{PlantillaCriterioGeneralBn.frm7_3}">
+									<p:inputText></p:inputText>
+								</p:column>
+								<p:column>
+									<div align="center">
+										<p:commandButton id="btnfrmI3M" title="Editar"
+											icon="ui-icon-pencil" oncomplete="PF('dialog_001_6').show()"
+											update=":frm_pla_001_6"
+											action="#{PlantillaCriterioGeneralBn.modificarF(checkListF)}"></p:commandButton>
+									</div>
+								</p:column>
+							</p:dataTable>
+						</p:fieldset>
+					</p:fieldset>
+					<p:fieldset legend="Tabla Administrativa" toggleable="true"
+						toggleSpeed="500">
+						<p:panelGrid columns="4" styleClass="fullsize sinborde"
+							layout="grid">
+							<p:row>
+								<p:column colspan="2">
+									<p:outputLabel value="Visualizar Tabla Administrativa"
+										style="font-weight:bold"></p:outputLabel>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+						<p:dataTable id="dtbComentario" reflow="true" var="proceso"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.checkListProceso}"
+							emptyMessage="No existe Pie Firma">
+							<p:column headerText="Orden">
+								<div align="center">
+									<p:outputLabel value="#{proceso.orden}"></p:outputLabel>
+								</div>
+							</p:column>
+							<p:column headerText="Nombre Proceso">
+								<div align="center">
+									<p:outputLabel value="#{proceso.proceso.nombreProceso}"></p:outputLabel>
+								</div>
+							</p:column>
+							<p:column headerText="Visualizar Tabla">
+								<div align="center">
+									<p:selectBooleanCheckbox value="#{proceso.visualizarTabla}"></p:selectBooleanCheckbox>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+					<p:fieldset legend="Imagenes" toggleable="true" toggleSpeed="500">
+						<p:panelGrid columns="4" styleClass="fullsize sinborde"
+							layout="grid">
+							<p:row>
+								<p:column colspan="2">
+									<p:outputLabel value="Visualizar Imagenes"
+										style="font-weight:bold"></p:outputLabel>
+								</p:column>
+								<p:spacer width="10"></p:spacer>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.visualizarImg}"></p:selectBooleanCheckbox>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:fieldset>
+					<p:fieldset id="filPieFirma" legend="Pie de Firma"
+						toggleable="true" toggleSpeed="500">
+						<p:dataTable id="dtbPieFirma" reflow="true" var="pieFirma"
+							tableStyle="table-layout: auto" style="margin-bottom:20px"
+							value="#{PlantillaCriterioGeneralBn.checkListSeleccionado.checkListPieFirma}"
+							emptyMessage="No existe Pie Firma">
+							<f:facet name="header">
+								<div align="right">
+									<p:commandButton icon="ui-icon-add"
+										update="dtbPieFirma,frm_pla_001:mensajes"
+										process="@this dtbPieFirma"
+										action="#{PlantillaCriterioGeneralBn.anadirPieFirma()}"
+										title="Agregar Items al Pie Firma "></p:commandButton>
+								</div>
+							</f:facet>
+							<p:column headerText="Orden">
+								<div align="center">
+									<p:outputLabel value="#{pieFirma.orden}"></p:outputLabel>
+								</div>
+							</p:column>
+							<p:column headerText="Responsable">
+								<div align="center">
+									<p:outputLabel value="#{pieFirma.ejemplo}"></p:outputLabel>
+								</div>
+							</p:column>
+							<p:column headerText="Cargo">
+								<div align="center">
+									<p:selectOneMenu id="cmbTipoCargo"
+										style="width:200px !important" value="#{pieFirma.tipoCargo}"
+										converter="#{tipoCargoConverter}">
+										<f:selectItems
+											value="#{PlantillaCriterioGeneralBn.tipoCargoList}"
+											var="tipoCargo" itemValue="#{tipoCargo}"
+											itemLabel="#{tipoCargo.descripcion}" />
+									</p:selectOneMenu>
+								</div>
+							</p:column>
+							<p:column headerText="Eliminar">
+								<div align="center">
+									<p:commandButton id="btnEliPieFirma" title="Eliminar"
+										icon="ui-icon-delete"
+										update="frm_pla_001:tabWiwe0:dtbPieFirma"
+										action="#{PlantillaCriterioGeneralBn.eliminarPie(pieFirma)}"></p:commandButton>
+								</div>
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+		<ui:include src="/pages/plantilla/pla_001_1.xhtml"></ui:include>
+		<ui:include src="/pages/plantilla/pla_001_2.xhtml"></ui:include>
+		<ui:include src="/pages/plantilla/pla_001_4.xhtml"></ui:include>
+		<ui:include src="/pages/plantilla/pla_001_5.xhtml"></ui:include>
+		<ui:include src="/pages/plantilla/pla_001_6.xhtml"></ui:include>
+		<ui:include src="/pages/plantilla/pla_001_7.xhtml"></ui:include>
+		<ui:include src="/pages/plantilla/pla_001_8.xhtml"></ui:include>
+		<ui:include src="/pages/reporte/plantilla/pla_rpt_001.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

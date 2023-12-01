@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_17_1" id="dialog_17_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Frecuencia Visita " />
+			<p:outputLabel value="par_017_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_017_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{FrecuenciaVisitaBn.guardar()}" update=":frm_par_017"
+					oncomplete="PF('dialog_17_1').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+
+				<p:outputLabel value="Orden" />
+				<p:spinner
+					value="#{FrecuenciaVisitaBn.frecuenciaVisitaSeleccionado.orden}"
+					size="5" min="0" max="1000">
+				</p:spinner>
+				<p:outputLabel value="Descripción"></p:outputLabel>
+				<p:inputText maxlength="100" placeholder="Ingresar Descripción"
+					value="#{FrecuenciaVisitaBn.frecuenciaVisitaSeleccionado.descripcion}">
+				</p:inputText>
+				<p:outputLabel> Estado </p:outputLabel>
+				<p:selectOneMenu style="width:50% !important" editable="false"
+					value="#{FrecuenciaVisitaBn.frecuenciaVisitaSeleccionado.estado}">
+					<f:selectItems value="#{FrecuenciaVisitaBn.estadosActIna}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

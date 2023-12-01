@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dialog_bus_001" id="dialog_bus_001"
+		appendTo="@(body)" modal="true" hideEffect="drop" closeOnEscape="true"
+		showHeader="true" width="70%" height="350px" resizable="false">
+		<f:facet name="header">
+			<h:outputText value="Busqueda de CheckList " />
+			<p:outputLabel value="bus_001.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<p:ajax disabled="#{BusquedaCheckBn.target != 1}" event="close"
+			update=":frm_006_1:tabWiwe0:fdt02"
+			listener="#{agenciaBn.closeEventCheckList()}"></p:ajax>
+		<h:form id="frm_busq_001">
+			<p:panelGrid styleClass="sinborde w110" columns="3">
+				<p:row>
+					<p:panelGrid columns="3" styleClass="sinborde">
+						<p:column>
+							<p:selectOneMenu style="width:100% !important"
+								value="#{BusquedaCheckBn.evaluacionSeleccionada}"
+								converter="#{evaluacionConverter}">
+								<f:selectItem itemLabel="Evaluación" />
+								<f:selectItems value="#{BusquedaCheckBn.evaluacionList}"
+									var="evaluacion" itemValue="#{evaluacion}"
+									itemLabel="#{evaluacion.descripcion}" />
+								<p:ajax event="change" update="frm_busq_001:cmbTipoCheck"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cmbTipoCheck" style="width:100% !important"
+								value="#{BusquedaCheckBn.tipoChecKListEtSeleccionado}"
+								converter="#{tipoCheckListConverter}">
+								<f:selectItem itemLabel="Tipo CheckList" />
+								<f:selectItems value="#{BusquedaCheckBn.tiposChecKList}"
+									var="tipoCheckList" itemValue="#{tipoCheckList}"
+									itemLabel="#{tipoCheckList.descripcion}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:commandButton title="Buscar" icon="fa fa-search"
+								update="dtbCheckListB" action="#{BusquedaCheckBn.buscar()}"></p:commandButton>
+						</p:column>
+					</p:panelGrid>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable id="dtbCheckListB" paginator="true" rows="10"
+				style="margin-bottom:20px" reflow="true"
+				emptyMessage="No existen registros"
+				rowKey="#{checkList.idCheckList}"
+				selection="#{BusquedaCheckBn.checkListSeleccionados}"
+				value="#{BusquedaCheckBn.checkLists}" var="checkList">
+				<p:column selectionMode="multiple"
+					style="width:16px;text-align:center" />
+				<p:column headerText="Código" width="10%">
+					<h:outputText value="#{checkList.codigo}"></h:outputText>
+				</p:column>
+				<p:column headerText="Evaluación" width="20%">
+					<h:outputText value="#{checkList.evaluacion.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="Tipo CheckList" width="20%">
+					<h:outputText value="#{checkList.tipoChecKList.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="Fecha Generado" width="20%">
+					<h:outputText value="#{checkList.tipoChecKList.descripcion}"></h:outputText>
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton process="dtbCheckListB" icon="fa fa-check"
+						oncomplete="PF('dialog_bus_001').hide()" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

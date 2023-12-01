@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso2Seccion2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="df77b438-edc7-4d9a-ad2d-0f1ac551ff93">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+kpi.id_check_list_kpi_ejecucion as id,
+det.orden_reporte as orden,
+kpi.descripcion as kpi
+from check_list_kpi_ejecucion_et kpi
+inner join proceso_detalle_et det
+on kpi.id_proceso_detalle=det.id_proceso_detalle
+inner join proceso_et pro
+on det.id_proceso=pro.id_proceso
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso}
+and kpi.visualizar_reporte='true'
+order by kpi.orden;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="orden" class="java.lang.String"/>
+	<field name="kpi" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="10">
+			<staticText>
+				<reportElement x="0" y="0" width="375" height="10" uuid="75db3416-39bc-4d1b-845e-d8cad69f71fe"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="25" height="15" uuid="2fc46bc7-8fa4-4fa1-9693-3e70be4d5995"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="25" y="15" width="350" height="15" uuid="18eb5912-c2dc-421c-bc16-7230d3d588a1"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_seccion">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso2Seccion3.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="25" y="0" width="350" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="8cdc2803-953a-4694-b6ec-f80a167e1909"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kpi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

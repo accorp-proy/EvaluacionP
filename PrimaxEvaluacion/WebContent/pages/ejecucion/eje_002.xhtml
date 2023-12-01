@@ -1,0 +1,329 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Ejecución CheckList Ctrl</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_eje_002">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<p:panelGrid columns="4" styleClass="sinborde w120" layout="grid"
+				columnClasses="ui-grid-col-10,ui-grid-col-2">
+				<p:column>
+					<p:commandButton id="btnFirmar" icon="fa fa-pencil-square-o"
+						oncomplete="PF('dlg_eje_010').show()" update=":frm_eje_010"
+						process="@this frm_eje_002" title="Firma Responsables"></p:commandButton>
+				</p:column>
+				<p:column>
+					<p:commandButton id="btnGuardar" icon="ui-icon-check"
+						title="Guardar" process="@this frm_eje_002"
+						disabled="#{CheckListEjecucionCtrlBn.validarGuardar == false}"
+						action="#{CheckListEjecucionCtrlBn.guardar()}"></p:commandButton>
+					<p:commandButton id="btnGuardarC" icon="fa fa-save"
+						title="Guardar CheckList"
+						disabled="#{CheckListEjecucionCtrlBn.validarGuardar}"
+						onclick="PF('dlg_conf_1').show()"></p:commandButton>
+				</p:column>
+			</p:panelGrid>
+
+			<div align="left"></div>
+			<div align="right"></div>
+			<p:tabView id="tabWiwe0">
+
+				<p:tab id="tab00" title="Ejecución Check List">
+					<p:panelGrid styleClass="sinborde w100">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Código"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{CheckListEjecucionCtrlBn.checkListEjecucion.codigo}"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Fecha"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.fechaPlanificacion}"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Estación"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.agencia.nombreAgencia}"></p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+
+						</p:row>
+					</p:panelGrid>
+					<p:dataTable id="dtbCheckList" var="detalle"
+						value="#{CheckListEjecucionCtrlBn.checkListEjecucion.checkListProcesoEjecucion}"
+						emptyMessage="No existen Procesos">
+						<f:facet name="header">
+                      #{CheckListEjecucionCtrlBn.checkListEjecucion.evaluacion.descripcion} - #{CheckListEjecucionCtrlBn.checkListEjecucion.tipoChecKList.descripcion} - #{CheckListEjecucionCtrlBn.checkListEjecucion.codigo}
+                         </f:facet>
+						<p:columnGroup type="header">
+							<p:row>
+								<p:column headerText="KPIs " style="width:60px"></p:column>
+								<p:column headerText="Criterio Evaluación" style="width:20px" />
+								<p:column headerText="Comentario Control" style="width:10px" />
+								<p:column headerText="Comentario Administrativo"
+									style="width:10px" />
+							</p:row>
+						</p:columnGroup>
+						<p:subTable id="dtbSubCheckList" var="checkListKpi"
+							value="#{detalle.checkListKpiEjecucion}"
+							tableStyle="table-layout: auto;" reflow="true">
+							<p:columnGroup type="header">
+								<p:row>
+									<p:column headerText="#{detalle.descripcion}" />
+									<p:column />
+									<p:column />
+									<p:column>
+										<f:facet name="header">
+											<div align="center">
+												<p:commandButton icon="ui-icon-add" id="btnProceso1"
+													process="@this frm_eje_002"
+													title="Agregar Información Adicional Combustible"
+													rendered="#{detalle.proceso.nombreProceso.toLowerCase().contains('combustible')}"
+													oncomplete="PF('dlg_eje_006').show()" update=":frm_eje_006"></p:commandButton>
+												<p:commandButton icon="ui-icon-add" id="btnProceso2"
+													process="@this frm_eje_002"
+													title="Agregar Información Adicional Control Efectivo"
+													rendered="#{detalle.proceso.nombreProceso.toLowerCase().contains('efectivo') and (detalle.proceso.nombreProceso.toLowerCase().contains('control'))}"
+													oncomplete="PF('dlg_eje_007').show()" update=":frm_eje_007"></p:commandButton>
+												<p:commandButton icon="ui-icon-add" id="btnProceso5"
+													process="@this frm_eje_002"
+													title="Agregar Información Adicional Conciliación Efectivo"
+													rendered="#{detalle.proceso.nombreProceso.toLowerCase().contains('efectivo') and (detalle.proceso.nombreProceso.toLowerCase().contains('conteo'))}"
+													oncomplete="PF('dlg_eje_007_1').show()"
+													update=":frm_eje_007_1"></p:commandButton>
+												<p:commandButton icon="ui-icon-add" id="btnProceso3"
+													process="@this frm_eje_002"
+													title="Agregar Información Adicional Tienda"
+													rendered="#{detalle.proceso.nombreProceso.toLowerCase().contains('tienda')}"
+													oncomplete="PF('dlg_eje_008').show()" update=":frm_eje_008"></p:commandButton>
+												<p:commandButton icon="ui-icon-add" id="btnProceso6"
+													process="@this frm_eje_002"
+													title="Agregar Información Adicional Controles de estación de servicio a Promotores"
+													rendered="#{detalle.proceso.nombreProceso.toLowerCase().contains('servicio a promotores')}"
+													oncomplete="PF('dlg_eje_008_1').show()"
+													update=":frm_eje_008_1"></p:commandButton>
+												<p:commandButton icon="ui-icon-add" id="btnProceso4"
+													process="@this frm_eje_002"
+													title="Agregar Información Adicional Procedimientos Estaciones de Servicio"
+													rendered="#{detalle.proceso.nombreProceso.toLowerCase().contains('procedimiento')}"
+													oncomplete="PF('dlg_eje_009').show()" update=":frm_eje_009"></p:commandButton>
+											</div>
+										</f:facet>
+									</p:column>
+								</p:row>
+							</p:columnGroup>
+							<p:column>
+								<h:outputText value="#{checkListKpi.descripcion}" />
+								<p:spacer width="10"></p:spacer>
+								<p:commandButton icon="fa fa-dollar" process="@this frm_eje_002"
+									title="Arqueo Caja General"
+									action="#{CheckListEjecucionCtrlBn.checkListKpiSeleccionadoArqueoCaja(checkListKpi)}"
+									oncomplete="PF('dlg_eje_003').show()" update=":frm_eje_003"
+									rendered="#{checkListKpi.criterioEvaluacion.tipo eq 'C'}"></p:commandButton>
+								<p:commandButton icon="fa fa-dollar" process="@this frm_eje_002"
+									title="Arqueo Caja Fuerte"
+									action="#{CheckListEjecucionCtrlBn.checkListKpiSeleccionadoArqueoCajaFuerte(checkListKpi)}"
+									oncomplete="PF('dlg_eje_003_1').show()" update=":frm_eje_003_1"
+									rendered="#{checkListKpi.criterioEvaluacion.tipo eq 'T'}"></p:commandButton>
+								<p:commandButton icon="fa fa-dollar" process="@this frm_eje_002"
+									action="#{CheckListEjecucionCtrlBn.checkListKpiSeleccionadoArqueoFondoSuelto(checkListKpi)}"
+									oncomplete="PF('dlg_eje_004').show()" update=":frm_eje_004"
+									rendered="#{checkListKpi.criterioEvaluacion.tipo eq 'F'}"></p:commandButton>
+								<p:commandButton icon="fa fa-dollar" process="@this frm_eje_002"
+									action="#{CheckListEjecucionCtrlBn.checkListKpiSeleccionadoArqueoCajaChica(checkListKpi)}"
+									oncomplete="PF('dlg_eje_005').show()" update=":frm_eje_005"
+									rendered="#{checkListKpi.criterioEvaluacion.tipo eq 'E'}"></p:commandButton>
+
+							</p:column>
+							<p:column>
+								<div align="center">
+									<p:selectOneMenu id="cmbCriterioE"
+										style="width:100% !important"
+										converter="#{criterioEvaluacionDetalleConverter}"
+										value="#{checkListKpi.criterioEvaluacionDetalle}">
+										<f:selectItem itemLabel="Seleccione" />
+										<f:selectItems
+											value="#{checkListKpi.criterioEvaluacion.criterioEvaluacionDetalle}"
+											var="criterioD" itemValue="#{criterioD}"
+											itemLabel="#{criterioD.nombre}" />
+										<p:ajax event="change"
+											process="@this frm_eje_002:tabWiwe0:dtbCheckList"
+											update="frm_eje_002:tabWiwe0:dtbCheckList,frm_eje_002:btnGuardar,frm_eje_002:btnGuardarC"
+											listener="#{CheckListEjecucionCtrlBn.guardarSeleccion(checkListKpi)}"></p:ajax>
+									</p:selectOneMenu>
+								</div>
+							</p:column>
+							<p:column>
+								<div align="left">
+									<p:inputTextarea id="inpTextArea0"
+										value="#{checkListKpi.comentarioControl}" rows="4"
+										styleClass="w100" maxlength="500">
+										<p:ajax event="change"
+											process="@this frm_eje_002:tabWiwe0:dtbCheckList"
+											listener="#{CheckListEjecucionCtrlBn.guardar()}"
+											update="frm_eje_002:tabWiwe0:dtbCheckList" />
+									</p:inputTextarea>
+								</div>
+							</p:column>
+							<p:column>
+								<div align="left">
+									<p:inputTextarea id="inpTextArea1"
+										value="#{checkListKpi.comentarioEstacion}" rows="4"
+										styleClass="w100" maxlength="500">
+										<p:ajax event="change"
+											process="@this frm_eje_002:tabWiwe0:dtbCheckList"
+											listener="#{CheckListEjecucionCtrlBn.guardar()}"
+											update="frm_eje_002:tabWiwe0:dtbCheckList" />
+									</p:inputTextarea>
+								</div>
+							</p:column>
+						</p:subTable>
+					</p:dataTable>
+				</p:tab>
+				<p:tab id="tab01" title="Reporte">
+					<p:panelGrid styleClass="sinborde w20">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="CheckList"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Descargar en formato Excel"
+									icon="fa fa-file-excel-o" immediate="true" ajax="false"
+									actionListener="#{ReporteBn.imprimirExcel(7,appMain.usuario.nombreUsuario,CheckListEjecucionCtrlBn.checkListEjecucion.idCheckListEjecucion.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.tipoChecKList.descripcion,CheckListEjecucionCtrlBn.checkListEjecucion.codigo,CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.agencia.idAgencia.toString(),appMain.usuario.personaUsuario.nombreCompleto,null,null,null,null,true)}">
+									<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+								</p:commandButton>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Matriz Riego"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Descargar en formato Excel"
+									icon="fa fa-file-excel-o" immediate="true" ajax="false"
+									disabled="#{CheckListEjecucionCtrlBn.checkListEjecucion.tipoChecKList.generaMatriz == false}"
+									actionListener="#{ReporteBn.imprimirExcel(8,appMain.usuario.nombreUsuario,CheckListEjecucionCtrlBn.checkListEjecucion.idCheckListEjecucion.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.tipoChecKList.descripcion,CheckListEjecucionCtrlBn.checkListEjecucion.codigo,null,null,null,null,null,null,true)}">
+									<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+								</p:commandButton>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Consolidado Arqueo"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Descargar en formato Excel"
+									icon="fa fa-file-excel-o" immediate="true" ajax="false"
+									actionListener="#{ReporteBn.imprimirExcel(10,appMain.usuario.nombreUsuario,CheckListEjecucionCtrlBn.checkListEjecucion.idCheckListEjecucion.toString(),null,null,null,null,null,null,null,null,true)}">
+									<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+								</p:commandButton>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Reporte Novedades"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Descargar en formato Pdf"
+									icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+										disabled="#{CheckListEjecucionCtrlBn.checkListEjecucion.tipoChecKList.generaReporte == false}"
+									actionListener="#{ReporteBn.imprimirExcel(11,appMain.usuario.nombreUsuario,CheckListEjecucionCtrlBn.checkListEjecucion.idCheckListEjecucion.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.agencia.idAgencia.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.evaluacion.idEvaluacion.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.tipoChecKList.idTipoCheckList.toString(),null,null,null,null,null,false)}">
+									<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+								</p:commandButton>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab id="tab03" title="Adjuntos">
+					<br />
+					<br />
+					<p:fileUpload mode="advanced" uploadLabel="Subir"
+						fileUploadListener="#{CheckListEjecucionCtrlBn.upload}"
+						cancelLabel="Cancelar" label="Seleccionar" dragDropSupport="true"
+						allowTypes="/(\.|\/)(docx|xlsx|xls|gif|jpe?g|png|pdf|pptx)$/"
+						update="fdt11" process="@this fdt11" />
+					<br />
+					<p:dataTable id="fdt11" emptyMessage="sin adjuntos"
+						value="#{CheckListEjecucionCtrlBn.checkListEjecucion.checkListEjecucionAdjunto}"
+						var="checkListAdjunto">
+						<p:column headerText="Nombre del Archivo" width="200">
+							<h:outputText value="#{checkListAdjunto.nombreAdjunto}" />
+						</p:column>
+						<p:column headerText="Ruta" width="75">
+							<p:commandButton immediate="true" value="Descargar" ajax="false"
+								actionListener="#{appMain.fileDownloadPath(checkListAdjunto.checkListEjecucion.idCheckListEjecucion , checkListAdjunto.nombreAdjunto)}"
+								process="@this">
+								<p:fileDownload value="#{appMain.download}" />
+							</p:commandButton>
+						</p:column>
+						<p:column headerText="Categoría" style="width:30%">
+							<p:selectOneMenu id="cmbRubro" style="width:100% !important"
+								converter="#{parametrosConverter}"
+								value="#{checkListAdjunto.parametroCategoria}">
+								<f:selectItems
+									value="#{CheckListEjecucionCtrlBn.tipoCategoriaList}"
+									var="tipoCategoria" itemValue="#{tipoCategoria}"
+									itemLabel="#{tipoCategoria.nombreLista}" />
+								<p:ajax event="change" process="@this fdt11"
+									listener="#{CheckListEjecucionCtrlBn.guardar()}"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column headerText="Descripción" style="width:40%">
+							<h:inputText maxlength="100" value="#{checkListAdjunto.detalle}"
+								title="Tipos de adjuntos docx , xlsx , xls , gif , jpe , png , pdf , pptx"
+								styleClass="w100">
+								<p:ajax event="change" process="@this fdt11"
+									listener="#{CheckListEjecucionCtrlBn.guardar()}"></p:ajax>
+							</h:inputText>
+						</p:column>
+						<p:column width="30">
+							<p:commandButton icon="ui-icon-delete" title="Eliminar"
+								process="@this" update="fdt11"
+								action="#{CheckListEjecucionCtrlBn.quitarAdjunto(checkListAdjunto)}"></p:commandButton>
+						</p:column>
+					</p:dataTable>
+					<br />
+				</p:tab>
+			</p:tabView>
+		</h:form>
+		<p:confirmDialog widgetVar="dlg_conf_1" header="Confirmar"
+			appendTo="@(body)" message="Esta seguro de Finalizar CheckList ?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf_1').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check"
+					oncomplete="PF('dlg_conf_1').hide()" update="frm_eje_002"
+					action="#{CheckListEjecucionCtrlBn.guardarCheckList()}"
+					process="@this frm_eje_002"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+		<ui:include src="/pages/ejecucion/eje_003.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_003_1.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_004.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_005.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_006.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_007.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_007_1.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_008.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_008_1.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_009.xhtml"></ui:include>
+		<ui:include src="/pages/ejecucion/eje_010.xhtml"></ui:include>
+
+	</ui:define>
+</ui:composition>

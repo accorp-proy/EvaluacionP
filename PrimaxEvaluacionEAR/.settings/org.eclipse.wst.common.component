@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
+    <wb-module deploy-name="PrimaxEvaluacionEAR">
+                
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+                
+        <dependent-module archiveName="Exceptions.jar" deploy-path="/lib" handle="module:/resource/Exceptions/Exceptions">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="Enumerations.jar" deploy-path="/lib" handle="module:/resource/Enumerations/Enumerations">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="Entities.jar" deploy-path="/lib" handle="module:/resource/Entities/Entities">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="CKFinderPlugin-FileEditor.jar" deploy-path="/lib" handle="module:/resource/CKFinderPlugin-FileEditor/CKFinderPlugin-FileEditor">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="CKFinderPlugin-ImageResize.jar" deploy-path="/lib" handle="module:/resource/CKFinderPlugin-ImageResize/CKFinderPlugin-ImageResize">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="CKFinderPlugin-Watermark.jar" deploy-path="/lib" handle="module:/resource/CKFinderPlugin-Watermark/CKFinderPlugin-Watermark">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="CKFinder.jar" deploy-path="/lib" handle="module:/resource/CKFinder/CKFinder">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="DataService.jar" deploy-path="/" handle="module:/resource/DataService/DataService">
+                        
+            <dependent-object/>
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                
+        <dependent-module archiveName="PrimaxEvaluacion.war" deploy-path="/" handle="module:/resource/PrimaxEvaluacion/PrimaxEvaluacion">
+                        
+            <dependent-object/>
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+            
+    </wb-module>
+    
+</project-modules>

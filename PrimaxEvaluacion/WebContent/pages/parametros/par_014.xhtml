@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Evaluación</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_014">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<p:panelGrid id="pnl_00" styleClass="fullSize" columns="2"
+				columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<div align="left">
+								<p:outputLabel value="Evaluación "></p:outputLabel>
+								<p:outputLabel value="par_014.xhtml"
+									rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div align="right">
+								<p:inputText id="inpBusqueda" value="#{EvaluacionBn.condicion}"></p:inputText>
+								<p:commandButton title="Buscar"
+									action="#{EvaluacionBn.buscar()}" update="dtbEvaluacion"
+									icon="ui-icon-search" styleClass="secondary"></p:commandButton>
+								<p:commandButton title="Nuevo" update=":frm_par_014_1"
+									action="#{EvaluacionBn.nuevo()}"
+									oncomplete="PF('dialog_14_1').show()"
+									icon="ui-icon-open-in-new" styleClass="secondary"></p:commandButton>
+							</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable paginator="true" rows="15" reflow="true"
+				tableStyle="table-layout: auto;" style="margin-bottom:20px"
+				emptyMessage="No existe Evaluación" id="dtbEvaluacion"
+				value="#{EvaluacionBn.evaluaciones}" var="evaluacion">
+				<p:column headerText="Descripción Evaluación">
+					<h:outputText value="#{evaluacion.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="Estado">
+					<h:outputText value="#{evaluacion.estado.descripcion}"></h:outputText>
+				</p:column>
+				<p:column width="30" headerText="Editar">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{EvaluacionBn.modificar(evaluacion)}"
+						oncomplete="PF('dialog_14_1').show()" update=":frm_par_014_1"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/parametros/par_014_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_pln_010" id="dlg_pln_010"
+		appendTo="@(body)" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Integrantes Inventario " />
+			<p:outputLabel value="pln_010.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pln_010">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<p:panelGrid styleClass="sinborde w100" layout="grid" columns="2"
+				columnClasses="ui-grid-col-6,ui-grid-col-6">
+				<p:column>
+					<p:outputLabel value="Responsable" style="font-weight: bold;"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectManyMenu id="selectManyResponsable"
+						style="width:100% !important" converter="#{usuarioConverter}"
+						var="t">
+						<f:selectItems var="auditor"
+							itemValue="#{auditor.usuarioResponsable}"
+							value="#{dashboardBn.planificacionInventarioSeleccionada.planificacionResponsable}"
+							itemLabel="#{auditor.usuarioResponsable.personaUsuario.identificacionPersona} - #{auditor.usuarioResponsable.personaUsuario.nombreCompleto}" />
+						<p:column>
+							<h:outputText
+								value="#{t.personaUsuario.identificacionPersona} - #{t.personaUsuario.nombreCompleto}" />
+						</p:column>
+					</p:selectManyMenu>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Participante" style="font-weight: bold;"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectManyMenu id="selectManyParticipante"
+						style="width:100% !important" converter="#{usuarioConverter}"
+						var="t">
+						<f:selectItems var="auditor"
+							itemValue="#{auditor.usuarioParticipante}"
+							value="#{dashboardBn.planificacionInventarioSeleccionada.planificacionParticipante}"
+							itemLabel="#{auditor.usuarioParticipante.personaUsuario.identificacionPersona} - #{auditor.usuarioParticipante.personaUsuario.nombreCompleto}" />
+						<p:column>
+							<h:outputText
+								value="#{t.personaUsuario.identificacionPersona} - #{t.personaUsuario.nombreCompleto}" />
+						</p:column>
+					</p:selectManyMenu>
+				</p:column>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Datos de Personas [per-001]</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_per_001">
+			<p:defaultCommand target="btn_buscar"></p:defaultCommand>
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:outputLabel value="Datos de Personas"></p:outputLabel>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+					<p:commandButton icon="ui-icon-plus" update=":frm_per_0011"
+						title="Nuevo" value="Nuevo" process="@this"
+						action="#{personaBn.nuevo()}" oncomplete="PF('dlg_per_01').show()">
+					</p:commandButton>
+				</f:facet>
+				<f:facet name="right">
+					<p:inputText style="width:200px" styleClass="white"
+						id="txt_busqueda" value="#{personaBn.textoBusqueda}">
+						<i class="fa fa-search"></i>
+					</p:inputText>
+					<p:commandButton id="btn_buscar" title="Buscar"
+						process="@this,txt_busqueda" style="display: none"
+						action="#{personaBn.buscar()}" icon="buscar"
+						update=":frm_per_001:dataPers" />
+				</f:facet>
+			</p:toolbar>
+			<p:dataTable paginator="true" rows="30" reflow="true"
+				emptyMessage="No existen persona para el criterio de consulta"
+				id="dataPers" value="#{personaBn.personas}" var="pers">
+				<p:column headerText="Identificación">
+					<p:outputLabel value="#{pers.identificacionPersona}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{pers.nombreCompleto}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Fecha Nacimiento">
+					<h:outputText value="#{pers.fechaNacimiento}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Estación">
+					<h:outputText value="#{personaBn.estacion(pers)}">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Contacto">
+					<p:outputLabel
+						value="#{pers.telefonoConvencional==null ? pers.telefonoMovil:pers.telefonoConvencional}"></p:outputLabel>
+				</p:column>
+				<p:column width="30">
+					<div align="right">
+						<p:commandButton icon="ui-icon-pencil" process="@this"
+							action="#{personaBn.modificar(pers)}"
+							oncomplete="PF('dlg_per_01').show()" update=":frm_per_0011"
+							title="Editar">
+						</p:commandButton>
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/personas/per_001_1.xhtml" />
+	</ui:define>
+</ui:composition>

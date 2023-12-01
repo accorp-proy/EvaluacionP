@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso9Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bd8ddab6-f5d1-4fe6-bd65-7d8fc43eea7a">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="196"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{condicioncolor}=='true']]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{condicioncolor}=='false']]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="par_id_check_list" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+adj.id_check_list_ejecucion as id,
+adj.imagen_path as imgPath
+from check_list_ejecucion_adjunto_et adj
+where adj.id_check_list_ejecucion = $P{par_id_check_list}
+and adj.id_parametro_categoria = 166
+and adj.estado='ACT'
+limit(1)]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="imgpath" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="180" splitType="Stretch">
+			<image scaleImage="RealSize" hAlign="Center">
+				<reportElement x="77" y="5" width="385" height="170" uuid="6b22ec67-1a76-4a42-b3b7-dd2b92b5fe48"/>
+				<imageExpression><![CDATA[$F{imgpath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="5" uuid="7f94e3e5-1ca1-45c5-87f2-12522e075673"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="175" width="555" height="5" uuid="5c76ebff-8bb0-4a8b-aec7-40ea643f5dcd"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

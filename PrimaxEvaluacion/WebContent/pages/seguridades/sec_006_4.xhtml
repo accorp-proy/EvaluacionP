@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dlg_sec_006_4" id="dlg_sec_006_4"
+		responsive="true" appendTo="@(body)" resizable="false" height="360px"
+		hideEffect="scale" width="430px">
+		<f:facet name="header">
+			<h:outputLabel value="Compañia Virtual" />
+		</f:facet>
+		<h:form id="frm_sec_006_4">
+			<p:growl autoUpdate="true"></p:growl>
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					oncomplete="PF('dlg_sec_006_4').hide()"
+					action="#{usuarioCtrl.guardarCambioProductoComercial()}"
+					update=":fd04" />
+			</div>
+			<br />
+			<p:dataTable id="dtbProductoComercial"
+				value="#{usuarioCtrl.usuarioBean.productosComercial}"
+				var="productoComercial" paginator="true"
+				rowKey="#{productoComercial.idCompaniaVirtual}" reflow="true"
+				styleClass="fullSize" rows="4"
+				selection="#{usuarioCtrl.usuarioBean.companiaVirtualSeleccionados}">
+				<p:column selectionMode="multiple"
+					style="width:16px;text-align:center"></p:column>
+				<p:column headerText="Código JDE">
+					<p:outputLabel value="#{productoComercial.idCompaniaVirtualJDE}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Empresa">
+					<p:outputLabel value="#{productoComercial.empresa.descripcion}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Descripción">
+					<p:outputLabel value="#{productoComercial.descripcion}"></p:outputLabel>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

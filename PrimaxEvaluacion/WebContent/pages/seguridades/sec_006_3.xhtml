@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dialog_06" id="dialog_06" appendTo="@(body)"
+		resizable="false" hideEffect="drop" closeOnEscape="true"
+		showHeader="true" height="300px" width="500px">
+		<f:facet name="header">
+			<h:outputText value="Seleccion de Persona [sec-006-3]" />
+		</f:facet>
+		<br></br>
+		<h:form id="frmPersona">
+			<p:defaultCommand target="btn_buscar"></p:defaultCommand>
+			<p:panelGrid style="width:100%" styleClass="sinborde">
+				<p:row>
+					<p:column>
+						<div align="left">
+							<p:commandButton title="Agregar" icon="ui-icon-plus"
+								value="Agregar" oncomplete="PF('dialog_06').hide()"
+								action="#{UsuarioBn.cargarPersona()}" update=":fd04" />
+						</div>
+					</p:column>
+					<p:column>
+						<div align="right">
+							<p:inputText style="width:200px" id="txtBusqueda"
+								placeholder="Nombres o Apellidos"
+								value="#{UsuarioBn.busquedaPersona}"></p:inputText>
+							<p:commandButton title="Buscar" id="btn_buscar"
+								icon="ui-icon-search" process="frmPersona"
+								action="#{UsuarioBn.buscarPersona()}"
+								update=":frmPersona:dataPersona" />
+						</div>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable value="#{UsuarioBn.listaPersonas}" var="per"
+				styleClass="fullSize" rows="3" paginator="true"
+				selectionMode="single" id="dataPersona"
+				selection="#{UsuarioBn.personaSeleccionada}"
+				rowKey="#{per.idPersona}">
+				<p:column headerText="Identificación" width="20%">
+					<div align="center">
+						<h:outputText value="#{per.identificacionPersona}" />
+					</div>
+				</p:column>
+				<p:column headerText="Nombre" width="50%">
+					<h:outputText value="#{per.nombreCompleto}" />
+				</p:column>
+				<p:column headerText="Estación" width="30%">
+					<h:outputText value="#{UsuarioBn.estacion(per)}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

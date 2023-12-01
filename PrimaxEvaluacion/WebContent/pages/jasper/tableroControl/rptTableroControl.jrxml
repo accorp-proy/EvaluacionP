@@ -1,0 +1,1552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptTableroControl" language="groovy" pageWidth="1100" pageHeight="555" orientation="Landscape" columnWidth="1100" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e6fc39f7-b072-476c-8a58-8b6a388b8c7f">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="1226"/>
+	<property name="ireport.y" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="queryTabla01" uuid="9546aca7-c3d5-4e2d-8b71-0466bee6cafa">
+		<parameter name="nivel_01" class="java.lang.String"/>
+		<parameter name="nivel_02" class="java.lang.String"/>
+		<parameter name="nivel_03" class="java.lang.String"/>
+		<parameter name="nivel_04" class="java.lang.String"/>
+		<parameter name="nivel_05" class="java.lang.String"/>
+		<parameter name="nivel_06" class="java.lang.String"/>
+		<parameter name="p_id_usuario" class="java.lang.Long"/>
+		<parameter name="nivel_01_c" class="java.lang.String"/>
+		<parameter name="nivel_02_c" class="java.lang.String"/>
+		<parameter name="nivel_03_c" class="java.lang.String"/>
+		<parameter name="nivel_04_c" class="java.lang.String"/>
+		<parameter name="nivel_05_c" class="java.lang.String"/>
+		<parameter name="nivel_06_c" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select
+tab.id_zona as idZona,
+tab.zona as zona,
+tab.nivel_01 as nivel01,
+tab.nivel_02 as nivel02,
+tab.nivel_03 as nivel03,
+tab.nivel_04 as nivel04,
+tab.nivel_05 as nivel05,
+tab.nivel_06 as nivel06,
+(tab.nivel_01+tab.nivel_02+tab.nivel_03+tab.nivel_04+tab.nivel_05+tab.nivel_06) as total
+from tablero_evaluacion_zona_et tab
+where tab.aud_usuario =  $P{p_id_usuario}
+order by tab.id_zona;]]>
+		</queryString>
+		<field name="idzona" class="java.lang.Long"/>
+		<field name="zona" class="java.lang.String"/>
+		<field name="nivel01" class="java.lang.Long"/>
+		<field name="nivel02" class="java.lang.Long"/>
+		<field name="nivel03" class="java.lang.Long"/>
+		<field name="nivel04" class="java.lang.Long"/>
+		<field name="nivel05" class="java.lang.Long"/>
+		<field name="nivel06" class="java.lang.Long"/>
+		<field name="total" class="java.lang.Long"/>
+		<variable name="nivelT01" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel01}]]></variableExpression>
+		</variable>
+		<variable name="nivelT02" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel02}]]></variableExpression>
+		</variable>
+		<variable name="nivelT03" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel03}]]></variableExpression>
+		</variable>
+		<variable name="nivelT04" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel04}]]></variableExpression>
+		</variable>
+		<variable name="nivelT05" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel05}]]></variableExpression>
+		</variable>
+		<variable name="nivelT06" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel06}]]></variableExpression>
+		</variable>
+		<variable name="total" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="queryTabla02" uuid="9607905f-54b2-435e-8b6c-6512ddc2eaa3">
+		<parameter name="nivel_01" class="java.lang.String"/>
+		<parameter name="nivel_02" class="java.lang.String"/>
+		<parameter name="nivel_03" class="java.lang.String"/>
+		<parameter name="nivel_04" class="java.lang.String"/>
+		<parameter name="nivel_05" class="java.lang.String"/>
+		<parameter name="nivel_06" class="java.lang.String"/>
+		<parameter name="p_id_usuario" class="java.lang.Long"/>
+		<parameter name="nivel_01_e" class="java.lang.String"/>
+		<parameter name="nivel_02_e" class="java.lang.String"/>
+		<parameter name="nivel_03_e" class="java.lang.String"/>
+		<parameter name="nivel_04_e" class="java.lang.String"/>
+		<parameter name="nivel_05_e" class="java.lang.String"/>
+		<parameter name="nivel_06_e" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select
+tab.id_zona as idZona,
+tab.zona as zona,
+tab.nivel_01 as nivel01,
+tab.nivel_02 as nivel02,
+tab.nivel_03 as nivel03,
+tab.nivel_04 as nivel04,
+tab.nivel_05 as nivel05,
+tab.nivel_06 as nivel06,
+(tab.nivel_01+tab.nivel_02+tab.nivel_03+tab.nivel_04+tab.nivel_05+tab.nivel_06) as total
+from tablero_estacion_zona_et tab
+where tab.aud_usuario = $P{p_id_usuario}
+order by tab.id_zona]]>
+		</queryString>
+		<field name="idzona" class="java.lang.Long"/>
+		<field name="zona" class="java.lang.String"/>
+		<field name="nivel01" class="java.lang.Long"/>
+		<field name="nivel02" class="java.lang.Long"/>
+		<field name="nivel03" class="java.lang.Long"/>
+		<field name="nivel04" class="java.lang.Long"/>
+		<field name="nivel05" class="java.lang.Long"/>
+		<field name="nivel06" class="java.lang.Long"/>
+		<field name="total" class="java.lang.Long"/>
+		<variable name="nivelT01" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel01}]]></variableExpression>
+		</variable>
+		<variable name="nivelT02" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel02}]]></variableExpression>
+		</variable>
+		<variable name="nivelT03" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel03}]]></variableExpression>
+		</variable>
+		<variable name="nivelT04" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel04}]]></variableExpression>
+		</variable>
+		<variable name="nivelT05" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel05}]]></variableExpression>
+		</variable>
+		<variable name="nivelT06" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel06}]]></variableExpression>
+		</variable>
+		<variable name="total" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="queryTabla03" uuid="7590c110-f268-4e56-b3d3-2a2fd37d4e2e">
+		<parameter name="nivel_01" class="java.lang.String"/>
+		<parameter name="nivel_02" class="java.lang.String"/>
+		<parameter name="nivel_03" class="java.lang.String"/>
+		<parameter name="nivel_04" class="java.lang.String"/>
+		<parameter name="nivel_05" class="java.lang.String"/>
+		<parameter name="nivel_06" class="java.lang.String"/>
+		<parameter name="p_id_usuario" class="java.lang.Long"/>
+		<queryString>
+			<![CDATA[select
+tab.mes as mes,
+tab.nivel_01 as nivel01,
+tab.nivel_02 as nivel02,
+tab.nivel_03 as nivel03,
+tab.nivel_04 as nivel04,
+tab.nivel_05 as nivel05,
+tab.nivel_06 as nivel06,
+(tab.nivel_01+tab.nivel_02+tab.nivel_03+tab.nivel_04+tab.nivel_05+tab.nivel_06) as total
+from tablero_evaluacion_mes_et tab
+where tab.aud_usuario = $P{p_id_usuario}
+order by tab.id_tablero_evaluacion_mes;]]>
+		</queryString>
+		<field name="mes" class="java.lang.String"/>
+		<field name="nivel01" class="java.lang.Long"/>
+		<field name="nivel02" class="java.lang.Long"/>
+		<field name="nivel03" class="java.lang.Long"/>
+		<field name="nivel04" class="java.lang.Long"/>
+		<field name="nivel05" class="java.lang.Long"/>
+		<field name="nivel06" class="java.lang.Long"/>
+		<field name="total" class="java.lang.Long"/>
+		<variable name="nivelT01" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel01}]]></variableExpression>
+		</variable>
+		<variable name="nivelT02" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel02}]]></variableExpression>
+		</variable>
+		<variable name="nivelT03" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel03}]]></variableExpression>
+		</variable>
+		<variable name="nivelT04" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel04}]]></variableExpression>
+		</variable>
+		<variable name="nivelT05" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel05}]]></variableExpression>
+		</variable>
+		<variable name="nivelT06" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel06}]]></variableExpression>
+		</variable>
+		<variable name="total" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="queryTabla04" uuid="33fb5c3f-0b46-4021-9a39-d71a3a9aec38">
+		<parameter name="nivel_01" class="java.lang.String"/>
+		<parameter name="nivel_02" class="java.lang.String"/>
+		<parameter name="nivel_03" class="java.lang.String"/>
+		<parameter name="nivel_04" class="java.lang.String"/>
+		<parameter name="nivel_05" class="java.lang.String"/>
+		<parameter name="nivel_06" class="java.lang.String"/>
+		<parameter name="p_id_usuario" class="java.lang.Long"/>
+		<queryString>
+			<![CDATA[select
+tab.id_agencia as idAgencia,
+tab.agencia as agencia,
+tab.nivel_01 as nivel01,
+tab.nivel_02 as nivel02,
+tab.nivel_03 as nivel03,
+tab.nivel_04 as nivel04,
+tab.nivel_05 as nivel05,
+tab.nivel_06 as nivel06,
+(tab.nivel_01+tab.nivel_02+tab.nivel_03+tab.nivel_04+tab.nivel_05+tab.nivel_06) as total
+from tablero_detalle_et tab
+where tab.aud_usuario =  $P{p_id_usuario}
+order by tab.id_agencia;]]>
+		</queryString>
+		<field name="idagencia" class="java.lang.Long"/>
+		<field name="agencia" class="java.lang.String"/>
+		<field name="nivel01" class="java.lang.Long"/>
+		<field name="nivel02" class="java.lang.Long"/>
+		<field name="nivel03" class="java.lang.Long"/>
+		<field name="nivel04" class="java.lang.Long"/>
+		<field name="nivel05" class="java.lang.Long"/>
+		<field name="nivel06" class="java.lang.Long"/>
+		<field name="total" class="java.lang.Long"/>
+		<variable name="nivelT01" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel01}]]></variableExpression>
+		</variable>
+		<variable name="nivelT02" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel02}]]></variableExpression>
+		</variable>
+		<variable name="nivelT03" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel03}]]></variableExpression>
+		</variable>
+		<variable name="nivelT04" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel04}]]></variableExpression>
+		</variable>
+		<variable name="nivelT05" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel05}]]></variableExpression>
+		</variable>
+		<variable name="nivelT06" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{nivel06}]]></variableExpression>
+		</variable>
+		<variable name="total" class="java.lang.Long" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="nivel_01" class="java.lang.String"/>
+	<parameter name="p_id_usuario" class="java.lang.Long"/>
+	<parameter name="nivel_02" class="java.lang.String"/>
+	<parameter name="nivel_03" class="java.lang.String"/>
+	<parameter name="nivel_04" class="java.lang.String"/>
+	<parameter name="nivel_05" class="java.lang.String"/>
+	<parameter name="nivel_06" class="java.lang.String"/>
+	<parameter name="nivel_01_c" class="java.lang.String"/>
+	<parameter name="nivel_02_c" class="java.lang.String"/>
+	<parameter name="nivel_03_c" class="java.lang.String"/>
+	<parameter name="nivel_04_c" class="java.lang.String"/>
+	<parameter name="nivel_05_c" class="java.lang.String"/>
+	<parameter name="nivel_06_c" class="java.lang.String"/>
+	<parameter name="nivel_01_e" class="java.lang.String"/>
+	<parameter name="nivel_02_e" class="java.lang.String"/>
+	<parameter name="nivel_03_e" class="java.lang.String"/>
+	<parameter name="nivel_04_e" class="java.lang.String"/>
+	<parameter name="nivel_05_e" class="java.lang.String"/>
+	<parameter name="nivel_06_e" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+tab.aud_usuario as idUsuario
+from tablero_detalle_estacion_et tab
+where tab.aud_usuario = $P{p_id_usuario}
+limit(1);]]>
+	</queryString>
+	<field name="idusuario" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="-1" width="400" height="15" forecolor="#FFFFFF" backcolor="#FF6900" uuid="4963bb9f-9719-414e-9f1d-9fe93ac3c91d"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[# Evaluaciones por Zona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="700" y="-1" width="400" height="15" forecolor="#FFFFFF" backcolor="#FF6900" uuid="ff6be41a-9450-4c28-8f1e-bf407a73765b"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[# Estaciones por Resultados por Zona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="-1" width="100" height="15" uuid="6bcc8e02-47d5-456a-9475-e61ea2f30f4a"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="-1" width="100" height="15" uuid="70febd42-b3eb-4595-adb0-c05ca71d0ecc"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="-1" width="100" height="15" uuid="9cd06e01-0c65-4f46-84d9-453bb5d1279a"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" stretchType="RelativeToTallestObject" x="0" y="0" width="400" height="50" uuid="b20c087b-9a73-425d-9b40-536e48804c2b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="queryTabla01" uuid="c5a5d94f-4519-41c5-886d-b184ab319c0a">
+						<datasetParameter name="p_id_usuario">
+							<datasetParameterExpression><![CDATA[$F{idusuario}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_01">
+							<datasetParameterExpression><![CDATA[$P{nivel_01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_02">
+							<datasetParameterExpression><![CDATA[$P{nivel_02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_03">
+							<datasetParameterExpression><![CDATA[$P{nivel_03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_04">
+							<datasetParameterExpression><![CDATA[$P{nivel_04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_05">
+							<datasetParameterExpression><![CDATA[$P{nivel_05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_06">
+							<datasetParameterExpression><![CDATA[$P{nivel_06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_01_c">
+							<datasetParameterExpression><![CDATA[$P{nivel_01_c}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_02_c">
+							<datasetParameterExpression><![CDATA[$P{nivel_02_c}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_03_c">
+							<datasetParameterExpression><![CDATA[$P{nivel_03_c}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_04_c">
+							<datasetParameterExpression><![CDATA[$P{nivel_04_c}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_05_c">
+							<datasetParameterExpression><![CDATA[$P{nivel_05_c}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_06_c">
+							<datasetParameterExpression><![CDATA[$P{nivel_06_c}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="4f554be3-526c-4ceb-94cf-e85d36a5e90e">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="d12572ff-53c3-4c9d-a9b4-aed2fb416538"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<text><![CDATA[% CALIFICACION]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#03A9F4" uuid="e62f6043-5830-4b9f-98f2-c9b412c21a93"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ZONA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="15" uuid="f2ff2f6f-c30f-4f90-9f94-c4fa05352aca"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="29dd9179-3a43-4327-8ee0-ff13b3d66785"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{zona}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="e96fa203-ba31-4a9d-9828-53f8770e277a">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="82413e0d-3b57-47c5-bee1-403e2765526f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_01_c}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="17ca83b1-7b39-421e-8f49-a37e7488d4a3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_01}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="eebc64f6-4c6e-4e9e-b7c4-d7b7b5e31a1b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT01}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="06f40c75-b478-4314-bd3a-5f88e072e504"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="aa243830-9f07-439a-baa5-d762d270ee14">
+						<printWhenExpression><![CDATA[$P{nivel_02}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="2bec82fe-1daf-444c-874f-7c3a18679b8b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_02_c}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="e6e925fe-db20-4753-b393-f832d8c02711"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_02}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="fa42d3ac-2aef-48e7-973c-4016f627b59a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT02}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="2698ac35-b406-43d8-8007-968d80a137d0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="fe2798da-7202-4ebe-9e8d-4e9e80f99373">
+						<printWhenExpression><![CDATA[$P{nivel_03}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="8c51a382-3459-467f-a583-4d7faa9d1c37"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_03_c}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="abbd8426-2385-47f7-8aea-e245efa211d6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_03}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="6509ea08-ef0b-428e-8630-d931dcf6dd94"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT03}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="93550e38-1665-49f3-b8b2-d07bab0a036d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="e7e0bc45-31f7-4fa3-af57-588b4b88c8c7">
+						<printWhenExpression><![CDATA[$P{nivel_04}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="cff98026-fc58-49f1-a001-b55f8f834d2a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_04_c}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="320bf3f3-10bc-416a-ba3b-88dd00fbe6f9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_04}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="33fc2713-4096-4397-bb0f-48163d573c66"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT04}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="121e2926-156e-4e7f-a591-19b815fe852e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="c5a5e895-2771-4008-9122-42435c2bcf23">
+						<printWhenExpression><![CDATA[$P{nivel_05}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="77c26891-13ae-468c-898a-9c97c7375b55"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_05_c}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="ec367f80-1d76-40a4-ad41-b1cfa429ea03"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_05}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="1f5b52a4-3c6d-4442-98ed-5d67c95476ba"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT05}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="62cce45a-0958-4987-b0d0-ff53f4fdd4de"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="ba5c7255-9166-4d21-af02-99ae0b243ffd">
+						<printWhenExpression><![CDATA[$P{nivel_06}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="841a7342-cddf-4258-a2e5-c14a3bce16e4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_06_c}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="ac385fd6-b9d2-40da-9bb6-3e593464f3d9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_06}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="ad1151b4-59a9-42fd-9851-5b9d53dbe911"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT06}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="c8c48766-d92e-47a6-a2a6-866c99bc5cf9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="d306d1b1-51dd-4a30-b532-e689e3b35fd4">
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="2df4fea8-417c-410d-9d77-3c834672f8c5"/>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="b732ab66-7a96-4f42-9661-05ba76e2b9e1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="b22571d2-0cf6-4133-b455-f797a90f9f6c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="be2813a3-0272-4989-92e2-27afb346495c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table" style="table" x="700" y="0" width="400" height="50" uuid="201d5427-839c-4af6-a0cc-ef93a2b26c55"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="queryTabla02" uuid="bba9741d-294d-43c4-80f1-7dc9e69fd66f">
+						<datasetParameter name="p_id_usuario">
+							<datasetParameterExpression><![CDATA[$F{idusuario}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_01">
+							<datasetParameterExpression><![CDATA[$P{nivel_01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_02">
+							<datasetParameterExpression><![CDATA[$P{nivel_02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_03">
+							<datasetParameterExpression><![CDATA[$P{nivel_03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_04">
+							<datasetParameterExpression><![CDATA[$P{nivel_04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_05">
+							<datasetParameterExpression><![CDATA[$P{nivel_05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_06">
+							<datasetParameterExpression><![CDATA[$P{nivel_06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_01_e">
+							<datasetParameterExpression><![CDATA[$P{nivel_01_e}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_02_e">
+							<datasetParameterExpression><![CDATA[$P{nivel_02_e}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_03_e">
+							<datasetParameterExpression><![CDATA[$P{nivel_03_e}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_04_e">
+							<datasetParameterExpression><![CDATA[$P{nivel_04_e}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_05_e">
+							<datasetParameterExpression><![CDATA[$P{nivel_05_e}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_06_e">
+							<datasetParameterExpression><![CDATA[$P{nivel_06_e}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="68882afe-b086-4be0-96b1-90d4baa025f3">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="94138262-eb6a-45a9-a285-664b201c8675"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[% EFICIENCIA]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#03A9F4" uuid="5987d070-22d9-4670-9d0a-a8048444cf2e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ZONA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="15" uuid="7c25e03f-b469-469d-a25d-e24e7f27ccd0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="daa3c682-abe4-49a7-8a74-90f0cfe4b8fb"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{zona}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="a29225d9-db67-4f8c-9742-4991da0ddff5">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="de58dc55-6eda-43ef-81b1-5502d586fb79"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_01_e}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="e22dce9f-e07e-4838-a1ae-6f4216c26227"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_01}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="d6083876-c8e1-49a3-a4ab-07100901b976"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT01}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="81d3574c-47aa-4012-aff3-9d542ab8647d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="b5b8b0b5-126d-4e61-a045-e485d1a37a2f">
+						<printWhenExpression><![CDATA[$P{nivel_02}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="d39d93f2-da19-4fa5-a4e1-38b8667a661a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_02_e}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="b64ac67e-8790-4ee9-a736-2e084f1f74d7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_02}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="bfbddbb9-a2a7-4c32-881c-d9370bf86172"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT02}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="d8d27f9e-c90c-4893-844e-b7a5c85961e2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="2c14c9a2-eb42-4be9-aa86-4997266ad36c">
+						<printWhenExpression><![CDATA[$P{nivel_03}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="c75ac5e0-715c-4c16-8509-9fc6d4459ba0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_03_e}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="6258380a-579b-448c-a40e-d4f12740a800"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_03}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="7f5c5d74-440f-4e39-aec6-e4fa37955d4a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT03}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="8a48f865-579b-4e89-a3a1-816fdb7d1403"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="d3410379-2cc6-45f9-8d49-463cafd4a0a0">
+						<printWhenExpression><![CDATA[$P{nivel_04}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="29053733-7713-4e0a-89fd-1838c4351df5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_04_e}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="6b690890-3623-4508-a1a5-49046db4bfa5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_04}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="30c36d8e-74bf-4b90-b3fc-70fd1fb0bb61"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT04}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="688c9db3-27cc-45ba-93b7-e79beb0272e4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="b7c219d3-5550-490e-82f0-25f19f91262f">
+						<printWhenExpression><![CDATA[$P{nivel_05}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="1b1022c7-fb1e-458b-9adc-39ac8dbb3567"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_05_e}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="2dbeb88f-b0d8-4a72-8134-68ec19cd693b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_05}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="47ac4838-4fb7-4e1b-b115-09e35336d0d7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT05}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="e3749f90-922a-4066-bd9c-3357a5529ef8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="a774429e-0df5-4927-8742-db5cefd98064">
+						<printWhenExpression><![CDATA[$P{nivel_06}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="fea431d2-0ce6-4b6c-bb3f-249abdb46e61"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_06_e}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="8d69792d-8613-41ea-aecd-c40ec7a751d9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_06}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="5df69fbb-176d-4fee-814a-199bd895ab9a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT06}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="807aa6c5-f8eb-47fd-b7f6-49236eaa3aaa"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="39d5720a-ef47-4644-8561-019c72ea60f4">
+						<jr:tableFooter style="table_TH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#62F6BD" uuid="703770a1-e718-4aff-8a0a-c482b4d85377"/>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="90a7732c-0b8c-4313-8eb4-922fd97b4c2a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="4f9128f7-cb5c-4039-bcb0-a6de6cbefb25"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="0f5aebc6-ec4a-4ba7-b8f2-259dc24d0cfc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="80">
+			<componentElement>
+				<reportElement key="table" style="table" stretchType="RelativeToTallestObject" x="0" y="30" width="400" height="50" uuid="5087c5cf-c1b7-4c78-8e78-346945f2c8f7"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="queryTabla03" uuid="3b48835e-292b-4ad9-bd3f-deb614e4ba1d">
+						<datasetParameter name="p_id_usuario">
+							<datasetParameterExpression><![CDATA[$F{idusuario}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_01">
+							<datasetParameterExpression><![CDATA[$P{nivel_01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_02">
+							<datasetParameterExpression><![CDATA[$P{nivel_02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_03">
+							<datasetParameterExpression><![CDATA[$P{nivel_03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_04">
+							<datasetParameterExpression><![CDATA[$P{nivel_04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_05">
+							<datasetParameterExpression><![CDATA[$P{nivel_05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_06">
+							<datasetParameterExpression><![CDATA[$P{nivel_06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="80229011-fa9e-47ae-a6d1-4d465e0af95e">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#03A9F4" uuid="8dc8b99e-eba4-4089-92e7-084f627fb582"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MES]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="15" uuid="561ed99d-51d3-4069-a4cb-dbcd789cc097"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="05422aed-c615-41ee-a938-adf3b3aa4d0e"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="3fe5bdbc-9808-408b-abf7-d1c1e8f241b7">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="e42bfa9a-b67e-4b50-803f-539f3eae3d51"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_01}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="57fd2ec4-79a6-43cd-9cf4-03265486a3d5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT01}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="a2c62a4d-95b5-4517-8a50-e3a8dc861ae9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="cc3d5996-5cee-451f-8b1d-9255dd80c64c">
+						<printWhenExpression><![CDATA[$P{nivel_02}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="e7173978-bcc4-4417-82f5-8721992edfc9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_02}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="d13a549f-94c8-4f9d-95ba-c60c7546f8b9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT02}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="0a0ce583-379a-4c55-a3bb-5f79e30b8ab2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="ccd5a69f-8a81-4ec3-a216-54da0ca281da">
+						<printWhenExpression><![CDATA[$P{nivel_03}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="8d52ac8a-cac3-40a2-bc54-0fce78587c7a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_03}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="f02d80b8-432f-4226-bb3f-91dd60f04ddf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT03}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="483e2c25-b9ee-4e8f-8e4d-d9ec1e1d8ba3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="eb274031-15c1-4c22-823a-76e22703320e">
+						<printWhenExpression><![CDATA[$P{nivel_04}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="bee90c3d-7cf7-4513-9636-647cb13dc875"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_04}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="da7262c5-48e7-4375-a0fc-624860528744"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT04}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="a51c2b9b-fa50-4680-af94-53e108a3046b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="25d95963-aed2-4c9f-a3fb-1118183e2a71">
+						<printWhenExpression><![CDATA[$P{nivel_05}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="f21d2014-767c-4903-a6b8-bb1975776199"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_05}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="752f3f7a-529c-4c68-a7bb-c7e97e821fc3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT05}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="4634342b-ed80-487f-83aa-0774c3ca412d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="a4c71bcd-75e4-4fbc-bcc3-d2b08b6d2a0a">
+						<printWhenExpression><![CDATA[$P{nivel_06}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="6e9113bb-e873-40af-86d7-070c7218f9be"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_06}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="f3dc509f-fc1c-4230-9073-788421e8b1b3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT06}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="d0e2bc7f-1d3f-4603-aa1c-c7d3376737ad"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="f004eeeb-c10b-43b0-86a8-b03c88c7f869">
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="622e1d53-fdd5-439f-b37f-606b073ff76e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="b11e4114-aa8d-4cd9-b18a-c32c8916db10"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="f6f0dd2e-9d48-4000-9ae4-c16cf051fd48"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="15" width="400" height="15" forecolor="#FFFFFF" backcolor="#FF6900" uuid="3fad5651-7ba3-4c69-b86f-f934065505ea"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[# Evaluaciones por Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="1100" height="15" uuid="ac6c8799-9509-40df-b981-09a4650a9e55"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="700" y="15" width="400" height="15" forecolor="#FFFFFF" backcolor="#FF6900" uuid="7b4e06ac-6b11-47f0-9be4-2f2c1229784d"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Detalle de Estaciones de Servicio]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table" style="table" x="700" y="30" width="400" height="50" uuid="b797f1cd-232c-49d8-a394-6857827683e1"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="queryTabla04" uuid="5472f7ee-23c1-4261-bd79-615cccbef5e3">
+						<datasetParameter name="p_id_usuario">
+							<datasetParameterExpression><![CDATA[$F{idusuario}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_01">
+							<datasetParameterExpression><![CDATA[$P{nivel_01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_02">
+							<datasetParameterExpression><![CDATA[$P{nivel_02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_03">
+							<datasetParameterExpression><![CDATA[$P{nivel_03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_04">
+							<datasetParameterExpression><![CDATA[$P{nivel_04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_05">
+							<datasetParameterExpression><![CDATA[$P{nivel_05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="nivel_06">
+							<datasetParameterExpression><![CDATA[$P{nivel_06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="200" uuid="1072e229-9d0b-4247-9758-39ea2c1328fb">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="200" height="15" backcolor="#03A9F4" uuid="36b61206-e3d6-435f-9b58-935a2b36c8a5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ESTACIÓN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="200" height="15" uuid="04f70a8d-36c5-409f-acce-0c4fd5faad87"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="200" height="15" backcolor="#F4F4F4" uuid="e96029d2-3729-425a-b492-f9aedc0f11a0"/>
+								<textElement>
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{agencia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="e33445b3-54de-45ef-beaa-586ce39320f3">
+						<printWhenExpression><![CDATA[$P{nivel_01}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="26735c97-b60a-4ef6-b4f9-83f7b6bb9247"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_01}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="0c9f2e4d-30ff-411f-9f33-0bad13267499"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT01}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="72f05dc1-7c8e-420f-873b-8431965c1f26"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="0438cf5f-d79a-4465-80b2-ee84fc1179c1">
+						<printWhenExpression><![CDATA[$P{nivel_02}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="fe9f13c3-c1ef-4f55-bba1-a9762c5dd404"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_02}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="7de393b8-21fb-4052-b5c9-e84127ce257e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT02}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="e179e465-aa4d-4815-aeba-e13c4d47d9a8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="d50d70cb-5f3f-45a2-bf60-51807bcf5432">
+						<printWhenExpression><![CDATA[$P{nivel_03}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="eee7130b-56ac-474d-9a24-f762a97346da"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_03}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="f700f03f-8cb2-41b1-80f8-96736157a398"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT03}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="c162d3ec-69a6-48ef-bf8a-4dd7df932d0a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="2416c0e1-8539-40da-81fb-a73dcf022d48">
+						<printWhenExpression><![CDATA[$P{nivel_04}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="34b53693-5c58-49ac-9513-6d759325a8c8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_04}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="9c3b3f9f-6268-4071-9635-b634d2a84875"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT04}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="d808847c-9642-4b25-8a04-19a6ce9e66ba"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="b7fb07ac-864f-48cd-9b57-f1bd65b46bf4">
+						<printWhenExpression><![CDATA[$P{nivel_05}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="37d3c839-4f70-475d-bab1-ab2d045f22f6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_05}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="752d7186-0cd1-4019-949f-cae07f5de17a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT05}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="392ca107-9f40-4f60-be6c-8c7b18ae3699"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="3701f39b-2fd0-44c1-9737-d1958f43f3f2">
+						<printWhenExpression><![CDATA[$P{nivel_06}.equals("0") ? false : true]]></printWhenExpression>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="d9ce60a7-f615-4848-bd76-b7730ede3a0f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{nivel_06}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="ed94c2aa-2d43-4fab-b83b-3851d861cc52"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nivelT06}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="a95aca83-5d78-4d12-b0ea-cf9cfe1236e4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nivel06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="c612f61a-3f7e-4603-92a2-376aae32bf53">
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" uuid="51247425-d4b9-4f37-b6d4-735d4c542bc5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="15" uuid="60a542c4-18c0-4129-9d60-4935153f08d4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="15" backcolor="#F4F4F4" uuid="3fd49f34-f523-4ec8-8884-2b866b34b8f3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

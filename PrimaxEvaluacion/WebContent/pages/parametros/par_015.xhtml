@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Configuración Reporte Novedades Control [par-015]</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_015">
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<div align="center">
+				<h2>Configuración Reporte Novedades</h2>
+			</div>
+			<div align="center">
+				<p:panelGrid styleClass="sinborde w75" columns="2">
+					<p:row></p:row>
+					<p:row>
+						<p:fieldset legend="Controles">
+							<p:panelGrid columns="4" styleClass="sinborde">
+								<p:selectOneMenu style="width:95px !important" required="false"
+									value="#{ReporteNovedadBn.evaluacionSeleccionado}"
+									converter="#{evaluacionConverter}">
+									<f:selectItem itemLabel="Evaluación" />
+									<f:selectItems value="#{ReporteNovedadBn.evaluacionList}"
+										var="evaluacion" itemValue="#{evaluacion}"
+										itemLabel="#{evaluacion.descripcion}" />
+									<p:ajax event="change" update="frm_par_015:cmbTipoCheck"></p:ajax>
+								</p:selectOneMenu>
+								<p:selectOneMenu id="cmbTipoCheck" style="width:90px !important"
+									value="#{ReporteNovedadBn.tipoChecKListSeleccionado}"
+									converter="#{tipoCheckListConverter}">
+									<f:selectItem itemLabel="Tipo CheckList" />
+									<f:selectItems value="#{ReporteNovedadBn.tiposChecKList}"
+										var="tipoCheckList" itemValue="#{tipoCheckList}"
+										itemLabel="#{tipoCheckList.descripcion}" />
+									<p:ajax event="change" update="frm_par_015:cmbProceso"></p:ajax>
+								</p:selectOneMenu>
+								<p:selectOneMenu id="cmbProceso" style="width:90px !important"
+									value="#{ReporteNovedadBn.procesoSeleccionado}"
+									converter="#{procesoConverter}">
+									<f:selectItem itemLabel="Proceso" />
+									<f:selectItems value="#{ReporteNovedadBn.procesoList}"
+										var="proceso" itemValue="#{proceso}"
+										itemLabel="#{proceso.nombreProceso}" />
+									<p:ajax event="change" update="frm_par_015:dtbKpi"></p:ajax>
+								</p:selectOneMenu>
+							</p:panelGrid>
+						</p:fieldset>
+					</p:row>
+					<p:row></p:row>
+					<p:row>
+						<p:fieldset legend="KPI's">
+
+							<p:dataTable id="dtbKpi" var="kpi" emptyMessage="No existe KPI's"
+								value="#{ReporteNovedadBn.procesoSeleccionado.procesoDetalle}"
+								reflow="true" tableStyle="table-layout: auto;">
+								<p:column headerText="Orden KPI">
+									<div align="center">
+										<h:outputText value="#{kpi.ordenReporte}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column headerText="Nombre">
+									<h:outputText value="#{kpi.nombreProcesoDetalle}"></h:outputText>
+								</p:column>
+								<p:column headerText="Orden Sección">
+									<div align="center">
+										<h:outputText value="#{kpi.ordenSeccion0}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column headerText="Sección">
+									<h:outputText value="#{kpi.seccion0}"></h:outputText>
+								</p:column>
+								<p:column headerText="Visualizar">
+									<div align="center">
+										<h:outputText
+											value="#{kpi.visualizarReporte eq true ? 'SI' : 'NO'}"></h:outputText>
+									</div>
+								</p:column>
+								<p:column width="30" headerText="Acción">
+									<p:commandButton icon="ui-icon-pencil" title="Editar"
+										action="#{ReporteNovedadBn.kpiSeleccionadoModificar(kpi)}"
+										oncomplete="PF('dialog_15_1').show()" update=":frm_par_015_1"></p:commandButton>
+								</p:column>
+							</p:dataTable>
+
+						</p:fieldset>
+					</p:row>
+				</p:panelGrid>
+			</div>
+		</h:form>
+		<ui:include src="/pages/parametros/par_015_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
+		<h:form id="frm_rpt_00">
+			<p:panelGrid id="pnl" styleClass="sinborde w120" layout="grid"
+				columns="8">
+				<f:facet name="header">
+
+					<p:column colspan="8">
+						<div align="left">
+							<p:outputLabel
+								value="Reporte de planificación y cumplimiento de visitas a estaciones" />
+						</div>
+					</p:column>
+				</f:facet>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbAnio"
+						value="#{BusquedaBn.anioSeleccionado}"
+						converter="#{parametrosConverter}">
+						<f:selectItem itemLabel="Año" />
+						<f:selectItems value="#{BusquedaBn.tipoAnioList}" var="anio"
+							itemLabel="#{anio.nombreLista}" itemValue="#{anio}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectCheckboxMenu id="cmbMeses" style="width:120px !important"
+						value="#{BusquedaBn.mesesSeleccionados}" label="Meses"
+						converter="#{parametrosConverter}" filter="false"
+						filterMatchMode="startsWith">
+						<f:selectItems value="#{BusquedaBn.tipoMesList}" var="mes"
+							itemLabel="#{mes.nombreLista}" itemValue="#{mes}"></f:selectItems>
+					</p:selectCheckboxMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbZona"
+						value="#{BusquedaBn.zonaSeleccionada}"
+						converter="#{zonaConverter}">
+						<f:selectItem itemLabel="Zona" />
+						<f:selectItems value="#{BusquedaBn.tipoZonaList}" var="zona"
+							itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbEvaluacion"
+						value="#{BusquedaBn.evaluacionSeleccionada}"
+						converter="#{evaluacionConverter}">
+						<f:selectItem itemLabel="Evaluación" />
+						<f:selectItems value="#{BusquedaBn.evaluacionList}"
+							var="evaluacion" itemLabel="#{evaluacion.descripcion}"
+							itemValue="#{evaluacion}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbEstado"
+						value="#{BusquedaBn.estadoCheckListSeleccionado}">
+						<f:selectItems value="#{BusquedaBn.estadoCheckList}" var="estado"
+							itemLabel="#{estado}" itemValue="#{estado}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important"
+						value="#{BusquedaBn.frecuenciaVisitaSeleccionado}"
+						converter="#{frecuenciaVisitaConverter}">
+						<f:selectItem itemLabel="Frecuencia Visita" />
+						<f:selectItems value="#{BusquedaBn.frecuenciaVisitaList}"
+							var="frecuenciaV" itemValue="#{frecuenciaV}"
+							itemLabel="#{frecuenciaV.descripcion}" />
+					</p:selectOneMenu>
+					<p:commandButton icon="fa fa-eye" update=":frm_007_1"
+						title="Visualizar Rango Frecuencia"
+						oncomplete="PF('dialog_07_1').show()"></p:commandButton>
+				</p:column>
+				<p:column></p:column>
+				<p:column>
+					<p:commandButton icon="fa fa-file-pdf-o"
+						action="#{ReporteBn.imprimirPdf()}" update="pnl_rep"
+						process="@this frm_rpt_00"
+						actionListener="#{BusquedaBn.generarReporte05()}">
+					</p:commandButton>
+					<p:commandButton id="buttonExcel" icon="fa fa-file-excel-o"
+						ajax="false" immediate="true" process="@this frm_rpt_00"
+						actionListener="#{ReporteBn.imprimirExcel(18,appMain.usuario.idUsuario.toString(),null,null,null,null,null,null,null,null,null,true)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+			</p:panelGrid>
+			<p:panelGrid id="pnl_rep" styleClass="sinborde" style="width:100%">
+				<p:column>
+					<iframe height="480px" width="100%"
+						src="#{request.contextPath}/reporte?rptid=18&amp;p1=#{appMain.usuario.idUsuario.toString()}"></iframe>
+				</p:column>
+			</p:panelGrid>
+		</h:form>
+		<ui:include src="/pages/reporte/rpt_007_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

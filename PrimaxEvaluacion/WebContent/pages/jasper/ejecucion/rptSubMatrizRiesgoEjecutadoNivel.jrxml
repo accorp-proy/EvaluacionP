@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubMatrizRiesgoEjecutadoNivel" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c1441c9e-4e6e-4b44-b0ae-eb29dd57e019">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+       <conditionalStyle>
+			<conditionExpression><![CDATA[$F{colornivel} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="par_id_nivel_evaluacion" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+niv.id_nivel_evaluacion as idNivelEvaluacion,
+nivd.orden as orden,
+'Nivel de Evaluación'||' '||niv.descripcion as nivelEvaluacion,
+nivd.descripcion as descripcion,
+(CASE when nivd.mayor = 0 or nivd.mayor = 1 then 'Menor a '||nivd.menor
+      when nivd.mayor > 0 and  nivd.menor <> 100 then 'Entre '||nivd.mayor||' y '||nivd.menor
+      when nivd.menor = 100 then 'Superior a '||nivd.mayor end  ) as rango,
+nivd.color as colorNivel,
+(nivd.img_path_server||''||nivd.img_nombre) as pathImg
+from nivel_evaluacion_et niv
+inner join nivel_evaluacion_detalle_et nivd
+on niv.id_nivel_evaluacion = nivd.id_nivel_evaluacion
+where niv.id_nivel_evaluacion =  $P{par_id_nivel_evaluacion}
+and niv.estado = 'ACT'
+and nivd.estado = 'ACT'
+order by nivd.orden;]]>
+	</queryString>
+	<field name="idnivelevaluacion" class="java.lang.Long"/>
+	<field name="orden" class="java.lang.Long"/>
+	<field name="nivelevaluacion" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="rango" class="java.lang.String"/>
+	<field name="colornivel" class="java.lang.String"/>
+	<field name="pathimg" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="100" y="0" width="200" height="20" backcolor="#CCCCCC" uuid="61e874a2-18d5-4b7e-87c6-2e7db66ca774"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivelevaluacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" backcolor="#CCCCCC" uuid="d5922459-e918-4dda-981f-0b4f97a2bfcc"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rango]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" mode="Opaque" x="100" y="0" width="100" height="20" uuid="428e88cc-e671-4628-93bf-208c86e8071b"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="style1" mode="Opaque" x="0" y="0" width="100" height="20" uuid="94f6bb09-fa5c-47e2-a40c-72a496f873e2"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rango}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement style="style1" mode="Opaque" x="200" y="0" width="100" height="20" uuid="88bd3872-fd47-46db-8e3a-f72e7a59f211"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<imageExpression><![CDATA[$F{pathimg}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

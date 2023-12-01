@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_pln_005_1"
+		id="dlg_pln_005_1" appendTo="@(body)" resizable="true" width="900px">
+		<f:facet name="header">
+			<h:outputLabel value="Adjuntos Plan de Accion" />
+			<p:outputLabel value="rpt_005_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pln_005_1">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<div align="right">
+				<p:commandButton icon="ui-icon-check"
+					action="#{ConsultaPlanAccionBn.guardar()}" title="Guardar"></p:commandButton>
+			</div>
+			<p:panelGrid styleClass="sinborde w100" layout="grid" columns="1"
+				columnClasses="ui-grid-col-12">
+				<p:fileUpload mode="advanced" uploadLabel="Subir"
+					fileUploadListener="#{ConsultaPlanAccionBn.upload}"
+					cancelLabel="Cancelar" label="Seleccionar" dragDropSupport="true"
+					allowTypes="/(\.|\/)(docx|xlsx|xls|gif|jpe?g|png|pdf|pptx)$/"
+					update="fdt11" process="@this fdt11" />
+				<p:dataTable id="fdt11" emptyMessage="sin adjuntos"
+					value="#{ConsultaPlanAccionBn.checkListEjecucionSeleccionado.checkListEjecucionPlnAdjunto}"
+					var="checkListAdjunto">
+					<p:column headerText="Nombre del Archivo" width="200">
+						<h:outputText value="#{checkListAdjunto.nombreAdjunto}" />
+					</p:column>
+					<p:column headerText="Ruta" width="75">
+						<p:commandButton immediate="true" value="Descargar" ajax="false"
+							actionListener="#{appMain.fileDownloadPath(checkListAdjunto.checkListEjecucion.idCheckListEjecucion , checkListAdjunto.nombreAdjunto)}"
+							process="@this">
+							<p:fileDownload value="#{appMain.download}" />
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="Categoría" style="width:30%">
+						<p:selectOneMenu id="cmbRubro" style="width:100% !important"
+							converter="#{parametrosConverter}"
+							value="#{checkListAdjunto.parametroCategoria}">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems value="#{ConsultaPlanAccionBn.tipoCategoriaList}"
+								var="tipoCategoria" itemValue="#{tipoCategoria}"
+								itemLabel="#{tipoCategoria.nombreLista}" />
+						</p:selectOneMenu>
+					</p:column>
+					<p:column headerText="Descripción" style="width:40%">
+						<h:inputText maxlength="100" value="#{checkListAdjunto.detalle}"
+							title="Tipos de adjuntos docx , xlsx , xls , gif , jpe , png , pdf , pptx"
+							styleClass="w100" />
+					</p:column>
+					<p:column width="30">
+						<p:commandButton icon="ui-icon-delete" title="Eliminar"
+							process="@this" update="fdt11"
+							action="#{ConsultaPlanAccionBn.quitarAdjunto(checkListAdjunto)}"></p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+			</p:panelGrid>
+
+		</h:form>
+	</p:dialog>
+</ui:composition>

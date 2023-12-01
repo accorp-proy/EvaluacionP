@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptNovedadControl" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9baa07d-5e3c-45a3-b124-eba2c2e9b9bf">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="322"/>
+	<property name="net.sf.jasperreports.export.docx.flexible.row.height" value="true"/>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_id_check_list" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_gerente_estacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_cargo_estacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_soporte_estacion_o" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_jefe_operativo_t" class="java.lang.String"/>
+	<parameter name="par_jefe_operativo_p" class="java.lang.String"/>
+	<parameter name="par_categoria_estacion_0" class="java.lang.String"/>
+	<parameter name="par_categoria_estacion_1" class="java.lang.String"/>
+	<parameter name="par_soporte_estacion_a" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+pla.id_planificacion as idplanificacion,
+che.id_check_list_ejecucion as idCheckList,
+est.nombre_agencia estacion,
+che.fecha_ejecucion as fecha,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and lower(pro.descripcion) like '%efectivo%') as proceso1,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and lower(pro.descripcion) like '%efectuados%') as proceso2,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and lower(pro.descripcion) like '%caja chica%') as proceso3,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and lower(pro.descripcion) like '%faltantes%') as proceso4,
+(select pro.id_check_list_proceso_ejecucion as id from check_list_proceso_ejecucion_et pro where pro.id_check_list_ejecucion = che.id_check_list_ejecucion and lower(pro.descripcion) like '%promotores%') as proceso5
+from planificacion_et pla
+inner join  check_list_ejecucion_et che
+on pla.id_planificacion = che.id_planificacion
+inner join agencia_et est
+on pla.id_agencia=est.id_agencia
+where che.id_check_list_ejecucion = $P{par_id_check_list};]]>
+	</queryString>
+	<field name="idplanificacion" class="java.lang.Long"/>
+	<field name="idchecklist" class="java.lang.Long"/>
+	<field name="estacion" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<field name="proceso1" class="java.lang.Long"/>
+	<field name="proceso2" class="java.lang.Long"/>
+	<field name="proceso3" class="java.lang.Long"/>
+	<field name="proceso4" class="java.lang.Long"/>
+	<field name="proceso5" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="45">
+			<staticText>
+				<reportElement x="0" y="0" width="170" height="35" uuid="00d98f29-255d-4456-a250-c21ffac53286"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[INFORME DE MANEJO Y SUPERVISIÓN DE EFECTIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="185" height="17" uuid="c4003f5d-f486-4f36-aae6-f98a8e984b72"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Procedimientos y Controles ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="554" y="0" width="1" height="34" uuid="6085f20a-2e19-4212-b3ae-d6e7c36ca8f0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="355" y="-1" width="200" height="1" uuid="b485611f-38d0-492b-8025-f3bbf67f7d10"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="355" y="34" width="200" height="1" uuid="25ba3346-dc38-4812-b54e-88e8c7d7ed35"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<image hAlign="Center">
+				<reportElement x="364" y="1" width="181" height="32" isRemoveLineWhenBlank="true" uuid="ab947915-feea-4405-a1ac-d2fef54fa8b4"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="170" y="17" width="185" height="18" uuid="6595bbfa-93ee-4475-b686-ef8a9463935c"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_categoria_estacion_0}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="35" width="555" height="10" uuid="30a9cafe-55b9-47a9-9f0b-48aa35a2b73d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="191">
+			<staticText>
+				<reportElement x="0" y="15" width="150" height="22" uuid="e1441625-cb6d-4d63-b17b-6b2f4cf9e39e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[PERSONAL ADMINISTRATIVO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="150" height="30" uuid="7156ecf8-861c-4830-beb4-500ac6576880"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[JEFES DE OPERACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="150" height="30" uuid="1455a2a2-edeb-4cf9-93ba-a4cd6f2b54b9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[OBJETIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="150" height="30" uuid="0b14c248-280c-4700-8d80-d0f4f676f409"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[ALCANCE DE AUDITORIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="150" height="15" uuid="50706bf9-35eb-4082-aba7-47b4804770d5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CRITERIO DE AUDITORIA A ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="115" height="15" uuid="63946f8f-18e6-4e07-8a10-2d88329346eb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[FECHA DE AUDITORIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="30" width="121" height="15" uuid="63462324-51ae-4294-96e9-c04dd09f9cdd"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Soporte Administrativo : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="60" width="45" height="15" uuid="4e0f6530-1abb-4caf-bed0-d441b5d14cff"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Tienda: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="75" width="45" height="15" uuid="4aeeb7be-66da-4e04-bf6f-895228e934e8">
+					<printWhenExpression><![CDATA[$P{par_categoria_estacion_0}.equals("Tiendas Listo") ? false : true]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Pista: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="90" width="405" height="30" uuid="423da46f-86d8-4ba3-868e-2f1617858b67"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Evidenciar el cumplimiento de los procesos de controles de manejo de efectivo establecidos por la compañía con el fin de mitigar los riesgos inherentes.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="120" width="405" height="30" uuid="6f113ce3-699b-4f98-8705-d5702a5eb1c9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Cumplimiento de los procesos de manejo de efectivo establecidos por la compañía y por los organismos de control externo.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="150" width="405" height="30" uuid="9f96ad87-cb40-4f32-b6c1-b8416672073a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Procedimientos de Control Interno establecidos por la compañía]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="150" y="0" width="180" height="15" uuid="d65f3390-8799-4609-adb7-e007a08c147e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="15" width="355" height="15" uuid="59617b3e-af31-4bbf-b026-72929c9a5dd0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_gerente_estacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="445" y="0" width="110" height="15" uuid="0fead716-04ca-4211-9d8c-bc58cba3fa88"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[((new java.text.SimpleDateFormat("MMMMM",new Locale("es","ES")).format($F{fecha})))
++ " " + ((new java.text.SimpleDateFormat("dd",new Locale("es","ES"))).format($F{fecha}))
++ " del "  + ((new java.text.SimpleDateFormat("yyyy",new Locale("es","ES"))).format($F{fecha}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="181" width="555" height="10" uuid="b2bc2aea-73cb-4246-ac29-5312de62660e"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="250" y="45" width="305" height="15" uuid="ce3b8d2e-1d1c-470a-844b-88fd91946cd8"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_soporte_estacion_o}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="60" width="355" height="15" uuid="5822bd9c-fefc-45fb-a844-69d939babf17"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_jefe_operativo_t}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="75" width="350" height="15" uuid="38fdab7f-c5bc-4d7d-842b-2fb17e93b322">
+					<printWhenExpression><![CDATA[$P{par_categoria_estacion_0}.equals("Tiendas Listo") ? false : true]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_jefe_operativo_p}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="150" y="15" width="50" height="15" uuid="f257ebc7-6ae4-4e3f-9220-b750775879b3"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Gerente :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="150" height="15" uuid="d90c4917-1035-4bf1-b0c6-a2433cb2a1be"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_categoria_estacion_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="165" width="150" height="15" uuid="5fa856c5-e324-421b-b574-eddb01bf2e62"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_categoria_estacion_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="37" width="150" height="23" uuid="89cc1256-b135-4905-ad51-b9fa91bdfc4a"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_categoria_estacion_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="550" y="75" width="5" height="15" uuid="b1134071-8e6a-4817-9f53-637362833805"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="45" width="100" height="15" uuid="f132e280-1410-4e23-a85c-88e487a16b65"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph leftIndent="4"/>
+				</textElement>
+				<text><![CDATA[Soporte Operativo : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="30" width="284" height="15" uuid="f142cd92-cb94-41a4-84c3-0bb638d7f686"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{par_soporte_estacion_a}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="40" isRemoveLineWhenBlank="true" uuid="2fb0295d-3419-4b55-8aee-83a5d1847041"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="40" isRemoveLineWhenBlank="true" uuid="4ed6911c-c9f2-442e-915d-d699a813a80f"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso5}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="40" isRemoveLineWhenBlank="true" uuid="4270fb9f-5cb5-4451-a03d-d05fd4d42ccf"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso5}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="40" uuid="3b7fe5e9-1d87-4901-b157-e13d50bb3946"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso4.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="be60e94c-6066-4bc1-8a9e-b7278d91181c"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso5.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="caf9a5a4-512f-4c09-9079-e214a8b61615"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso6.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="6062ca98-77b9-4395-9c25-022abef85170"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso7.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="-1" y="0" width="556" height="40" uuid="4b787e17-6432-4800-97a3-cf7ccb19016c"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso8.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="e0eeffe8-32bb-488b-88a0-207500bbee9b"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$F{proceso4}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso9.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="40" uuid="c634c8bb-d4eb-4836-a900-193556669a87"/>
+				<subreportParameter name="par_id_check_list">
+					<subreportParameterExpression><![CDATA[$P{par_id_check_list}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSuProceso10.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="1" width="555" height="40" isRemoveLineWhenBlank="true" uuid="98f30d9e-4f2b-4ab9-af19-c71a869edc05"/>
+				<subreportParameter name="par_id_check_list">
+					<subreportParameterExpression><![CDATA[$P{par_id_check_list}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptProcesoImagen.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16">
+			<staticText>
+				<reportElement x="145" y="1" width="282" height="15" uuid="3c02cbf9-7baf-4e65-a78d-1b7cd4ae0a39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departamento de Control Interno]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="0" width="537" height="1" uuid="d1b5ff3c-24c7-4929-a531-f0f9ef4b7868"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

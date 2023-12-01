@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso9Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bd8ddab6-f5d1-4fe6-bd65-7d8fc43eea7a">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{condicioncolor}=='true']]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{condicioncolor}=='false']]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+sum(kpi.puntaje) as puntaje,
+sum(kpi.puntaje_ejecucion) as puntajeEjecucion
+from check_list_kpi_ejecucion_et kpi
+where kpi.id_check_list_proceso_ejecucion = $P{par_id_proceso}
+and kpi.descripcion like '%fondo suelto%'
+having sum(kpi.puntaje) <>  sum(kpi.puntaje_ejecucion);]]>
+	</queryString>
+	<field name="puntaje" class="java.math.BigDecimal"/>
+	<field name="puntajeejecucion" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="443" height="15" forecolor="#00B050" uuid="9b755661-3ec1-4411-a959-4a13d76968f5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[ARQUEO FONDO SUELTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="490" height="41" uuid="f0dc41a1-d576-450f-9fd2-6aed83cff0e3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[•   El dinero de caja chica es para uso exclusivo de los gastos de la Estación de servicios, todo gasto debe estar sustentado en facturas y debe ser cuadrada a diario. El uso incorrecto el mismo se lo considera como falta grave
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog widgetVar="dlg_seg_013" id="dlg_seg_013" appendTo="@(body)"
+		hideEffect="drop" closeOnEscape="true" showHeader="true" height="400"
+		width="auto" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Modificación de Accesos [sec-003-2]" />
+		</f:facet>
+		<h:form id="fr_02">
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" value="Confirmar cambios"
+					title="Guardar" process="@this"
+					action="#{MenuRolBn.guardarRolesAccesos()}"
+					oncomplete="PF('dlg_seg_013').hide()"></p:commandButton>
+			</div>
+			<div class="ui-g-12">
+				<div class="card card-w-title">
+					<h1>Lista de Accesos</h1>
+					<p:treeTable value="#{MenuRolBn.nodoPrincipal}" var="men"
+						id="dtAcceso" selectionMode="checkbox"
+						selection="#{MenuRolBn.selectedNodes}">
+						<p:ajax event="select" process="@this" />
+						<p:ajax event="unselect" process="@this" />
+						<f:facet name="header">
+                                Opciones del Sistema
+                            </f:facet>
+						<p:column headerText="Nombre de Opción">
+							<h:outputText value="#{men.menu.descMenu}" />
+						</p:column>
+						<p:column headerText="Consulta" style="text-align:center">
+							<p:inputSwitch value="#{men.consulta}">
+								<p:ajax event="change" process="@this"></p:ajax>
+							</p:inputSwitch>
+						</p:column>
+					</p:treeTable>
+				</div>
+			</div>
+		</h:form>
+	</p:dialog>
+</ui:composition>

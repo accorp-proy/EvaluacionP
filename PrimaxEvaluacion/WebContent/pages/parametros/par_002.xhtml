@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Parametros Generales</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_002">
+			<p:growl sticky="true" showDetail="true" id="msg"></p:growl>
+			<p:panelGrid id="pnl_00" styleClass="fullSize" columns="2"
+				columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<div align="left">
+								<p:outputLabel value="Parametros Generales "></p:outputLabel>
+								<p:outputLabel value="par_002.xhtml"
+									rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div align="right">
+								<p:inputText id="inpBusqueda"
+									value="#{parametroGeneralBn.textoBusquedaParametro}"></p:inputText>
+								<p:commandButton title="Buscar"
+									action="#{parametroGeneralBn.buscar()}" update="dtbParametro"
+									icon="ui-icon-search" styleClass="secondary"></p:commandButton>
+								<p:commandButton title="Nuevo" update=":frm_002_1"
+									action="#{parametroGeneralBn.nuevoParametro()}"
+									oncomplete="PF('dialog_par_002_1').show()"
+									icon="ui-icon-open-in-new" styleClass="secondary"></p:commandButton>
+							</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable paginator="true" rows="15" reflow="true"
+				tableStyle="table-layout: auto" style="margin-bottom:20px"
+				rowsPerPageTemplate="5,10,15" emptyMessage="No existe coincidencia"
+				id="dtbParametro"
+				value="#{parametroGeneralBn.listaParametrosGenerales}" var="par">
+				<p:column headerText="Código" style="text-align:center">
+					<h:outputText value="#{par.idParametroGeneral}" />
+				</p:column>
+				<p:column headerText="Fecha de Creación" style="text-align:center">
+					<h:outputText value="#{par.fechaRegistro}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Nombre de grupo">
+					<h:outputText value="#{par.nombreLista}"></h:outputText>
+				</p:column>
+				<p:column headerText="Estado" style="text-align:center">
+					<h:outputText value="#{par.estado.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="N° de Hijos" style="text-align:center">
+					<h:outputText value="#{par.parametros.size()}"></h:outputText>
+				</p:column>
+				<p:column style="text-align:center">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{parametroGeneralBn.cargarParametroPadreSeleccionado(par)}"
+						oncomplete="PF('dialog_par_002_1').show()" update=":frm_002_1"></p:commandButton>
+					<p:spacer width="20px"></p:spacer>
+					<p:commandButton icon="ui-icon-trash" title="Eliminar"
+						action="#{parametroGeneralBn.cargarParametroPadreEliminar(par)}"
+						oncomplete="PF('dlg_conf').show()"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<p:confirmDialog widgetVar="dlg_conf" header="Confirmar"
+			appendTo="@(body)"
+			message="Al eliminar el registro tambien se eliminaran los hijos ¿Esta seguro que desea eliminar el registro?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check" update=":frm_par_002"
+					oncomplete="PF('dlg_conf').hide()"
+					action="#{parametroGeneralBn.eliminarParametroPadre()}"
+					process="@this"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+		<ui:include src="/pages/parametros/par_002_1.xhtml" />
+	</ui:define>
+</ui:composition>

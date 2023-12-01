@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_006" id="dlg_eje_006"
+		appendTo="@(body)" width="600px" height="480px" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Combustible " />
+			<p:outputLabel value="eje_006.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_006">
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_006"
+					action="#{CheckListEjecucionCtrlBn.guardarMaterial()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:dataTable id="fdt01"  emptyMessage="No Existen Materiales de protección"
+				var="checkListA" scrollHeight="300" scrollable="true"
+				value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionCombustible.checkListKpiEjecucionA}">
+				<f:facet name="header">
+					<div align="center">
+						<p:outputLabel value="Materiales de protección"></p:outputLabel>
+					</div>
+				</f:facet>
+				<p:column headerText="Equipo">
+					<p:outputLabel value="#{checkListA.descripcion}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Criterio">
+					<div align="center">
+						<p:selectOneMenu id="cmbTipoCriterio"
+							style="width:100px !important"
+							value="#{checkListA.parametroCriterio}"
+							converter="#{parametrosConverter}">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems
+								value="#{CheckListEjecucionCtrlBn.tipoCriterioList}"
+								var="tipoCriterio" itemValue="#{tipoCriterio}"
+								itemLabel="#{tipoCriterio.nombreLista}" />
+						</p:selectOneMenu>
+					</div>
+				</p:column>
+				<p:column headerText="Observación">
+					<p:inputTextarea value="#{checkListA.observacion}" maxlength="500"
+						styleClass="w100" rows="4" autoResize="false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog widgetVar="dlg_seg_005" id="dlg_seg_005" appendTo="@(body)"
+		hideEffect="drop" closeOnEscape="true" showHeader="true"
+		resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Mantenimiento de Rol [sec-003-1]" />
+		</f:facet>
+		<h:form>
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{MenuRolBn.guardarSoloRol()}"
+					oncomplete="PF('dlg_seg_005').hide()"
+					update=":f_00:dat_rol,:f_00:mensajes"></p:commandButton>
+			</div>
+			<p:panelGrid columns="2" styleClass="fullSize sinborde">
+				<h:outputText value="Nombre de Rol" />
+				<p:inputText value="#{MenuRolBn.rolSeleccionado.nomRol}"
+					onblur="value=value.toUpperCase()"></p:inputText>
+				<p:outputLabel> Estado</p:outputLabel>
+				<p:selectOneMenu value="#{MenuRolBn.rolSeleccionado.estado}">
+					<f:selectItems value="#{collectorEM.estados}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

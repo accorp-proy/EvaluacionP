@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubFactura" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b6027f51-2098-4cf3-ba41-16f4840fbc95">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+kpi.id_check_list_kpi_ejecucion_a as id,
+kpi.observacion as kpi
+from check_list_kpi_ejecucion_a_et kpi
+inner join parametros_generales_et par
+on kpi.id_parametro_kpi = par.id_parametro_general
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso}
+and   kpi.id_parametro_kpi in (82,86)
+limit(1);]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="kpi" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="40" y="0" width="391" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8a03c7e4-6902-4d19-9bf5-d6bb6f186f4d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kpi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="15" uuid="3d4ce969-0dbb-4356-941d-bd6a69f2491a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1.4.1]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

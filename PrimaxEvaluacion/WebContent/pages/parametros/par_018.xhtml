@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Procesos</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_018">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<p:panelGrid id="pnl_00" styleClass="fullSize" columns="2"
+				columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<div align="left">
+								<p:outputLabel value="Zonas "></p:outputLabel>
+								<p:outputLabel value="par_018.xhtml"
+									rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+
+							<div align="right">
+								<p:inputText id="inpBusqueda" value="#{ZonaBn.condicion}"></p:inputText>
+								<p:commandButton title="Buscar" action="#{ZonaBn.buscar()}"
+									update="dtbZona" icon="ui-icon-search" styleClass="secondary"></p:commandButton>
+								<p:commandButton title="Nuevo" update=":frm_par_018_1"
+									action="#{ZonaBn.nuevo()}"
+									oncomplete="PF('dialog_18_1').show()"
+									icon="ui-icon-open-in-new" styleClass="secondary"></p:commandButton>
+							</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable paginator="true" rows="7" reflow="true"
+				tableStyle="table-layout: auto;" style="margin-bottom:20px"
+				emptyMessage="No existe zonas" id="dtbZona" value="#{ZonaBn.zonas}"
+				var="zona">
+				<p:column headerText="Orden">
+					<h:outputText value="#{zona.orden}"></h:outputText>
+				</p:column>
+				<p:column headerText="Descripción">
+					<h:outputText value="#{zona.nombreZona}"></h:outputText>
+				</p:column>
+				<p:column headerText="Estado">
+					<h:outputText value="#{zona.estado.descripcion}"></h:outputText>
+				</p:column>
+				<p:column width="30" headerText="Editar">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{ZonaBn.modificar(zona)}"
+						oncomplete="PF('dialog_18_1').show()" update=":frm_par_018_1"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/parametros/par_018_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

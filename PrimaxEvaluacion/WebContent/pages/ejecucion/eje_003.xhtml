@@ -1,0 +1,223 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_003" id="dlg_eje_003"
+		appendTo="@(body)" height="500px" resizable="false">
+		<f:facet name="header">
+			<h:outputLabel value="Arqueos en visita de Control Interno" />
+			<p:outputLabel value="eje_003.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_003">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<p:panelGrid columns="5" styleClass="sinborde w120" layout="grid"
+				columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-6">
+				<p:column>
+					<p:commandButton title="Descargar en formato Pdf"
+						update="@this frm_eje_003" icon="fa fa-file-pdf-o"
+						immediate="true" ajax="false"
+						actionListener="#{ReporteBn.imprimirExcel(4,appMain.usuario.nombreUsuario,CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.idCheckListKpiEjecucion.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.agencia.idAgencia.toString(),CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.tipoEstacion.descripcion,CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.auditor eq null ? null : CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.auditor.personaUsuario.nombreCompleto,null,null,null,null,null,false)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+				<p:column>
+					<p:commandButton title="Descargar en formato Excel"
+						icon="fa fa-file-excel-o" immediate="true" ajax="false"
+						actionListener="#{ReporteBn.imprimirExcel(4,appMain.usuario.nombreUsuario,CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.idCheckListKpiEjecucion.toString(),CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.agencia.idAgencia.toString(),CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.tipoEstacion.descripcion,CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.auditor eq null ? null : CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.auditor.personaUsuario.nombreCompleto,null,null,null,null,null,true)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+				<p:column>
+					<p:commandButton id="btnFirmar" icon="fa fa-pencil-square-o"
+						process="@this frm_eje_003" oncomplete="PF('dlg_eje_013').show()"
+						action="#{CheckListEjecucionCtrlBn.nuevoFirmaArqueoCaja()}"
+						update=":frm_eje_013,frm_eje_003:mensajes"
+						title="Firma Responsables"></p:commandButton>
+				</p:column>
+				<p:column>
+					<p:commandButton title="Permite agregar nueva caja Pista o Tienda"
+						value="Nueva Caja" process="@this :frm_eje_002"
+						action="#{CheckListEjecucionCtrlBn.nuevoArqueoCaja()}"
+						update=":frm_eje_002">
+					</p:commandButton>
+				</p:column>
+				<p:column>
+					<div align="right">
+						<p:commandButton icon="ui-icon-check" process="@this frm_eje_003"
+							update=":frm_eje_002:tabWiwe0:dtbCheckList,frm_eje_003:mensajes"
+							title="Permite guardar arqueo caja Pista o Tienda"
+							action="#{CheckListEjecucionCtrlBn.guardarArqueoCaja()}" />
+					</div>
+				</p:column>
+			</p:panelGrid>
+			<p:panelGrid styleClass="sinborde w120" layout="grid" columns="4"
+				columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3">
+				<p:column>
+					<p:outputLabel value="Estación"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:outputLabel
+						value="#{CheckListEjecucionCtrlBn.checkListEjecucion.planificacion.agencia.nombreAgencia}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Fecha/Hora"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:calendar disabled="true" style="width:100px !important"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.fechaArqueo}"
+						pattern="dd/MM/yyyy  HH:mm:ss" locale="es"></p:calendar>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Auditor"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="cmbResponsableCaja"
+						style="width:100px !important"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.auditor}"
+						converter="#{usuarioConverter}">
+						<f:selectItem itemLabel="Seleccione" />
+						<f:selectItems value="#{CheckListEjecucionCtrlBn.listAuditor}"
+							var="auditor" itemValue="#{auditor}"
+							itemLabel="#{auditor.nombreUsuario}" />
+					</p:selectOneMenu>
+				</p:column>
+
+				<p:column>
+					<p:outputLabel value="Vendedor"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:inputText styleClass="w100"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.nombreVendedor}" />
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Total Venta"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:inputNumber
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.valorVenta}"
+						pattern="###0.00">
+					</p:inputNumber>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Turno"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:spinner size="5"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.turno}"
+						min="0" max="10"></p:spinner>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Total Arqueo"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:outputLabel id="inputTotalArqueo"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.valorArqueo}">
+						<f:convertNumber pattern="###0.00" />
+					</p:outputLabel>
+				</p:column>
+
+				<p:column>
+					<p:outputLabel value="Tipo Estación"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:100px !important"
+						disabled="#{CheckListEjecucionCtrlBn.bloqueoTipo}"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.tipoEstacion}"
+						converter="#{tipoEstacionConverter}">
+						<f:selectItem itemLabel="Seleccione" />
+						<f:selectItems
+							value="#{CheckListEjecucionCtrlBn.tipoEstacionList}"
+							var="tipoEstacion" itemValue="#{tipoEstacion}"
+							itemLabel="#{tipoEstacion.descripcion}" />
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Diferencia Arqueo"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:outputLabel id="outputTotalDiferencia"
+						value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.valorDiferencia}">
+						<f:convertNumber pattern="###0.00" />
+					</p:outputLabel>
+				</p:column>
+			</p:panelGrid>
+			<p:dataTable id="dtbArqueoCaja" var="arqueoCaja"
+				value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.arqueoCaja}"
+				sortBy="#{arqueoCaja.orden}" expandableRowGroups="true">
+				<p:headerRow>
+					<p:column colspan="4">
+						<h:outputText value="#{arqueoCaja.subDescripcion}" />
+					</p:column>
+				</p:headerRow>
+				<p:column headerText="Medios de Pagos Recibidos">
+					<h:outputText value="#{arqueoCaja.descripcion}" />
+				</p:column>
+				<p:column headerText="Cantidad">
+					<div align="center">
+						<p:spinner value="#{arqueoCaja.cantidad}" size="5" min="0"
+							disabled="#{arqueoCaja.descripcion eq 'Pico'}">
+							<p:ajax event="change"
+								listener="#{CheckListEjecucionCtrlBn.sumarArqueoCaja(arqueoCaja)}"
+								process="@this frm_eje_003"
+								update="frm_eje_003:inputTotalArqueo,frm_eje_003:outputTotalDiferencia,frm_eje_003:dtbArqueoCaja"></p:ajax>
+						</p:spinner>
+					</div>
+				</p:column>
+				<p:column headerText="Valor">
+					<p:inputNumber value="#{arqueoCaja.valorSubTotal}"
+						pattern="###0.00">
+						<p:ajax event="change"
+							listener="#{CheckListEjecucionCtrlBn.sumarArqueoCaja(arqueoCaja)}"
+							process="@this frm_eje_003"
+							update="frm_eje_003:inputTotalArqueo,frm_eje_003:outputTotalDiferencia,frm_eje_003:dtbArqueoCaja"></p:ajax>
+
+					</p:inputNumber>
+				</p:column>
+				<p:column headerText="SubTotal">
+					<p:inputNumber value="#{arqueoCaja.valorTotal}" pattern="###0.00"
+						readonly="true"></p:inputNumber>
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+			<p:column>
+				<div align="right">
+					<p:commandButton title="Permite Eliminar Arqueo de Caja chica"
+						icon="fa fa-close" onclick="PF('dlg_conf_3').show()" />
+				</div>
+			</p:column>
+			<p:panelGrid columns="2" styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Observación"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputTextarea styleClass="w100" rows="4" maxlength="500"
+							autoResize="false"
+							value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.comentarioArqueo}"></p:inputTextarea>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+		<ui:include src="/pages/ejecucion/eje_013.xhtml"></ui:include>
+		<p:confirmDialog widgetVar="dlg_conf_3" header="Confirmar"
+			appendTo="@(body)"
+			message="Esta seguro de Eliminar Arqueo de Caja Chica ?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf_3').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check"
+					oncomplete="PF('dlg_conf_3').hide()"
+					update=":frm_eje_002:tabWiwe0:dtbCheckList"
+					action="#{CheckListEjecucionCtrlBn.eliminarArqueoCaja()}"
+					process="@this"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+	</p:dialog>
+</ui:composition>

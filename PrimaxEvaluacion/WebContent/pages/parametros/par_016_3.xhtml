@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_16_3" id="dialog_16_3"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Color Nivel " />
+			<p:outputLabel value="par_016_3.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_016_3">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					update=":frm_par_016_2:dbNivelDetalle"
+					action="#{NivelEvaluacionBn.guardarDetalle()}"
+					oncomplete="PF('dialog_16_3').hide()" />
+			</div>
+			<p:panelGrid columns="1" styleClass="fullsize sinborde">
+				<p:column>
+					<p:selectOneListbox id="advanced"
+						value="#{NivelEvaluacionBn.nivelColorSeleccionado}"
+						converter="#{nivelColorConverter}" var="t" filter="true"
+						filterMatchMode="contains">
+						<f:selectItems value="#{NivelEvaluacionBn.nivelColorList}"
+							var="color" itemLabel="#{color.descripcion}" itemValue="#{color}" />
+						<p:column>
+							<h:outputText value="#{t.descripcion}"
+								style="background-color:#{t.color}" />
+						</p:column>
+					</p:selectOneListbox>
+				</p:column>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

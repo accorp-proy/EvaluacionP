@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteArqueoConsolidado" language="groovy" pageWidth="1450" pageHeight="555" orientation="Landscape" columnWidth="1450" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="bf808d36-3a69-4bd8-8506-f2c1b5cd3613">
+	<property name="ireport.zoom" value="5.0"/>
+	<property name="ireport.x" value="622"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{area}=='H)Diferencia de arqueo']]></conditionExpression>
+			<style backcolor="#00FF66"/>
+		</conditionalStyle>
+	</style>
+	<style name="style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{totalMeasure} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{totalMeasure} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="ConsultaArqueo" uuid="1353625e-0115-47ea-a21b-35aa54aa941f">
+		<parameter name="par_id_proceso_ejecucion" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+kpi.id_check_list_kpi_ejecucion as  orden,
+'A' as orden0,
+1 as orden1,
+'A)Venta Total' as area,
+kpi.nombre_vendedor as nombreVendedor,
+kpi.valor_venta as total,
+tipo.descripcion as tipoArqueo
+from check_list_kpi_ejecucion_et kpi
+inner join tipo_estacion_et tipo
+on kpi.id_tipo_estacion=tipo.id_tipo_estacion
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso_ejecucion}
+and kpi.estado='ACT'
+union all
+select
+kpi.id_check_list_kpi_ejecucion as orden,
+arq.orden_reporte_1 as orden0,
+arq.id_arqueo_caja as orden1,
+arq.orden_reporte_1::text||')'||arq.sub_descripcion  as area,
+kpi.nombre_vendedor as nombreVendedor,
+(select  sum(ca.valor_total) as total from arqueo_caja_et ca where ca.id_check_list_kpi_ejecucion=arq.id_check_list_kpi_ejecucion and ca.orden = arq.orden ) as total,
+tipo.descripcion as tipoArqueo
+from arqueo_caja_et arq
+inner join check_list_kpi_ejecucion_et kpi
+on arq.id_check_list_kpi_ejecucion=kpi.id_check_list_kpi_ejecucion
+inner join tipo_estacion_et tipo
+on kpi.id_tipo_estacion=tipo.id_tipo_estacion
+where kpi.estado='ACT'
+and arq.descripcion  ='Parcial'
+and kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso_ejecucion}
+union all
+select
+kpi.id_check_list_kpi_ejecucion as orden,
+arq.orden_reporte_1 as orden0,
+arq.id_arqueo_caja as orden1,
+(CASE WHEN arq.descripcion='Parcial' then arq.orden_reporte_1::text||')'||'Efectivo depositado' else arq.orden_reporte_1::text||')'||arq.sub_descripcion end ) as area,
+kpi.nombre_vendedor as nombreVendedor,
+arq.valor_total as total,
+tipo.descripcion as tipoArqueo
+from arqueo_caja_et arq
+inner join check_list_kpi_ejecucion_et kpi
+on arq.id_check_list_kpi_ejecucion=kpi.id_check_list_kpi_ejecucion
+inner join tipo_estacion_et tipo
+on kpi.id_tipo_estacion=tipo.id_tipo_estacion
+where kpi.estado='ACT'
+and arq.descripcion  not in ('Parcial','Pico')
+and kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso_ejecucion}
+union all
+select
+kpi.id_check_list_kpi_ejecucion as orden,
+'G' as orden0,
+9 as orden1,
+'G)Total medios de pago' as area,
+kpi.nombre_vendedor as nombreVendedor,
+ sum(arq.valor_total) as total,
+tipo.descripcion as tipoArqueo
+from arqueo_caja_et arq
+inner join check_list_kpi_ejecucion_et kpi
+on arq.id_check_list_kpi_ejecucion=kpi.id_check_list_kpi_ejecucion
+inner join tipo_estacion_et tipo
+on kpi.id_tipo_estacion=tipo.id_tipo_estacion
+where kpi.estado='ACT'
+and kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso_ejecucion}
+group by kpi.id_check_list_kpi_ejecucion,kpi.nombre_vendedor,tipo.descripcion
+union all
+select
+kpi.id_check_list_kpi_ejecucion as  orden,
+'H' as orden0,
+10 as orden1,
+'H)Diferencia de arqueo' as area,
+kpi.nombre_vendedor as nombreVendedor,
+kpi.valor_diferencia as total,
+tipo.descripcion as tipoArqueo
+from check_list_kpi_ejecucion_et kpi
+inner join tipo_estacion_et tipo
+on kpi.id_tipo_estacion=tipo.id_tipo_estacion
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso_ejecucion}
+and kpi.estado='ACT'
+order by 1,2 ,3;]]>
+		</queryString>
+		<field name="orden" class="java.lang.Long"/>
+		<field name="orden0" class="java.lang.String"/>
+		<field name="orden1" class="java.lang.Long"/>
+		<field name="area" class="java.lang.String"/>
+		<field name="nombrevendedor" class="java.lang.String"/>
+		<field name="total" class="java.lang.Double"/>
+		<field name="tipoarqueo" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="par_id_check_list_kpi_ejecucion" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_usuario" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+pro.id_check_list_proceso_ejecucion as id
+from check_list_ejecucion_et che
+inner join check_list_proceso_ejecucion_et pro
+on che.id_check_list_ejecucion=pro.id_check_list_ejecucion
+inner join check_list_kpi_ejecucion_et kpi
+on pro.id_check_list_proceso_ejecucion=kpi.id_check_list_proceso_ejecucion
+inner join arqueo_caja_et caj
+on kpi.id_check_list_kpi_ejecucion=caj.id_check_list_kpi_ejecucion
+where che.id_check_list_ejecucion=$P{par_id_check_list_kpi_ejecucion}
+and kpi.estado='ACT'
+group by pro.id_check_list_proceso_ejecucion;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="329" height="15" uuid="545d5be6-7438-42a5-986f-ce5b2d284111"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ARQUEO CONSOLIDADO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="56">
+			<crosstab>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1450" height="56" uuid="ff900950-f37a-40f6-994d-c87b56e4b1ce"/>
+				<crosstabDataset>
+					<dataset>
+						<datasetRun subDataset="ConsultaArqueo" uuid="f279403e-6687-466d-8b69-9ece821ab305">
+							<datasetParameter name="par_id_proceso_ejecucion">
+								<datasetParameterExpression><![CDATA[$F{id}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+				</crosstabDataset>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="198" height="15" backcolor="#9999FF" uuid="f87a84a2-d842-4118-a9ea-559e0f164897"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Bottom"/>
+							<text><![CDATA[ÁREA]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="15" width="198" height="15" backcolor="#9999FF" uuid="54f01e64-3b47-40bb-b3c5-158727c4a6bb"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle"/>
+							<text><![CDATA[Usuario]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="area" width="198" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{area}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement style="style1" mode="Opaque" x="0" y="0" width="198" height="15" uuid="9c04ec9c-cea5-4cae-a0b0-edcafe507605"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Bottom">
+									<font isBold="false"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{area}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="tipoarqueo" height="15" headerPosition="Center">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{tipoarqueo}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#FFFF99" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="120" height="15" backcolor="#FFFF99" uuid="f98e9712-4f84-43a1-8cec-82420f8d9688"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{tipoarqueo}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup name="nombrevendedor" height="15" headerPosition="Center">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{nombrevendedor}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField pattern="###0.00" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="131" height="15" backcolor="#FFFF99" uuid="8320bb7c-3b07-49d5-9a80-af8a475a567d"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Bottom"/>
+								<textFieldExpression><![CDATA[$V{nombrevendedor}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="totalMeasure" class="java.lang.Double" calculation="Sum">
+					<measureExpression><![CDATA[$F{total}]]></measureExpression>
+				</measure>
+				<crosstabCell width="131" height="15">
+					<cellContents mode="Transparent">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="###0.00" isBlankWhenNull="true">
+							<reportElement style="style2" x="0" y="0" width="131" height="15" uuid="b8802f2e-35d1-4904-b5e2-4c25204dc54a"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="131" height="12" rowTotalGroup="area">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="tipoarqueo">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="61fc0372-f7c8-4385-943c-7ad3243bb2e3"/>
+							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="area" columnTotalGroup="tipoarqueo">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="66b45ad2-8a71-4aeb-ba8d-5efc9d26dccb"/>
+							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="nombrevendedor">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="95618c08-5a54-41f6-bc67-1f6eb3547329"/>
+							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="area" columnTotalGroup="nombrevendedor">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="86d17ad3-2639-404d-a915-cea839527adb"/>
+							<textFieldExpression><![CDATA[$V{totalMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</detail>
+</jasperReport>

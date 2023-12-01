@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_008_1"
+		id="dlg_eje_008_1" appendTo="@(body)" width="600px" height="250px"
+		resizable="true">
+		<f:facet name="header">
+			<h:outputLabel
+				value="Controles de estación de servicio a Promotores " />
+			<p:outputLabel value="eje_008_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_008_1">
+			<h:outputScript library="js" name="calendar.js" />
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_008_1"
+					action="#{CheckListEjecucionCtrlBn.guardarCierreTurno()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab00" title="Cierre Turno">
+					<p:dataTable id="fdt01"
+						emptyMessage="Novedad en Diferencia de Turno" var="checkListA"
+						scrollHeight="80" scrollable="true"
+						value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionTienda.checkListKpiEjecucionA}">
+						<f:facet name="header">
+							<div align="center">
+								<p:outputLabel value="Novedad en Diferencia de Turno"></p:outputLabel>
+							</div>
+						</f:facet>
+						<p:column headerText="Novedad" style="width:85px">
+							<p:inputTextarea value="#{checkListA.descripcion}"
+								maxlength="500" styleClass="w100" rows="4" autoResize="false" />
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+				<p:tab id="tab01" title="Archivo Novedades">
+					<p:panelGrid styleClass="sinborde w100">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{CheckListEjecucionCtrlBn.descripcionN}"
+									style="font-weight:bold"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:fileUpload
+									fileUploadListener="#{CheckListEjecucionCtrlBn.listenerNovedadCantidad}"
+									mode="advanced" label="Cargar" auto="true"
+									update=":frm_eje_002:mensajes"
+									allowTypes="/(\.|\/)(xlsx|xls|txt)$/" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</p:dialog>
+</ui:composition>

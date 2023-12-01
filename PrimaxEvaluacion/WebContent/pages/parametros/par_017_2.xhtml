@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_17_2" id="dialog_17_2"
+		height="400px" closeOnEscape="true" hideEffect="drop"
+		showHeader="true" appendTo="@(body)" resizable="true"
+		responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Frecuencia Visita" />
+			<p:outputLabel value="par_017_2.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_017_2">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{FrecuenciaVisitaBn.guardar()}" update=":frm_par_017"
+					oncomplete="PF('dialog_17_2').hide()" />
+			</div>
+			<p:spacer></p:spacer>
+			<p:dataTable id="fdt01" emptyMessage="No Existen Frecuencia Visita"
+				var="nivelDetalle"
+				value="#{FrecuenciaVisitaBn.frecuenciaVisitaSeleccionado.frecuenciaVisitaDetalle}"
+				reflow="true" tableStyle="table-layout: auto">
+				<f:facet name="header">
+					<div align="center">
+						<h:outputLabel
+							value="#{FrecuenciaVisitaBn.frecuenciaVisitaSeleccionado.descripcion.toUpperCase()}" />
+					</div>
+					<div align="right">
+						<p:commandButton icon="ui-icon-add" id="btnResponsable"
+							process="@this fdt01" update="fdt01"
+							action="#{FrecuenciaVisitaBn.anadirProcesoDetalle()}"></p:commandButton>
+					</div>
+				</f:facet>
+				<p:column headerText="Orden" width="50">
+					<div align="center">
+						<p:spinner value="#{nivelDetalle.orden}" size="1"></p:spinner>
+					</div>
+				</p:column>
+				<p:column headerText="Descripción">
+					<p:inputText value="#{nivelDetalle.descripcion}" maxlength="20"></p:inputText>
+				</p:column>
+				<p:column headerText="Mayor =" width="50">
+					<div align="center">
+						<p:spinner value="#{nivelDetalle.mayor}" size="1" min="0"
+							max="500"></p:spinner>
+					</div>
+				</p:column>
+				<p:column headerText="Menor =" width="50">
+					<div align="center">
+						<p:spinner value="#{nivelDetalle.menor}" size="1" min="0"
+							max="500"></p:spinner>
+					</div>
+				</p:column>
+				<p:column headerText="Color"
+					style="background-color:#{nivelDetalle.color};">
+				</p:column>
+				<p:column width="30" headerText="Editar">
+					<p:commandButton title="Editar"
+						action="#{FrecuenciaVisitaBn.modificarNivelEvaluacionDetalle(nivelDetalle)}"
+						oncomplete="PF('dialog_17_3').show()" update=":frm_par_017_3"
+						icon="ui-icon-pencil"></p:commandButton>
+				</p:column>
+				<p:column width="40" headerText="Eliminar">
+					<p:commandButton
+						action="#{FrecuenciaVisitaBn.quitarProcesoDetalle(nivelDetalle)}"
+						id="btnEliminar" icon="ui-icon-delete" update="fdt01"
+						process="@this fdt01" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/parametros/par_017_3.xhtml"></ui:include>
+
+	</p:dialog>
+</ui:composition>

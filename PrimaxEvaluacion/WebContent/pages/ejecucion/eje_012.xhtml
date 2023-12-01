@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_012" id="dlg_eje_012"
+		showEffect="drop" hideEffect="drop" appendTo="@(body)">
+		<f:facet name="header">
+			<h:outputLabel
+				value="Ingresar firma de #{CheckListEjecucionCtrlBn.checkListEjecucionFirmaSeleccionado.nombre}" />
+		</f:facet>
+		<h:form id="frm_eje_012">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<div class="ui-g-12 ui-lg-12 ui-md-12">
+				<p:panelGrid layout="grid" columns="1"
+					styleClass="ui-panelgrid-blank form-group">
+					<h:panelGroup>
+						<div align="right">
+							<p:commandButton icon="ui-icon-check"
+								oncomplete="PF('dlg_eje_012').hide()"
+								process="@this frm_eje_012" title="Guardar"
+								action="#{CheckListEjecucionCtrlBn.verificarClaveCheckList()}"
+								update="mensajes,:frm_eje_010:dtbResponsableFirma" />
+						</div>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:signature id="sig_012" style="width:360px;height:150px"
+							widgetVar="sig_012"
+							readonly="#{CheckListEjecucionCtrlBn.checkListEjecucionFirmaSeleccionado.contieneFirma}"
+							guideline="true"
+							value="#{CheckListEjecucionCtrlBn.checkListEjecucionFirmaSeleccionado.firma}" />
+						<p:commandButton icon="fa fa-book" type="button"
+							disabled="#{CheckListEjecucionCtrlBn.checkListEjecucionFirmaSeleccionado.contieneFirma}"
+							title="Limpiar Firma" onclick="PF('sig_012').clear()" />
+					</h:panelGroup>
+				</p:panelGrid>
+			</div>
+		</h:form>
+	</p:dialog>
+</ui:composition>

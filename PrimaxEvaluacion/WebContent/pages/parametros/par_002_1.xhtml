@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog widgetVar="dialog_par_002_1" modal="true"
+		id="dialog_par_002_1" width="60%" responsive="true"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		height="450px" appendTo="@(body)" resizable="false">
+		<f:facet name="header">
+			<h:outputText value="Ingreso/Modificación de Parametros " />
+			<p:outputLabel value="par_002_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form styleClass="fullsize" id="frm_002_1">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<br />
+			<p:panelGrid columns="5" layout="grid" styleClass="fullsize sinborde"
+				style="width:100%" id="pngGneral3">
+				<p:outputLabel value="Nombre" />
+				<p:inputText
+					value="#{parametroGeneralBn.parametroGeneralPadreSeleccionado.nombreLista}"
+					required="true"
+					requiredMessage="El Nombre del parametro es requerido"></p:inputText>
+				<p:outputLabel value="Estado">
+				</p:outputLabel>
+				<p:selectOneMenu editable="false"
+					value="#{parametroGeneralBn.parametroGeneralPadreSeleccionado.estado}">
+					<f:selectItems value="#{parametroGeneralBn.estadosActIna}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+			<br />
+			<p:fieldset legend="Parametros Hijos"
+				rendered="#{parametroGeneralBn.parametroGeneralPadreSeleccionado.idParametroGeneral ne null}">
+				<p:panelGrid layout="grid" styleClass="fullsize sinborde"
+					columns="4" id="gridHijos">
+					<p:outputLabel value="Descripción"></p:outputLabel>
+					<p:outputLabel value="Valor"></p:outputLabel>
+					<p:outputLabel value="Orden"></p:outputLabel>
+					<p:outputLabel></p:outputLabel>
+					<p:inputText
+						value="#{parametroGeneralBn.parametroGeneralHijoSeleccionado.nombreLista}"></p:inputText>
+					<p:inputTextarea title="Ingrese Valor o Descripción"
+						id="inpTextArea1"
+						value="#{parametroGeneralBn.parametroGeneralHijoSeleccionado.valorLista}"
+						rows="4" styleClass="w100" maxlength="1000" style="width:100%"></p:inputTextarea>
+					<p:inputText title="Ingrese Orden de la lista"
+						value="#{parametroGeneralBn.parametroGeneralHijoSeleccionado.orden}"></p:inputText>
+					<p:commandButton value="Agregar" process="@this gridHijos"
+						action="#{parametroGeneralBn.agregarHijo()}"
+						update="gridHijos,mensajes,frm_002_1:dtbHijo"
+						title="Agegar parametro hijo"></p:commandButton>
+				</p:panelGrid>
+				<br />
+				<br />
+				<p:dataTable paginator="true" rowsPerPageTemplate="3,5,10" rows="3"
+					reflow="true" emptyMessage="No existe Items" id="dtbHijo"
+					paginatorPosition="bottom"
+					value="#{parametroGeneralBn.parametroGeneralPadreSeleccionado.parametros}"
+					var="hij">
+					<p:column headerText="Descripción">
+						<h:outputText value="#{hij.nombreLista}" />
+					</p:column>
+					<p:column headerText="Valor">
+						<p:inputTextarea id="inpTextArea0" value="#{hij.valorLista}"
+							rows="4" styleClass="w100" maxlength="1000">
+						</p:inputTextarea>
+					</p:column>
+					<p:column headerText="Orden">
+						<h:outputText value="#{hij.orden}" />
+					</p:column>
+					<p:column style="text-align:center">
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							action="#{parametroGeneralBn.cargarParametroHijoSeleccionado(hij)}"
+							update=":frm_002_1:gridHijos"></p:commandButton>
+						<p:commandButton icon="ui-icon-trash" title="Eliminar"
+							action="#{parametroGeneralBn.eliminarParametroHijo(hij)}"
+							update=":frm_002_1:gridHijos,dtbHijo"></p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+			<p:commandButton title="Guardar" value="Guardar"
+				action="#{parametroGeneralBn.guardar()}"
+				update=":frm_par_002,frm_002_1, mensajes" />
+			<p:spacer width="30px"></p:spacer>
+			<p:commandButton value="Cancelar"
+				oncomplete="PF('dialog_par_002_1').hide()" title="Cancelar"></p:commandButton>
+		</h:form>
+	</p:dialog>
+</ui:composition>

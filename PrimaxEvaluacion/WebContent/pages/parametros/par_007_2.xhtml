@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dialog_07_2" id="dialog_07_2" responsive="true"
+		appendTo="@(body)" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Categoría de Estación " />
+			<p:outputLabel value="par_007_2.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_007_2">
+			<p:growl autoUpdate="true"></p:growl>
+			<div align="right">
+				<p:commandButton icon="ui-icon-save" update=":frm_par_007"
+					styleClass="secondary"
+					action="#{TipoEstacionBn.guardarCategoria()}" title="Guardar">
+				</p:commandButton>
+			</div>
+			<div class="ui-fluid">
+				<p:selectOneListbox id="listCategoria" scrollHeight="100"
+					value="#{TipoEstacionBn.categoriaEstacionSeleccionado}"
+					converter="#{categoriaEstacionConverter}">
+					<f:selectItems value="#{TipoEstacionBn.categoriaEstacionList}"
+						var="categoriaE" itemLabel="#{categoriaE.descripcion}"
+						itemValue="#{categoriaE}">
+					</f:selectItems>
+				</p:selectOneListbox>
+				<p:commandButton icon="ui-icon-play-circle-filled"
+					styleClass="secondary" action="#{TipoEstacionBn.onTransfer()}"
+					update="listCategoriaSave" process="@form">
+				</p:commandButton>
+				<p:commandButton icon="ui-icon-remove-circle" styleClass="secondary"
+					action="#{TipoEstacionBn.onRemove()}" update="listCategoriaSave"
+					process="@form"></p:commandButton>
+				<p:selectOneListbox id="listCategoriaSave"
+					converter="#{CategoriaEstacionConverter}" scrollHeight="100"
+					value="#{TipoEstacionBn.categoriaEstacionSeleccionadoEliminar}">
+					<f:selectItems
+						value="#{TipoEstacionBn.tipoEstacionSeleccionado.tipoCategoriaEstacion}"
+						var="categoriaE"
+						itemLabel="#{categoriaE.categoriaEstacion.descripcion}"
+						itemValue="#{categoriaE.categoriaEstacion}">
+					</f:selectItems>
+				</p:selectOneListbox>
+			</div>
+		</h:form>
+	</p:dialog>
+</ui:composition>

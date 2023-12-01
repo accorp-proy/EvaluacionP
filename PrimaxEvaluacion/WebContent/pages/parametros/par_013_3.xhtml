@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_13_3" id="dialog_13_3"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Puntaje/Color Matriz " />
+			<p:outputLabel value="par_013_3.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_013_3">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					update=":frm_par_013_2:fdt01"
+					action="#{CriterioEvaluacionBn.guardarDetalle()}"
+					oncomplete="PF('dialog_13_3').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:column>
+					<p:outputLabel value="Color Matriz:" />
+				</p:column>
+				<p:column>
+					<p:selectOneListbox id="cmbNivelColor" scrollHeight="200"
+						value="#{CriterioEvaluacionBn.nivelColorSeleccionado}"
+						converter="#{nivelColorConverter}" var="t" filter="true"
+						filterMatchMode="contains">
+						<f:selectItems value="#{CriterioEvaluacionBn.nivelColorList}"
+							var="color" itemLabel="#{color.descripcion}" itemValue="#{color}" />
+						<p:column>
+							<h:outputText value="#{t.descripcion}"
+								style="background-color:#{t.color}" />
+						</p:column>
+					</p:selectOneListbox>
+				</p:column>
+				<p:outputLabel value="Evidencia del proceso:" />
+				<p:inputTextarea rows="5" cols="40" scrollHeight="5"
+					maxlength="1000" autoResize="false"
+					value="#{CriterioEvaluacionBn.criterioEvaluacionDetalleSeleccionado.comentario}"></p:inputTextarea>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

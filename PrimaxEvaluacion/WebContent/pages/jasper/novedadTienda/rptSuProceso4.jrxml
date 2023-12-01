@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSuProceso4" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="68f1b13b-d698-4032-83f5-2edd3bef2202">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ProcesoAdministrativo" uuid="eb763477-dffc-44de-ac27-afde09a07e20">
+		<parameter name="par_id_proceso" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+kpi.id_check_list_kpi_ejecucion as id,
+kpi.orden as orden,
+kpi.descripcion as kpi,
+(CASE WHEN  cri.id_parametro_general  = 27 then 'X' else null end ) as cumple,
+(CASE WHEN  cri.id_parametro_general <> 27 then 'X' else null end ) as Nocumple,
+kpi.comentario_control as observacion
+from check_list_kpi_ejecucion_et kpi
+inner join proceso_detalle_et det
+on kpi.id_proceso_detalle=det.id_proceso_detalle
+inner join proceso_et pro
+on det.id_proceso=pro.id_proceso
+inner join check_list_proceso_ejecucion_et proc
+on kpi.id_check_list_proceso_ejecucion = proc.id_check_list_proceso_ejecucion
+inner join criterio_evaluacion_detalle_et cri
+on kpi.id_criterio_evaluacion_detalle_seleccionado = cri.id_criterio_evaluacion_detalle
+inner join criterio_evaluacion_et cric
+on cri.id_criterio_evaluacion = cric.id_criterio_evaluacion
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso}
+and kpi.visualizar_reporte='false'
+union all
+select
+kpi.id_check_list_kpi_ejecucion_a as id,
+kpi.orden as orden,
+kpi.descripcion as kpi,
+(CASE WHEN  par.nombre_lista = 'Cumple' then 'X' else null end ) as cumple,
+(CASE WHEN  par.nombre_lista = 'No Cumple' then 'X' else null end ) as Nocumple,
+kpi.observacion as observacion
+from check_list_kpi_ejecucion_a_et kpi
+inner join parametros_generales_et par
+on kpi.id_parametro_criterio=par.id_parametro_general
+where kpi.estado='ACT'
+and kpi.id_check_list_proceso_ejecucion =$P{par_id_proceso}
+order by 2;]]>
+		</queryString>
+		<field name="id" class="java.lang.Long"/>
+		<field name="orden" class="java.lang.Long"/>
+		<field name="kpi" class="java.lang.String"/>
+		<field name="cumple" class="java.lang.String"/>
+		<field name="nocumple" class="java.lang.String"/>
+		<field name="observacion" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="PermisoFuncionamiento" uuid="019ef0c7-46f6-4702-a5ab-7bd93b40e57f">
+		<parameter name="par_id_proceso" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+kpi.id_check_list_kpi_ejecucion_b as id,
+kpi.orden as orden,
+kpi.descripcion as descripcion,
+kpi.fecha_caducidad as anio
+from check_list_kpi_ejecucion_b_et kpi
+inner join parametros_generales_et par
+on kpi.id_parametro_criterio=par.id_parametro_general
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso}
+order by kpi.orden;]]>
+		</queryString>
+		<field name="id" class="java.lang.Long"/>
+		<field name="orden" class="java.lang.Long"/>
+		<field name="descripcion" class="java.lang.String"/>
+		<field name="anio" class="java.sql.Timestamp"/>
+	</subDataset>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select pro.descripcion as proceso from check_list_proceso_ejecucion_et pro where pro.id_check_list_proceso_ejecucion=$P{par_id_proceso};]]>
+	</queryString>
+	<field name="proceso" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="85">
+			<staticText>
+				<reportElement x="25" y="10" width="443" height="15" forecolor="#00B050" uuid="93b0021f-c11f-47a7-a07b-9ec0b93fd06b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Procedimientos Administrativos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="25" height="15" forecolor="#00B050" uuid="049b40f1-2893-4a28-af9f-dbf13576f8e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table" style="table" stretchType="RelativeToTallestObject" x="25" y="45" width="443" height="40" uuid="b5350632-3d9a-47f3-85a8-30b3237568d2"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ProcesoAdministrativo" uuid="c7433593-b57c-4abc-a3db-7b56a5a91705">
+						<datasetParameter name="par_id_proceso">
+							<datasetParameterExpression><![CDATA[$P{par_id_proceso}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="250" uuid="967cd4b6-ff13-4129-be36-c293dc7c34cd">
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="250" height="15" uuid="d321242f-c5e5-4584-aa24-49eff35bd12f"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<text><![CDATA[Controles administrativos]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="250" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="32973b1c-a72e-45da-a1b0-8b67106a9797"/>
+								<textElement>
+									<font fontName="Arial" size="10"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{kpi}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="71b6d4d9-cabd-4aa0-a8c7-16ee11a0951f">
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="55" height="15" uuid="677de916-a603-40e6-9429-a64742d3d733"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<text><![CDATA[Cumple]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="55" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3c60fc28-e531-48bd-8a7e-eea6948f1b09"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{cumple}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="c3e33617-1ebf-44d6-8533-4c77521e7b43">
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="55" height="15" uuid="63cef824-3052-406f-9a9e-582acf372c68"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<text><![CDATA[No Cumple]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="55" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c4f2eb43-4039-40dd-aad1-284407453668"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nocumple}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="170" uuid="e949ce6a-1368-48c2-b073-a4ce121dc66a">
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="170" height="15" uuid="f29d0335-ce0c-4cba-a2b7-25da03d541f5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<text><![CDATA[Observación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="170" height="15" uuid="47df6d78-bb50-4f8c-ab2d-16113f58a9b7"/>
+								<textElement>
+									<font fontName="Arial" size="10"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="25" y="25" width="443" height="20" uuid="03a3165c-63cb-4034-b7cc-c48e98059d65"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="468" height="10" uuid="533cccb4-7f09-404b-b5c6-879d132fae85"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+		<band height="15">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="25" y="0" width="443" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="e754a7e1-5caa-4894-8b89-d91d042b9bab"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptComentarioAdm.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="75">
+			<staticText>
+				<reportElement x="25" y="0" width="530" height="15" forecolor="#00B050" uuid="ca2c2b88-bf50-4d78-bed5-3f0741e3520a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Permisos De Funcionamiento Estación De Servicios]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" stretchType="RelativeToBandHeight" x="25" y="35" width="443" height="40" uuid="a119520d-b501-49d9-af06-1f2c971043a3"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="PermisoFuncionamiento" uuid="d47595e4-2160-4624-8a9b-14346d55d0af">
+						<datasetParameter name="par_id_proceso">
+							<datasetParameterExpression><![CDATA[$P{par_id_proceso}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="480" uuid="9dbc2946-8def-4cca-a6e2-e57fe1029758">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="480" height="15" uuid="96a644a1-5f7a-46a4-82e2-386ec0a96e35"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<text><![CDATA[Permisos de funcionamiento]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="480" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0557ca00-8a41-4916-a588-1228e87e4781"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="728495a2-8193-4286-8afd-98d68484e982">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="15" uuid="348c3093-e23e-492f-979b-ae7c6fe384c9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+								</textElement>
+								<text><![CDATA[Año]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="yyyy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="50" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="546ec03b-5840-415f-b639-86918b4b62c8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="25" y="15" width="443" height="20" uuid="ad97aba9-795d-44d3-9d9b-2b243cf265b6"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="25" height="15" forecolor="#00B050" uuid="f9494084-b7cf-47c2-abb1-196218df3264"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

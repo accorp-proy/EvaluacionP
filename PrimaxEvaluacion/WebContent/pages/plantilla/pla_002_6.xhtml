@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_002_6" id="dialog_002_6"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Mostrar Formulario Informe Dinámico " />
+			<p:outputLabel value="par_002_6.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_002_6">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{PlantillaCriterioEspecificoBn.guardarSeleccionI()}"
+					update=":frm_pla_002:tabWiwe0:filFormulario"
+					oncomplete="PF('dialog_002_6').hide()" />
+			</div>
+			<p:panelGrid styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Visualizar" />
+					</p:column>
+					<p:column>
+						<p:selectBooleanCheckbox
+							value="#{PlantillaCriterioEspecificoBn.checkListFrmSeleccionadoM.visualizar}"></p:selectBooleanCheckbox>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+
+	</p:dialog>
+</ui:composition>

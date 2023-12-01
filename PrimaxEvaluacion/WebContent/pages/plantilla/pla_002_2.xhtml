@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_02_2" id="dialog_02_2"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Nivel de Riesgo " />
+			<p:outputLabel value="pla_002_2.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_002_2">
+			<p:spacer></p:spacer>
+			<p:dataTable id="fdt01" emptyMessage="No Existen Nivel Riesgo"
+				var="nivelDetalle"
+				value="#{PlantillaCriterioEspecificoBn.nivelEvaluacionSeleccionado.nivelEvaluacionDetalle}"
+				reflow="true" tableStyle="table-layout: auto">
+				<f:facet name="header">
+					<div align="center">
+						<h:outputLabel
+							value="#{PlantillaCriterioEspecificoBn.nivelEvaluacionSeleccionado.descripcion.toUpperCase()}" />
+					</div>
+				</f:facet>
+				<p:column headerText="Orden" width="50">
+					<div align="center">
+						<p:outputLabel value="#{nivelDetalle.orden}" />
+					</div>
+				</p:column>
+				<p:column headerText="Descripción">
+					<p:outputLabel value="#{nivelDetalle.descripcion}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Mayor =" width="50">
+					<div align="center">
+						<p:outputLabel value="#{nivelDetalle.mayor}"></p:outputLabel>
+					</div>
+				</p:column>
+				<p:column headerText="Menor =" width="50">
+					<div align="center">
+						<p:outputLabel value="#{nivelDetalle.menor}">
+						</p:outputLabel>
+					</div>
+				</p:column>
+				<p:column headerText="Imagen">
+					<div align="center">
+						<h:graphicImage
+							value="/resources/images/nivelEvaluacion/#{nivelDetalle.nivelEvaluacion.idNivelEvaluacion}/#{nivelDetalle.imgNombre}"
+							style="display: block; margin: 0px auto;" />
+					</div>
+				</p:column>
+				<p:column headerText="Color"
+					style="background-color:#{nivelDetalle.color};">
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

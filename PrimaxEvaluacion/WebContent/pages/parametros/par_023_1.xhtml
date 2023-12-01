@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_23_1" id="dialog_23_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Nivel de Esfuerzo" />
+			<p:outputLabel value="par_023_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_023_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{CheckListEtiquetaBn.guardar()}" update=":frm_par_023"
+					oncomplete="PF('dialog_23_1').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:outputLabel value="Orden" />
+				<p:spinner
+					value="#{CheckListEtiquetaBn.checkListEtiquetaSeleccionado.orden}"
+					size="5" min="1" max="100">
+				</p:spinner>
+				<p:outputLabel value="Nombre" />
+				<p:inputText
+					value="#{CheckListEtiquetaBn.checkListEtiquetaSeleccionado.nombre}"
+					maxlength="50" required="true"
+					requiredMessage="Valor de Nombre es requerido"></p:inputText>
+				<p:outputLabel value="Descripción" />
+				<p:inputTextarea
+					value="#{CheckListEtiquetaBn.checkListEtiquetaSeleccionado.descripcion}"
+					maxlength="100"></p:inputTextarea>
+				<p:outputLabel value="Sección" />
+				<p:selectOneMenu id="cmbSeccion" style="width:200px !important"
+					value="#{CheckListEtiquetaBn.checkListEtiquetaSeleccionado.parSeccion}"
+					converter="#{parametrosConverter}">
+					<f:selectItems value="#{CheckListEtiquetaBn.parSeccionList}"
+						var="seccion" itemValue="#{seccion}"
+						itemLabel="#{seccion.nombreLista}" />
+				</p:selectOneMenu>
+				<p:outputLabel> Estado </p:outputLabel>
+				<p:selectOneMenu style="width:50% !important" editable="false"
+					value="#{CheckListEtiquetaBn.checkListEtiquetaSeleccionado.estado}">
+					<f:selectItems value="#{CheckListEtiquetaBn.estadosActIna}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

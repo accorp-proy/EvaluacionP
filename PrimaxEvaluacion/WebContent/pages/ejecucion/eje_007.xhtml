@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_007" id="dlg_eje_007"
+		appendTo="@(body)" width="600px" height="350px" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Control Efectivo " />
+			<p:outputLabel value="eje_007.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_007">
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_007"
+					update=":frm_eje_002:tabWiwe0:dtbCheckList:dtbSubCheckList"
+					action="#{CheckListEjecucionCtrlBn.guardarProcesoEfectivo()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:dataTable id="fdt02"
+				emptyMessage="No Existen Procesos manejo de efectivo"
+				var="checkListA" scrollHeight="200" scrollable="true"
+				value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionEfectivo.checkListKpiEjecucionA}">
+				<f:facet name="header">
+					<div align="center">
+						<p:outputLabel
+							value="Verificación de procesos de manejo de efectivo"></p:outputLabel>
+					</div>
+				</f:facet>
+				<p:column headerText="Procesos manejo de efectivo">
+					<p:outputLabel value="#{checkListA.descripcion}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Criterio">
+					<div align="center">
+						<p:selectOneMenu id="cmbTipoCriterio"
+							style="width:100px !important"
+							value="#{checkListA.parametroCriterio}"
+							converter="#{parametrosConverter}">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems
+								value="#{CheckListEjecucionCtrlBn.tipoCriterioList}"
+								var="tipoCriterio" itemValue="#{tipoCriterio}"
+								itemLabel="#{tipoCriterio.nombreLista}" />
+						</p:selectOneMenu>
+					</div>
+				</p:column>
+				<p:column headerText="Observación">
+					<p:inputTextarea value="#{checkListA.observacion}" maxlength="500"
+						styleClass="w100" rows="4" autoResize="false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

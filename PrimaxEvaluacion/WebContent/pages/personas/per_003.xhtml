@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dlg_per_003" id="dlg_per_003" responsive="true"
+		appendTo="@(body)" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Responsable " />
+			<p:outputLabel value="per_003.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_per_003">
+			<p:growl autoUpdate="true"></p:growl>
+			<div align="right">
+				<p:commandButton icon="ui-icon-save" update=":frm_per_002"
+					styleClass="secondary" action="#{ResponsableBn.guardar()}"
+					title="Guardar">
+				</p:commandButton>
+			</div>
+			<p:tabView id="tabView_00">
+				<p:tab id="tab_00" title="Información General">
+					<div class="ui-fluid">
+						<p:panelGrid id="pnlGrid_02" columns="4"
+							columnClasses="ui-grid-col-4" layout="grid"
+							styleClass="ui-panelgrid-blank">
+							<p:inputText title="Ingrese Identificación" maxlength="20"
+								required="true" placeholder="Identificación"
+								requiredMessage="Ingrese Identificación"
+								value="#{ResponsableBn.responsableSeleccionado.persona.identificacionPersona}" />
+						</p:panelGrid>
+						<p:panelGrid columns="1" columnClasses="ui-grid-col-12"
+							layout="grid" styleClass="ui-panelgrid-blank">
+							<p:inputText placeholder="Razón Social" title="Razón Social"
+								required="true" requiredMessage="Ingrese Razón Social"
+								value="#{ResponsableBn.responsableSeleccionado.persona.nombreCompleto}" />
+						</p:panelGrid>
+						<p:panelGrid columns="2"
+							columnClasses="ui-grid-col-4,ui-grid-col-5" layout="grid"
+							styleClass="ui-panelgrid-blank">
+							<p:inputText title="Ingrese Correo" maxlength="100"
+								placeholder="Correo" required="true"
+								requiredMessage="Ingrese Correo"
+								value="#{ResponsableBn.responsableSeleccionado.persona.email}" />
+							<p:inputText title="Ingrese Correo Alterno" maxlength="100"
+								placeholder="Correo Alterno"
+								value="#{ResponsableBn.responsableSeleccionado.persona.emailAlterno}" />
+						</p:panelGrid>
+						<p:panelGrid columns="2"
+							columnClasses="ui-grid-col-4,ui-grid-col-5" layout="grid"
+							styleClass="ui-panelgrid-blank">
+							<p:inputText title="Ingrese Celular" maxlength="100"
+								placeholder="Celular" required="true"
+								requiredMessage="Ingrese Celular"
+								value="#{ResponsableBn.responsableSeleccionado.persona.telefonoMovil}" />
+							<p:inputText title="Ingrese Celular Alterno" maxlength="100"
+								placeholder="Celular Alterno"
+								value="#{ResponsableBn.responsableSeleccionado.persona.telefonoMovilAlterno}" />
+						</p:panelGrid>
+						<p:panelGrid columns="2"
+							columnClasses="ui-grid-col-4,ui-grid-col-5" layout="grid"
+							styleClass="ui-panelgrid-blank">
+							<p:inputText title="Ingrese Teléfono" maxlength="100"
+								placeholder="Teléfono" required="true"
+								requiredMessage="Ingrese Teléfono"
+								value="#{ResponsableBn.responsableSeleccionado.persona.telefonoConvencional}" />
+							<p:inputText title="Ingrese Teléfono Alterno" maxlength="100"
+								placeholder="Teléfono Alterno"
+								value="#{ResponsableBn.responsableSeleccionado.persona.telefonoConvencionalAlterno}" />
+						</p:panelGrid>
+					</div>
+				</p:tab>
+				<p:tab id="tab_01" title="Ubicación ">
+					<div class="ui-fluid">
+						<p:panelGrid columns="2" columnClasses="ui-grid-col-6"
+							layout="grid" styleClass="ui-panelgrid-blank">
+
+							<p:selectOneMenu id="selectOneProvincia" editable="false"
+								required="true" requiredMessage="Seleccione Provincia"
+								value="#{ResponsableBn.responsableSeleccionado.persona.ubicacion.provincia}"
+								converter="#{provinciaConverter}" style="width:100px !important">
+								<f:selectItem itemLabel="Provincia" />
+								<f:selectItems value="#{ResponsableBn.listaProvincia}"
+									var="provincia" itemLabel="#{provincia.nombreProvincia}"
+									itemValue="#{provincia}"></f:selectItems>
+								<p:ajax update="frm_per_003:tabView_00:selectOneCanton"
+									process="@this" event="change"></p:ajax>
+							</p:selectOneMenu>
+							<p:selectOneMenu id="selectOneCanton" editable="false"
+								required="true" requiredMessage="Seleccione Cantón"
+								value="#{ResponsableBn.responsableSeleccionado.persona.ubicacion.canton}"
+								converter="#{cantonConverter}" style="width:100px !important">
+								<f:selectItem itemLabel="Cantón" />
+								<f:selectItems value="#{ResponsableBn.listaCanton}" var="canton"
+									itemLabel="#{canton.nombreCanton}" itemValue="#{canton}"></f:selectItems>
+							</p:selectOneMenu>
+						</p:panelGrid>
+						<p:panelGrid columns="1" columnClasses="ui-grid-col-12"
+							layout="grid" styleClass="ui-panelgrid-blank">
+							<p:inputText placeholder="Dirección" title="Dirección"
+								required="true" requiredMessage="Ingrese Dirección"
+								value="#{ResponsableBn.responsableSeleccionado.persona.direccionDomicilio}" />
+						</p:panelGrid>
+					</div>
+				</p:tab>
+				<p:tab id="tab_02" title="Firma ">
+					<div class="ui-fluid">
+						<p:panelGrid columns="1" columnClasses="ui-grid-col-6"
+							layout="grid" styleClass="ui-panelgrid-blank">
+
+							<p:signature style="width:360px;height:150px" widgetVar="sig"
+								guideline="true"
+								value="#{ResponsableBn.responsableSeleccionado.persona.firma}" />
+							<p:commandButton icon="fa fa-book" type="button"
+								title="Limpiar Firma" onclick="PF('sig').clear()" />
+
+						</p:panelGrid>
+					</div>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</p:dialog>
+</ui:composition>

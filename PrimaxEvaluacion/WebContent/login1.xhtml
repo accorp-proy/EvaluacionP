@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>.:Primax:.</title>
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/login.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/jquery.growl.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/normalize.min.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css" />
+
+</h:head>
+<h:body>
+	<div class="cont" />
+	<div class="demo">
+		<div class="wrapper">
+			<div class="container">
+				<h1>Bienvenido</h1>
+				<h:form id="login-form">
+					<h:inputText id="user" a:placeholder="Usuario"
+						value="#{loginBean.user}" styleClass="login__input name"
+						maxlength="30" onkeypress="return onSubmitEvent(event)"
+						onblur="upperCase()">
+					</h:inputText>
+					<h:inputSecret id="pass" a:placeholder="Contraseña"
+						value="#{loginBean.pass}" styleClass="login__input pass"
+						maxlength="30" onkeypress="return onSubmitEvent(event)">
+					</h:inputSecret>
+					<p:commandButton id="login-button" styleClass="login__submit"
+						onclick="doLogin()" value="Iniciar">
+						<p:ajax delay="600" process="@form" listener="#{loginBean.login}"></p:ajax>
+					</p:commandButton>
+				</h:form>
+			</div>
+			<ul class="bg-bubbles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/plugins.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/modernizr-2.6.2.min.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.growl.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/app.js"></script>
+</h:body>
+</html>

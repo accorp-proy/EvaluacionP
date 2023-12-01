@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_03_1" id="dialog_03_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="false">
+		<f:facet name="header">
+			<h:outputText value="Asignación CheckList " />
+			<p:outputLabel value="pla_003_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_003_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{PlantillaGeneradaBn.guardarAsignacion()}" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:column>
+					<div align="left">
+						<p:outputLabel
+							value="Estación Consultada Nro. #{PlantillaGeneradaBn.cantidadC}"></p:outputLabel>
+					</div>
+				</p:column>
+				<p:column>
+					<div align="center">
+						<p:outputLabel
+							value="Estación Agregada Nro. #{PlantillaGeneradaBn.cantidadA}"></p:outputLabel>
+					</div>
+				</p:column>
+			</p:panelGrid>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:pickList id="pickList"
+					value="#{PlantillaGeneradaBn.dualListAgencias}" var="agencia"
+					converter="#{agenciaDualConverter}"
+					itemLabel="#{agencia.nombreAgencia}" itemValue="#{agencia}" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

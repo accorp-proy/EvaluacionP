@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_013" id="dlg_eje_013"
+		appendTo="@(body)" width="600px" height="300px" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Listado de firmantes " />
+			<p:outputLabel value="eje_013.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_013">
+			<p:dataTable id="dtbResponsableFirma"
+				emptyMessage="No Existen Personas Responsables de estación"
+				var="checkListF" scrollHeight="200" scrollable="true"
+				value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionSeleccionado.checkListKpiEjecucionFirma}">
+				<f:facet name="header">
+					<div align="center">
+						<p:outputLabel value="Firma responsables de estación"></p:outputLabel>
+					</div>
+				</f:facet>
+				<p:column headerText="Identificación">
+					<p:outputLabel value="#{checkListF.identificacion}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Nombre Completo">
+					<p:outputLabel value="#{checkListF.nombre}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Cargo">
+					<p:outputLabel value="#{checkListF.cargo}"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Firmado">
+					<div align="center">
+						<p:outputLabel rendered="#{checkListF.firmado eq 'true'}"
+							value="SI"></p:outputLabel>
+						<p:outputLabel rendered="#{checkListF.firmado eq 'false'}"
+							value="NO"></p:outputLabel>
+					</div>
+				</p:column>
+				<p:column headerText="Firmar">
+					<div align="center">
+						<p:commandButton process="@this frm_eje_013"
+							disabled="#{checkListF.firmado}"
+							title="Ingresar firma de responsable"
+							oncomplete="PF('dlg_eje_015').show()"
+							action="#{CheckListEjecucionCtrlBn.modificarCheckListKpiFirma(checkListF)}"
+							update=":frm_eje_015" icon="fa fa-text-width"></p:commandButton>
+
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/ejecucion/eje_015.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>

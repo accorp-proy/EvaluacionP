@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_007_1"
+		id="dlg_eje_007_1" appendTo="@(body)" width="600px" height="200px"
+		resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Conciliación Efectivo " />
+			<p:outputLabel value="eje_007_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_007_1">
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_007_1"
+					action="#{CheckListEjecucionCtrlBn.guardarConciliacion()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:dataTable id="fdt01" emptyMessage="Conciliación de Efectivo"
+				var="checkListA" scrollHeight="80" scrollable="true"
+				value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionEfectivo.checkListKpiEjecucionA}">
+				<f:facet name="header">
+					<div align="center">
+						<p:outputLabel value="Conciliación de Efectivo"></p:outputLabel>
+					</div>
+				</f:facet>
+				<p:column headerText="Observación">
+					<p:inputTextarea value="#{checkListA.descripcion}" maxlength="500"
+						styleClass="w100" rows="4" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_01_1" id="dialog_01_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Kpi Crítico " />
+			<p:outputLabel value="pla_001_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_001_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					oncomplete="PF('dialog_01_1').hide()"
+					update=":frm_pla_001:tabWiwe0:dtbCheckList"
+					action="#{PlantillaCriterioGeneralBn.guardarKpiCritico()}" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:outputLabel value="Kpi Crítico" />
+				<p:selectOneListbox id="advanced"
+					value="#{PlantillaCriterioGeneralBn.kPICriticoSeleccionado}"
+					converter="#{kpiCriticoConverter}" var="t" filter="true"
+					filterMatchMode="contains">
+					<f:selectItems value="#{PlantillaCriterioGeneralBn.KPICriticoList}"
+						var="kpiCritico" itemLabel="#{kpiCritico.nombre}"
+						itemValue="#{kpiCritico}" />
+					<p:column>
+						<img src="../../resources/images/iconos/#{t.nombreImagen}"
+							alt="#{t.nombre}" title="#{t.descripcion}" />
+					</p:column>
+
+					<p:column>
+						<h:outputText value="#{t.nombre}" />
+					</p:column>
+				</p:selectOneListbox>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

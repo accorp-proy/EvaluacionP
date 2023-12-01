@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_13_1" id="dialog_13_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Criterio Evaluación " />
+			<p:outputLabel value="par_013_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_013_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					process="@this frm_par_013_1"
+					action="#{CriterioEvaluacionBn.guardar()}" update=":frm_par_013"
+					oncomplete="PF('dialog_13_1').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:column>
+					<p:outputLabel value="Evaluación" style="width:100%"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:100% !important"
+						value="#{CriterioEvaluacionBn.evaluacionSeleccionado}"
+						converter="#{evaluacionConverter}">
+						<f:selectItem itemLabel="Evaluación" />
+						<f:selectItems value="#{CriterioEvaluacionBn.evaluacionList}"
+							var="evaluacion" itemValue="#{evaluacion}"
+							itemLabel="#{evaluacion.descripcion}" />
+						<p:ajax event="change" update="frm_par_013_1:cmbTipoCheck"></p:ajax>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Tipo Check List" style="width:100%"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="cmbTipoCheck" style="width:100% !important"
+						value="#{CriterioEvaluacionBn.tipoChecKListSeleccionado}"
+						converter="#{tipoCheckListConverter}">
+						<f:selectItem itemLabel="Tipo CheckList" />
+						<f:selectItems value="#{CriterioEvaluacionBn.tipoChecKList}"
+							var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descripcion}" />
+						<p:ajax event="change" update="frm_par_013_1:cmbProceso"></p:ajax>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="Proceso" style="width:100%"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="cmbProceso" style="width:100% !important"
+						value="#{CriterioEvaluacionBn.procesoSeleccionado}"
+						converter="#{procesoConverter}">
+						<f:selectItem itemLabel="Proceso" />
+						<f:selectItems value="#{CriterioEvaluacionBn.procesoList}"
+							var="proceso" itemValue="#{proceso}"
+							itemLabel="#{proceso.nombreProceso}" />
+						<p:ajax event="change" update="frm_par_013_1:cmbKpi"
+							listener="#{CriterioEvaluacionBn.habilitarKpi()}"></p:ajax>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:outputLabel id="labelKpi" value="Kpi" style="width:100%"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu id="cmbKpi" style="width:100% !important"
+						disabled="#{CriterioEvaluacionBn.condicionKpi}" editable="false"
+						value="#{CriterioEvaluacionBn.procesoDetalleSeleccionado}"
+						converter="#{procesoDetalleConverter}">
+						<f:selectItem itemLabel="Seleccione KPI" />
+						<f:selectItems value="#{CriterioEvaluacionBn.procesoDetalleList}"
+							var="procesoD" itemValue="#{procesoD}"
+							itemLabel="#{procesoD.nombreProcesoDetalle}" />
+						<p:ajax event="change" update="frm_par_013_1:inputNombre"
+							listener="#{CriterioEvaluacionBn.mostrarNombre()}"></p:ajax>
+					</p:selectOneMenu>
+				</p:column>
+				<p:outputLabel value="Criterio Evaluación " />
+				<p:inputText id="inputNombre"
+					value="#{CriterioEvaluacionBn.criterioEvaluacionSeleccionado.nombre}"
+					requiredMessage="Nombre es requerido"></p:inputText>
+				<p:outputLabel> Estado </p:outputLabel>
+				<p:selectOneMenu style="width:50% !important" editable="false"
+					value="#{CriterioEvaluacionBn.criterioEvaluacionSeleccionado.estado}">
+					<f:selectItems value="#{CriterioEvaluacionBn.estadosActIna}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Arqueos:" />
+				<p:selectBooleanCheckbox
+					value="#{CriterioEvaluacionBn.criterioEvaluacionSeleccionado.arqueo}">
+					<p:ajax update="frm_par_013_1:arqueo" />
+				</p:selectBooleanCheckbox>
+				<p:outputLabel for="arqueo" value="Tipos:" />
+				<p:selectOneRadio id="arqueo"
+					value="#{CriterioEvaluacionBn.tipoArqueoSeleccionado}"
+					layout="grid"
+					disabled="#{CriterioEvaluacionBn.criterioEvaluacionSeleccionado.arqueo eq 'false'}"
+					columns="2">
+					<f:selectItems value="#{CriterioEvaluacionBn.tiposArqueo}"
+						var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}" />
+				</p:selectOneRadio>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

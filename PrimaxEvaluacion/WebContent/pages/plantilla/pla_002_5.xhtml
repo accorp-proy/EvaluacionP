@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_002_5" id="dialog_002_5"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText
+				value="Cada etiqueta será reemplazada por datos o información ingresada durante la evaluación del CheckList" />
+			<p:outputLabel value="par_002_5.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_002_5">
+			<p:dataTable id="dtbEtiqueta" reflow="true" var="etiqueta"
+				tableStyle="table-layout: auto" style="margin-bottom:20px"
+				value="#{PlantillaCriterioEspecificoBn.checkListEtiquetas}"
+				emptyMessage="No existe Etiquetas">
+				<p:column headerText="Orden">
+					<p:outputLabel value="#{etiqueta.orden}" style="font-weight:bold"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Etiqueta">
+					<p:outputLabel value="#{etiqueta.nombre}" style="font-weight:bold"></p:outputLabel>
+				</p:column>
+				<p:column headerText="Descripción">
+					<p:outputLabel value="#{etiqueta.descripcion}"></p:outputLabel>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+
+</ui:composition>

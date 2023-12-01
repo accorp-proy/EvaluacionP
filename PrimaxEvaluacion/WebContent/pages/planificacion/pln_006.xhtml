@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_pln_006" id="dlg_pln_006"
+		appendTo="@(body)" width="400px">
+		<f:facet name="header">
+			<h:outputLabel value="Procesos " />
+			<p:outputLabel value="pln_006.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pln_006">
+			<div align="right">
+				<p:commandButton icon="ui-icon-save" process="frm_pln_006"
+					update=":frm_pln_002" styleClass="secondary" title="Guardar"
+					action="#{PlanificacionBn.guardarProcesos()}">
+				</p:commandButton>
+			</div>
+			<p:dataTable id="checkboxDT" var="checkListProceso" scrollable="true"
+				scrollHeight="250"
+				value="#{PlanificacionBn.checkListEjecucionSeleccionado.checkListProcesoEjecucion}"
+				selection="#{PlanificacionBn.checkListProcesoEjecucionSeleccionados}"
+				rowKey="#{checkListProceso.idCheckListProcesoEjecucionA}"
+				style="margin-bottom:0">
+				<p:column selectionMode="multiple"
+					style="width:16px;text-align:center" />
+				<p:column headerText="Nombre Proceso" style="width:90%">
+					<h:outputText value="#{checkListProceso.descripcion}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:dialog>
+</ui:composition>

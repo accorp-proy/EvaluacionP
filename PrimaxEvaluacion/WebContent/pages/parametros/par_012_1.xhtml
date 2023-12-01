@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_12_1" id="dialog_12_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="KPI Crítico " />
+			<p:outputLabel value="par_012_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_012_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{KPICriticoBn.guardar()}" update=":frm_par_012"
+					oncomplete="PF('dialog_12_1').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:outputLabel value="KPI Crítico " />
+				<p:inputText value="#{KPICriticoBn.kKPICriticoSeleccionado.nombre}"
+					required="true" requiredMessage="Nombre es requerido"></p:inputText>
+				<p:outputLabel value="Descripción " />
+				<p:inputText
+					value="#{KPICriticoBn.kKPICriticoSeleccionado.descripcion}"
+					required="true" requiredMessage="Descripción es requerido"></p:inputText>
+				<p:outputLabel value="Nombre Img " />
+				<p:inputText
+					value="#{KPICriticoBn.kKPICriticoSeleccionado.nombreImagen}"
+					required="true" requiredMessage="Descripción es requerido"></p:inputText>
+				<p:outputLabel> Estado </p:outputLabel>
+				<p:selectOneMenu style="width:50% !important" editable="false"
+					value="#{KPICriticoBn.kKPICriticoSeleccionado.estado}">
+					<f:selectItems value="#{KPICriticoBn.estadosActIna}" />
+				</p:selectOneMenu>
+				<img
+					src="../../resources/images/iconos/#{KPICriticoBn.kKPICriticoSeleccionado.nombreImagen}" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

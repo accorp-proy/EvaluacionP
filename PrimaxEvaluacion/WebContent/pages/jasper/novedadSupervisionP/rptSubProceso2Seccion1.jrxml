@@ -1,0 +1,3352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso2Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="df77b438-edc7-4d9a-ad2d-0f1ac551ff93">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia01} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia01} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia02} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia02} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style3">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia03} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia03} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style4">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia04} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia04} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style5">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia05} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia05} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style6">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia06} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia06} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style7">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia07} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia07} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style8">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia08} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia08} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style9">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia09} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia09} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style10">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia10} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia10} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style11">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia11} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia11} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style12">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia12} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia12} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style13">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia13} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia13} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style14">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia14} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia14} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style15">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia15} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia15} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style16">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia16} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia16} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style17">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia17} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia17} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style18">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia18} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia18} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style19">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia19} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia19} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style20">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia20} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{dia20} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="styletotal">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{total} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{total} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style01">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia01} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia01} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style02">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia02} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia02} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style03">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia03} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia03} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style04">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia04} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia04} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style05">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia05} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia05} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style06">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia06} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia06} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style07">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia07} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia07} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style08">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia08} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia08} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style09">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia09} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia09} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style010">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia10} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia10} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style011">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia11} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia11} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style012">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia12} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia12} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style013">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia13} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia13} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style014">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia14} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia14} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style015">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia15} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia15} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style016">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia16} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia16} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style017">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia17} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia17} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style018">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia18} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia18} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style019">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia19} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia19} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="style020">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia20} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{dia20} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="styletotal0">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{total} < 0]]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{total} > 0]]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="novedadCantidad" uuid="da7a154f-f987-4281-a79b-6d7d36504cf9">
+		<parameter name="par_id_proceso" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia01" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia02" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia03" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia04" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia05" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia06" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia07" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia09" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia10" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia11" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia12" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia13" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia14" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia15" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia16" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia17" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia18" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia19" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia20" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia21" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia22" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia23" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia24" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia25" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia26" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia27" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia28" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia29" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia30" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia08" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+kpi.id_check_list_kpi_ejecucion_c as id,
+kpi.orden as orden,
+kpi.descripcion as descripcion,
+kpi.dia_01 as dia01,
+kpi.dia_02 as dia02,
+kpi.dia_03 as dia03,
+kpi.dia_04 as dia04,
+kpi.dia_05 as dia05,
+kpi.dia_06 as dia06,
+kpi.dia_07 as dia07,
+kpi.dia_08 as dia08,
+kpi.dia_09 as dia09,
+kpi.dia_10 as dia10,
+kpi.dia_11 as dia11,
+kpi.dia_12 as dia12,
+kpi.dia_13 as dia13,
+kpi.dia_14 as dia14,
+kpi.dia_15 as dia15,
+kpi.dia_16 as dia16,
+kpi.dia_17 as dia17,
+kpi.dia_18 as dia18,
+kpi.dia_19 as dia19,
+kpi.dia_20 as dia20,
+kpi.dia_21 as dia21,
+kpi.dia_22 as dia22,
+kpi.dia_23 as dia23,
+kpi.dia_24 as dia24,
+kpi.dia_25 as dia25,
+kpi.dia_26 as dia26,
+kpi.dia_27 as dia27,
+kpi.dia_28 as dia28,
+kpi.dia_29 as dia29,
+kpi.dia_30 as dia30,
+kpi.total as total,
+(select count(kp.dia_01) from check_list_kpi_ejecucion_c_et kp where kp.id_check_list_proceso_ejecucion = kpi.id_check_list_proceso_ejecucion and kp.total=0) as dia01c
+from check_list_kpi_ejecucion_c_et kpi
+where kpi.tipo = 1
+and kpi.id_check_list_proceso_ejecucion = $P{par_id_proceso}
+and kpi.descripcion not like '%usuario%'
+and kpi.descripcion not like '%general%'
+order by kpi.orden ;]]>
+		</queryString>
+		<field name="id" class="java.lang.Long"/>
+		<field name="orden" class="java.lang.Long"/>
+		<field name="descripcion" class="java.lang.String"/>
+		<field name="dia01" class="java.lang.Double"/>
+		<field name="dia02" class="java.lang.Double"/>
+		<field name="dia03" class="java.lang.Double"/>
+		<field name="dia04" class="java.lang.Double"/>
+		<field name="dia05" class="java.lang.Double"/>
+		<field name="dia06" class="java.lang.Double"/>
+		<field name="dia07" class="java.lang.Double"/>
+		<field name="dia08" class="java.lang.Double"/>
+		<field name="dia09" class="java.lang.Double"/>
+		<field name="dia10" class="java.lang.Double"/>
+		<field name="dia11" class="java.lang.Double"/>
+		<field name="dia12" class="java.lang.Double"/>
+		<field name="dia13" class="java.lang.Double"/>
+		<field name="dia14" class="java.lang.Double"/>
+		<field name="dia15" class="java.lang.Double"/>
+		<field name="dia16" class="java.lang.Double"/>
+		<field name="dia17" class="java.lang.Double"/>
+		<field name="dia18" class="java.lang.Double"/>
+		<field name="dia19" class="java.lang.Double"/>
+		<field name="dia20" class="java.lang.Double"/>
+		<field name="dia21" class="java.lang.Double"/>
+		<field name="dia22" class="java.lang.Double"/>
+		<field name="dia23" class="java.lang.Double"/>
+		<field name="dia24" class="java.lang.Double"/>
+		<field name="dia25" class="java.lang.Double"/>
+		<field name="dia26" class="java.lang.Double"/>
+		<field name="dia27" class="java.lang.Double"/>
+		<field name="dia28" class="java.lang.Double"/>
+		<field name="dia29" class="java.lang.Double"/>
+		<field name="dia30" class="java.lang.Double"/>
+		<field name="total" class="java.lang.Double"/>
+		<field name="dia01c" class="java.lang.Long"/>
+		<variable name="dia01" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia01}]]></variableExpression>
+		</variable>
+		<variable name="dia02" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia02}]]></variableExpression>
+		</variable>
+		<variable name="dia03" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia03}]]></variableExpression>
+		</variable>
+		<variable name="dia04" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia04}]]></variableExpression>
+		</variable>
+		<variable name="dia05" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia05}]]></variableExpression>
+		</variable>
+		<variable name="dia06" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia06}]]></variableExpression>
+		</variable>
+		<variable name="dia07" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia07}]]></variableExpression>
+		</variable>
+		<variable name="dia08" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia08}]]></variableExpression>
+		</variable>
+		<variable name="dia09" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia09}]]></variableExpression>
+		</variable>
+		<variable name="dia10" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia10}]]></variableExpression>
+		</variable>
+		<variable name="dia11" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia11}]]></variableExpression>
+		</variable>
+		<variable name="dia12" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia12}]]></variableExpression>
+		</variable>
+		<variable name="dia13" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia13}]]></variableExpression>
+		</variable>
+		<variable name="dia14" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia14}]]></variableExpression>
+		</variable>
+		<variable name="dia15" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia15}]]></variableExpression>
+		</variable>
+		<variable name="dia16" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia16}]]></variableExpression>
+		</variable>
+		<variable name="dia17" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia17}]]></variableExpression>
+		</variable>
+		<variable name="dia18" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia18}]]></variableExpression>
+		</variable>
+		<variable name="dia19" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia19}]]></variableExpression>
+		</variable>
+		<variable name="dia20" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia20}]]></variableExpression>
+		</variable>
+		<variable name="dia21" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia21}]]></variableExpression>
+		</variable>
+		<variable name="dia22" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia22}]]></variableExpression>
+		</variable>
+		<variable name="dia23" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia23}]]></variableExpression>
+		</variable>
+		<variable name="dia24" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia24}]]></variableExpression>
+		</variable>
+		<variable name="dia25" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia25}]]></variableExpression>
+		</variable>
+		<variable name="dia26" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia26}]]></variableExpression>
+		</variable>
+		<variable name="dia27" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia27}]]></variableExpression>
+		</variable>
+		<variable name="dia28" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia28}]]></variableExpression>
+		</variable>
+		<variable name="dia29" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia29}]]></variableExpression>
+		</variable>
+		<variable name="dia30" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia30}]]></variableExpression>
+		</variable>
+		<variable name="total" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="novedadValor" uuid="e2a9f2dc-4b1d-4aa6-badb-f1e971864f13">
+		<parameter name="par_id_proceso" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia01" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia02" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia03" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia04" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia05" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia06" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia07" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia09" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia10" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia11" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia12" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia13" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia14" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia15" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia16" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia17" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia18" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia19" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia20" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia21" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia22" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia23" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia24" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia25" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia26" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia27" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia28" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia29" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia30" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="par_dia08" class="java.lang.Double">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+kpi.id_check_list_kpi_ejecucion_c as id,
+kpi.orden as orden,
+kpi.descripcion as descripcion,
+kpi.dia_01 as dia01,
+kpi.dia_02 as dia02,
+kpi.dia_03 as dia03,
+kpi.dia_04 as dia04,
+kpi.dia_05 as dia05,
+kpi.dia_06 as dia06,
+kpi.dia_07 as dia07,
+kpi.dia_08 as dia08,
+kpi.dia_09 as dia09,
+kpi.dia_10 as dia10,
+kpi.dia_11 as dia11,
+kpi.dia_12 as dia12,
+kpi.dia_13 as dia13,
+kpi.dia_14 as dia14,
+kpi.dia_15 as dia15,
+kpi.dia_16 as dia16,
+kpi.dia_17 as dia17,
+kpi.dia_18 as dia18,
+kpi.dia_19 as dia19,
+kpi.dia_20 as dia20,
+kpi.dia_21 as dia21,
+kpi.dia_22 as dia22,
+kpi.dia_23 as dia23,
+kpi.dia_24 as dia24,
+kpi.dia_25 as dia25,
+kpi.dia_26 as dia26,
+kpi.dia_27 as dia27,
+kpi.dia_28 as dia28,
+kpi.dia_29 as dia29,
+kpi.dia_30 as dia30,
+kpi.total as total,
+(select count(kp.dia_01) from check_list_kpi_ejecucion_c_et kp where kp.id_check_list_proceso_ejecucion = kpi.id_check_list_proceso_ejecucion and kp.total=0) as dia01c
+from check_list_kpi_ejecucion_c_et kpi
+where kpi.tipo = 2
+and kpi.id_check_list_proceso_ejecucion = $P{par_id_proceso}
+and kpi.descripcion not like '%usuario%'
+and kpi.descripcion not like '%general%'
+order by kpi.orden ;]]>
+		</queryString>
+		<field name="id" class="java.lang.Long"/>
+		<field name="orden" class="java.lang.Long"/>
+		<field name="descripcion" class="java.lang.String"/>
+		<field name="dia01" class="java.lang.Double"/>
+		<field name="dia02" class="java.lang.Double"/>
+		<field name="dia03" class="java.lang.Double"/>
+		<field name="dia04" class="java.lang.Double"/>
+		<field name="dia05" class="java.lang.Double"/>
+		<field name="dia06" class="java.lang.Double"/>
+		<field name="dia07" class="java.lang.Double"/>
+		<field name="dia08" class="java.lang.Double"/>
+		<field name="dia09" class="java.lang.Double"/>
+		<field name="dia10" class="java.lang.Double"/>
+		<field name="dia11" class="java.lang.Double"/>
+		<field name="dia12" class="java.lang.Double"/>
+		<field name="dia13" class="java.lang.Double"/>
+		<field name="dia14" class="java.lang.Double"/>
+		<field name="dia15" class="java.lang.Double"/>
+		<field name="dia16" class="java.lang.Double"/>
+		<field name="dia17" class="java.lang.Double"/>
+		<field name="dia18" class="java.lang.Double"/>
+		<field name="dia19" class="java.lang.Double"/>
+		<field name="dia20" class="java.lang.Double"/>
+		<field name="dia21" class="java.lang.Double"/>
+		<field name="dia22" class="java.lang.Double"/>
+		<field name="dia23" class="java.lang.Double"/>
+		<field name="dia24" class="java.lang.Double"/>
+		<field name="dia25" class="java.lang.Double"/>
+		<field name="dia26" class="java.lang.Double"/>
+		<field name="dia27" class="java.lang.Double"/>
+		<field name="dia28" class="java.lang.Double"/>
+		<field name="dia29" class="java.lang.Double"/>
+		<field name="dia30" class="java.lang.Double"/>
+		<field name="total" class="java.lang.Double"/>
+		<field name="dia01c" class="java.lang.Long"/>
+		<variable name="dia01" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia01}]]></variableExpression>
+		</variable>
+		<variable name="dia02" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia02}]]></variableExpression>
+		</variable>
+		<variable name="dia03" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia03}]]></variableExpression>
+		</variable>
+		<variable name="dia04" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia04}]]></variableExpression>
+		</variable>
+		<variable name="dia05" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia05}]]></variableExpression>
+		</variable>
+		<variable name="dia06" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia06}]]></variableExpression>
+		</variable>
+		<variable name="dia07" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia07}]]></variableExpression>
+		</variable>
+		<variable name="dia08" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia08}]]></variableExpression>
+		</variable>
+		<variable name="dia09" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia09}]]></variableExpression>
+		</variable>
+		<variable name="dia10" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia10}]]></variableExpression>
+		</variable>
+		<variable name="dia11" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia11}]]></variableExpression>
+		</variable>
+		<variable name="dia12" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia12}]]></variableExpression>
+		</variable>
+		<variable name="dia13" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia13}]]></variableExpression>
+		</variable>
+		<variable name="dia14" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia14}]]></variableExpression>
+		</variable>
+		<variable name="dia15" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia15}]]></variableExpression>
+		</variable>
+		<variable name="dia16" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia16}]]></variableExpression>
+		</variable>
+		<variable name="dia17" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia17}]]></variableExpression>
+		</variable>
+		<variable name="dia18" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia18}]]></variableExpression>
+		</variable>
+		<variable name="dia19" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia19}]]></variableExpression>
+		</variable>
+		<variable name="dia20" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia20}]]></variableExpression>
+		</variable>
+		<variable name="dia21" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia21}]]></variableExpression>
+		</variable>
+		<variable name="dia22" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia22}]]></variableExpression>
+		</variable>
+		<variable name="dia23" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia23}]]></variableExpression>
+		</variable>
+		<variable name="dia24" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia24}]]></variableExpression>
+		</variable>
+		<variable name="dia25" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia25}]]></variableExpression>
+		</variable>
+		<variable name="dia26" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia26}]]></variableExpression>
+		</variable>
+		<variable name="dia27" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia27}]]></variableExpression>
+		</variable>
+		<variable name="dia28" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia28}]]></variableExpression>
+		</variable>
+		<variable name="dia29" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia29}]]></variableExpression>
+		</variable>
+		<variable name="dia30" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{dia30}]]></variableExpression>
+		</variable>
+		<variable name="total" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+kpi.id_check_list_kpi_ejecucion_c as id,
+kpi.orden as orden,
+kpi.descripcion as descripcion,
+kpi.dia_01 as dia01,
+kpi.dia_02 as dia02,
+kpi.dia_03 as dia03,
+kpi.dia_04 as dia04,
+kpi.dia_05 as dia05,
+kpi.dia_06 as dia06,
+kpi.dia_07 as dia07,
+kpi.dia_08 as dia08,
+kpi.dia_09 as dia09,
+kpi.dia_10 as dia10,
+kpi.dia_11 as dia11,
+kpi.dia_12 as dia12,
+kpi.dia_13 as dia13,
+kpi.dia_14 as dia14,
+kpi.dia_15 as dia15,
+kpi.dia_16 as dia16,
+kpi.dia_17 as dia17,
+kpi.dia_18 as dia18,
+kpi.dia_19 as dia19,
+kpi.dia_20 as dia20,
+kpi.dia_21 as dia21,
+kpi.dia_22 as dia22,
+kpi.dia_23 as dia23,
+kpi.dia_24 as dia24,
+kpi.dia_25 as dia25,
+kpi.dia_26 as dia26,
+kpi.dia_27 as dia27,
+kpi.dia_28 as dia28,
+kpi.dia_29 as dia29,
+kpi.dia_30 as dia30,
+kpi.total as total
+from check_list_kpi_ejecucion_c_et kpi
+where kpi.tipo = 1
+and kpi.id_check_list_proceso_ejecucion = $P{par_id_proceso}
+and kpi.descripcion like '%usuario%'
+order by kpi.orden ;]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="orden" class="java.lang.Long"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="dia01" class="java.lang.Double"/>
+	<field name="dia02" class="java.lang.Double"/>
+	<field name="dia03" class="java.lang.Double"/>
+	<field name="dia04" class="java.lang.Double"/>
+	<field name="dia05" class="java.lang.Double"/>
+	<field name="dia06" class="java.lang.Double"/>
+	<field name="dia07" class="java.lang.Double"/>
+	<field name="dia08" class="java.lang.Double"/>
+	<field name="dia09" class="java.lang.Double"/>
+	<field name="dia10" class="java.lang.Double"/>
+	<field name="dia11" class="java.lang.Double"/>
+	<field name="dia12" class="java.lang.Double"/>
+	<field name="dia13" class="java.lang.Double"/>
+	<field name="dia14" class="java.lang.Double"/>
+	<field name="dia15" class="java.lang.Double"/>
+	<field name="dia16" class="java.lang.Double"/>
+	<field name="dia17" class="java.lang.Double"/>
+	<field name="dia18" class="java.lang.Double"/>
+	<field name="dia19" class="java.lang.Double"/>
+	<field name="dia20" class="java.lang.Double"/>
+	<field name="dia21" class="java.lang.Double"/>
+	<field name="dia22" class="java.lang.Double"/>
+	<field name="dia23" class="java.lang.Double"/>
+	<field name="dia24" class="java.lang.Double"/>
+	<field name="dia25" class="java.lang.Double"/>
+	<field name="dia26" class="java.lang.Double"/>
+	<field name="dia27" class="java.lang.Double"/>
+	<field name="dia28" class="java.lang.Double"/>
+	<field name="dia29" class="java.lang.Double"/>
+	<field name="dia30" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="10">
+			<staticText>
+				<reportElement x="0" y="0" width="375" height="10" uuid="75db3416-39bc-4d1b-845e-d8cad69f71fe"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="555" height="60" uuid="869f5a3f-1f47-40a1-bc43-16dc51ad4a46"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="novedadCantidad" uuid="57fae8b5-5064-44e6-b729-d26e1b4ecd16">
+						<datasetParameter name="par_id_proceso">
+							<datasetParameterExpression><![CDATA[$P{par_id_proceso}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia01">
+							<datasetParameterExpression><![CDATA[$F{dia01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia02">
+							<datasetParameterExpression><![CDATA[$F{dia02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia03">
+							<datasetParameterExpression><![CDATA[$F{dia03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia04">
+							<datasetParameterExpression><![CDATA[$F{dia04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia05">
+							<datasetParameterExpression><![CDATA[$F{dia05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia06">
+							<datasetParameterExpression><![CDATA[$F{dia06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia07">
+							<datasetParameterExpression><![CDATA[$F{dia07}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia08">
+							<datasetParameterExpression><![CDATA[$F{dia08}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia09">
+							<datasetParameterExpression><![CDATA[$F{dia09}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia10">
+							<datasetParameterExpression><![CDATA[$F{dia10}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia11">
+							<datasetParameterExpression><![CDATA[$F{dia11}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia12">
+							<datasetParameterExpression><![CDATA[$F{dia12}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia13">
+							<datasetParameterExpression><![CDATA[$F{dia13}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia14">
+							<datasetParameterExpression><![CDATA[$F{dia14}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia15">
+							<datasetParameterExpression><![CDATA[$F{dia15}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia16">
+							<datasetParameterExpression><![CDATA[$F{dia16}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia17">
+							<datasetParameterExpression><![CDATA[$F{dia17}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia18">
+							<datasetParameterExpression><![CDATA[$F{dia18}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia19">
+							<datasetParameterExpression><![CDATA[$F{dia19}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia20">
+							<datasetParameterExpression><![CDATA[$F{dia20}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia21">
+							<datasetParameterExpression><![CDATA[$F{dia21}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia22">
+							<datasetParameterExpression><![CDATA[$F{dia22}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia23">
+							<datasetParameterExpression><![CDATA[$F{dia23}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia24">
+							<datasetParameterExpression><![CDATA[$F{dia24}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia25">
+							<datasetParameterExpression><![CDATA[$F{dia25}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia26">
+							<datasetParameterExpression><![CDATA[$F{dia26}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia27">
+							<datasetParameterExpression><![CDATA[$F{dia27}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia28">
+							<datasetParameterExpression><![CDATA[$F{dia28}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia29">
+							<datasetParameterExpression><![CDATA[$F{dia29}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia30">
+							<datasetParameterExpression><![CDATA[$F{dia30}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="70" uuid="d9cf19e6-65c1-44d7-abaf-e3718851bfa1">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="15" uuid="30e3c9ea-80fd-4421-8153-ce5ebd9bc873"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<text><![CDATA[USUARIO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="15" uuid="82c6ee37-246a-44de-a948-74a0bf35008e"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="70" height="15" uuid="930c19bd-00c0-4ab3-9998-57d8f4ca463e"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="ee103a33-f53e-4df3-b279-e5153c8da5e9">
+						<printWhenExpression><![CDATA[$F{dia01} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4d32e31d-178c-43b7-99a5-d01dc28ad447"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia01}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4cfd8b21-dc23-41a4-bb7b-aa4284b4986e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia01}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c773b6c5-aa8b-432a-a717-d8164c3ebf9e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="e71333c2-8df8-4e45-b90c-2be40667fd19">
+						<printWhenExpression><![CDATA[$F{dia02} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="41b925ee-81c6-4527-b366-63f3a208aec1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia02}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="7639d6f4-b7ec-42f5-a85a-e402ff2282fd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia02}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9203303b-550a-4802-9220-4e7300f3437c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="20a94e7f-ce3e-417f-8ddf-1b28d6fa68c4">
+						<printWhenExpression><![CDATA[$F{dia03} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9e48edcd-e18c-4508-b8b6-21a2497d2211"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia03}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="25d8bc51-5c8d-4bae-83ae-0ec5f4f8412c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia03}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="fc42532b-a730-498b-b136-8bb0f2374f07"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="8d401010-103e-4bdd-9edf-f64ecf9d5ded">
+						<printWhenExpression><![CDATA[$F{dia04} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c4e75973-af6d-4a9a-a6e5-24c34a7968cf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia04}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="50f95535-ac65-4445-be05-e9b5d7738713"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia04}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="fa03f50e-4a5e-4dda-bcd9-2163489383d7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="c0a6a5b8-2851-49b6-b649-4b41ec381122">
+						<printWhenExpression><![CDATA[$F{dia05} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9b8f6839-70f4-45a5-a603-860c32bfc997"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia05}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="511afab9-5560-41b7-a7cc-ad73e4e6fb1a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia05}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9855175a-6311-4b99-b0be-9dabcf39768d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="a428a528-18d4-48e1-a601-87c02c904cbc">
+						<printWhenExpression><![CDATA[$F{dia06} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="0889c046-fa1a-424a-9974-675c3843eb2d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia06}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="3b17c18a-280f-4605-bc20-d2d7ea1667c6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia06}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4bf6ed1e-a8fd-41bb-8354-4e6b99959b97"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="44c4fd4d-6017-44ad-b722-c73a984c7774">
+						<printWhenExpression><![CDATA[$F{dia07} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="78ea005e-53ea-44e5-ab4f-ce8cd79c0ade"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia07}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="7e6be544-6097-4153-868f-457657f4e80f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia07}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="3771475a-3b87-4111-a5fd-59db76901e74"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia07}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="506c7668-2968-4b86-af39-610165814327">
+						<printWhenExpression><![CDATA[$F{dia08} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="75af2895-e08e-4b12-bee1-a75c159f3166"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia08}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="776fa0a2-0380-46dd-a269-8bec9bf26e51"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia08}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="bfcae929-b354-43f3-8f60-7a674ed9b8c4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia08}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="ca160bc4-aa9a-45f7-a51b-5e9bc3078b2c">
+						<printWhenExpression><![CDATA[$F{dia09} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="084dcebd-1a37-4944-b42d-a25dd195e328"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia09}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="05cd4371-d1b3-41f0-9998-3c010e94fac3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia09}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="1bc9791a-63b3-441c-9370-08af496001f5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia09}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="9f84a3e4-7860-460b-9502-1e7c9ca75a54">
+						<printWhenExpression><![CDATA[$F{dia10} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="1cc8c512-7819-423c-82f4-e68a8aef2667"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia10}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="7e403000-da6b-4c66-bdfa-328ff2c3e088"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia10}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9b97cd63-7e63-4493-b82c-a45a5648254e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia10}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="7c202878-3818-4124-97c2-dae7467e6b3f">
+						<printWhenExpression><![CDATA[$F{dia11} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="24c02402-9ed7-4b1a-b07f-04e6dddcb61e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia11}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="6a02b1c6-0596-4795-9cd9-524ede31be98"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia11}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c7ded8b5-cb8e-4be0-adc6-159a4110f026"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia11}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="fe500a88-9aba-4133-9d80-3f6094e153fc">
+						<printWhenExpression><![CDATA[$F{dia12} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a031204a-2662-4d4b-b88c-dec035f6b7d9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia12}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="87794b86-1c51-47cf-9db9-b369c227fbd1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia12}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c20bc7cb-1896-4ff4-8dc9-08ac0d1b43ae"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia12}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="709eabfd-e814-4666-8584-d42374cb7f2d">
+						<printWhenExpression><![CDATA[$F{dia13} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a3c07524-5231-4aa9-abee-5a67f41a224f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia13}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4885c462-0aab-4ac4-85a0-b2200b9c007c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia13}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="29b58a2a-0bef-41e7-aa00-b8b01c28b0de"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia13}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="5c8a66f2-5c35-434e-b43d-e0dac69558f3">
+						<printWhenExpression><![CDATA[$F{dia14} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="ed1cc2e5-a1a5-411c-bb27-c66818247c59"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia14}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="d80cbfb7-e08d-4365-912e-0a6d00cedc71"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia14}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="f6a197f2-9e2a-4024-ab0a-7d1dff037dd9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia14}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="b93b3205-167a-4275-99fc-e727eb2229e6">
+						<printWhenExpression><![CDATA[$F{dia15} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="21552c75-1d4d-4059-a6b6-6509ed98cbc0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia15}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="936e3b3c-339e-4cd1-b43b-774f9b859861"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia15}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c5b5df74-59b0-479a-9bea-2a8c309899a6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia15}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="8ff85736-89fb-4cb7-869a-03d04a6fe2ae">
+						<printWhenExpression><![CDATA[$F{dia16} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="b2fc1097-df98-4d6b-83bf-6dabb347044f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia16}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="b766cb46-cf25-40e6-81a3-c3b4c0c458a7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia16}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="de5b2fb8-0d25-4e9a-8897-ae1e559448ee"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia16}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="29740b87-2ca2-4ab9-ba83-2d8af159c17e">
+						<printWhenExpression><![CDATA[$F{dia17} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="bc3c6019-23f6-42c5-a14b-a5c238dd8507"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia17}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="ee1bb83d-ad4c-4f65-8557-6f07ba83f2cd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia17}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="fa37ead0-cf66-4bf1-9bbc-e2b118f6a5a9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia17}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="c7455e88-6cab-47d5-bd22-6afa5a9d3f48">
+						<printWhenExpression><![CDATA[$F{dia18} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c684a8a6-cc36-4c52-a013-65abd6fff139"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia18}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="99e38721-bc60-4fa9-9b3e-f4459e7d18b0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia18}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="d0b81ad4-0d08-4604-988c-f3d03d86c981"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia18}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="11424a12-da05-4a16-a33c-126e5fbdcd38">
+						<printWhenExpression><![CDATA[$F{dia19} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="34fd78be-9b29-4fa9-9dad-8bbb77d3dbcc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia19}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="2f79b4c3-3995-491c-a6fb-80729f74d2a4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia19}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="80e22aba-ce37-49ee-a53b-d665a3ec3f8a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia19}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="6c9c0335-40fb-43ca-8135-bb20b8bcb0c0">
+						<printWhenExpression><![CDATA[$F{dia20} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4ccf9cff-ef68-47bf-bd82-3b4d6f32609c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia20}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="23f1c914-0f45-436b-b131-006f9279d800"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia20}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="e018e5c8-ac39-44a4-a6fd-316902d8551e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia20}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="73b96ba1-41f7-4cfd-a581-98b6424960f1">
+						<printWhenExpression><![CDATA[$F{dia21} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="00955e58-ae00-4123-b358-024401b636f0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia21}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="787bdf1f-0c28-4c28-b042-19cf0b724fa8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia21}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="3d1ed91f-0591-4a68-b1af-3d23cfbdeabc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia21}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="ce71dd00-b324-4074-a13f-37d82cbd416e">
+						<printWhenExpression><![CDATA[$F{dia22} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a27d7a82-cd64-4bcd-bbd8-4e3bd3ed023f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia22}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="17b7881f-3cab-4e31-9d2d-a5c972a55b04"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia22}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="fe265d34-1fb6-4856-81aa-bffda4a1d398"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia22}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="a6814adc-0cf1-4da8-ab76-86ed546be0f4">
+						<printWhenExpression><![CDATA[$F{dia23} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="20fc290c-d60f-4aac-8111-97db33cb4bc2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia23}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="0ecf4114-7ee5-4000-a570-be92266c3490"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia23}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="3ce15094-9ff8-4192-846f-323fcdf2b4f3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia23}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="72c99c81-66b5-46c5-a4cc-a69e188982b6">
+						<printWhenExpression><![CDATA[$F{dia24} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="7ee292d5-f0bd-4a0e-ba57-edc1e02f5d01"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia24}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a61f2b85-ea4b-40a6-b208-2a0d8c9860b3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia24}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="db5620ae-3953-4e3a-a350-09708a50eb2d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia24}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="9382574c-b6ba-4146-882e-5a50957b7c1b">
+						<printWhenExpression><![CDATA[$F{dia25} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="6240ad74-c53e-4a23-9424-3db24ab64e42"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia25}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="dcd69381-62c0-4b43-867e-eed5fc4d3c41"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia25}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="431452eb-c19f-4c9d-b4ff-b91dece6bb30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia25}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="d29de184-4348-4f84-810e-e2c32f81564b">
+						<printWhenExpression><![CDATA[$F{dia26} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="5e2f0db8-d92f-4718-b05e-b8164b89218b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia26}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a2d06044-1d8e-4af0-beaa-12a1c9238bb2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia26}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="ac1a3e6d-5b32-4778-9ffb-cccaa2b0efc1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia26}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="894a796e-958e-47c1-8315-14c8ef067ad1">
+						<printWhenExpression><![CDATA[$F{dia27} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="71ec5465-6d4c-4e5e-92c8-571832fc987d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia27}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="cc85adc0-4cdf-4567-bed1-8a2f590b9d37"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia27}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="7fc70f76-5f7e-4e00-9f41-7fc2c19a783e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia27}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="fb5b2f3c-5350-44b2-bd51-6e7683f3269c">
+						<printWhenExpression><![CDATA[$F{dia28} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="02036c1a-e381-4913-a5eb-631acbb703d6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia28}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a02adc85-cb76-48f6-bd6e-86b89981c57f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia28}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="6915a859-16a0-42d0-861b-f47b27c463aa"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia28}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="1a01afc3-03e1-486b-8e7d-5ea9ea6d7b3f">
+						<printWhenExpression><![CDATA[$F{dia29} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="00df69ff-e6bc-4055-817a-3bf22d082551"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia29}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="93cdc907-01c3-4f82-ac2e-d7974fd9b425"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia29}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="ccb7da19-2cc3-42fc-9c88-6bed58e425d0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia29}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="f6320c6f-62d7-41ce-aaf2-ac8a00eff9d2">
+						<printWhenExpression><![CDATA[$F{dia30} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="003803d6-9dea-4391-bf4f-fe5999510b58"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia30}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="3d84e7f5-f34a-4f15-9b0c-90d9656e0f29"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia30}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="b19a3e07-278a-4702-b8fd-1905087d052f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia30}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="4909164e-90a7-45c9-b87d-724320f64016">
+						<jr:tableHeader style="table_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="15" uuid="e23195e2-c80e-4adf-93ba-9beed4ad093f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="25" height="15" uuid="a09778e3-02c8-480f-9d12-8886d7bf2266"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="25" height="15" uuid="e74fd166-106b-4386-970f-2e34c16e811d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="70">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="0" y="10" width="555" height="60" uuid="714308ff-9e50-4ae3-bf4b-b71171bf42ff"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="novedadValor" uuid="b4c42d12-927c-4278-b79a-25a0fa40d8cc">
+						<datasetParameter name="par_id_proceso">
+							<datasetParameterExpression><![CDATA[$P{par_id_proceso}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia01">
+							<datasetParameterExpression><![CDATA[$F{dia01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia02">
+							<datasetParameterExpression><![CDATA[$F{dia02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia03">
+							<datasetParameterExpression><![CDATA[$F{dia03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia04">
+							<datasetParameterExpression><![CDATA[$F{dia04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia05">
+							<datasetParameterExpression><![CDATA[$F{dia05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia07">
+							<datasetParameterExpression><![CDATA[$F{dia07}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia08">
+							<datasetParameterExpression><![CDATA[$F{dia08}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia09">
+							<datasetParameterExpression><![CDATA[$F{dia09}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia10">
+							<datasetParameterExpression><![CDATA[$F{dia10}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia11">
+							<datasetParameterExpression><![CDATA[$F{dia11}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia12">
+							<datasetParameterExpression><![CDATA[$F{dia12}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia13">
+							<datasetParameterExpression><![CDATA[$F{dia13}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia14">
+							<datasetParameterExpression><![CDATA[$F{dia14}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia15">
+							<datasetParameterExpression><![CDATA[$F{dia15}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia16">
+							<datasetParameterExpression><![CDATA[$F{dia16}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia17">
+							<datasetParameterExpression><![CDATA[$F{dia17}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia18">
+							<datasetParameterExpression><![CDATA[$F{dia18}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia19">
+							<datasetParameterExpression><![CDATA[$F{dia19}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia20">
+							<datasetParameterExpression><![CDATA[$F{dia20}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia21">
+							<datasetParameterExpression><![CDATA[$F{dia21}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia22">
+							<datasetParameterExpression><![CDATA[$F{dia22}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia23">
+							<datasetParameterExpression><![CDATA[$F{dia23}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia24">
+							<datasetParameterExpression><![CDATA[$F{dia24}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia25">
+							<datasetParameterExpression><![CDATA[$F{dia25}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia26">
+							<datasetParameterExpression><![CDATA[$F{dia26}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia27">
+							<datasetParameterExpression><![CDATA[$F{dia27}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia28">
+							<datasetParameterExpression><![CDATA[$F{dia28}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia29">
+							<datasetParameterExpression><![CDATA[$F{dia29}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia30">
+							<datasetParameterExpression><![CDATA[$F{dia30}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="par_dia06">
+							<datasetParameterExpression><![CDATA[$F{dia06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="70" uuid="979cc079-f72c-4f57-9b74-5b6836ca869f">
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="15" uuid="d531d26c-7fe1-4be4-9730-b7de58ee332f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[USUARIO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="15" uuid="81c93c15-6cf0-408e-abf5-c2c2e4d812be"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="6" isBold="true"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="70" height="15" uuid="fa763063-fe09-4f3f-ae24-8fc676ed402f"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="6"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="cca67521-7561-49f8-9572-527583e9e615">
+						<printWhenExpression><![CDATA[$F{dia01} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="8586950c-f094-466b-8c89-5621e66814e5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia01}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style01" x="0" y="0" width="15" height="15" uuid="0749f959-8242-4f95-bb3e-61168477ab08"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia01}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style1" x="0" y="0" width="15" height="15" uuid="ac787a05-6d73-4710-bf0d-1920f2f8e3dd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="5bcacb80-f3ce-4368-975f-fcb4ccef4d91">
+						<printWhenExpression><![CDATA[$F{dia02} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="2e59a454-95b8-4a3e-809a-0f2a17a87585"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia02}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style02" x="0" y="0" width="15" height="15" uuid="7c54f78d-fd17-42f6-9865-27dd4757edfe"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia02}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style2" x="0" y="0" width="15" height="15" uuid="126d1bb3-fc11-4e39-95af-2c3b0f2e868f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="d63e9820-97a4-4cfd-a084-929799068775">
+						<printWhenExpression><![CDATA[$F{dia03} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9a821f93-67d4-4620-922f-4c27b77e8ee8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia03}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style03" x="0" y="0" width="15" height="15" uuid="1396e98d-4cac-4c97-bfc0-f2e006244781"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia03}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style3" x="0" y="0" width="15" height="15" uuid="8f60e0cf-8e5c-4091-ad83-0ca0e9000fb9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="46b8cb7a-0e01-41cd-85d2-a7bfdac5c1f2">
+						<printWhenExpression><![CDATA[$F{dia04} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="1cce902b-4e38-4901-99c2-a1d90ba75a5a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia04}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style04" x="0" y="0" width="15" height="15" uuid="98609ae4-0cdf-4115-9609-786ec0fb243e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia04}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style4" x="0" y="0" width="15" height="15" uuid="89849347-1210-4da8-a46c-44e8420ce0a4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="16c696bc-542e-46f3-8c07-1a882b1524fb">
+						<printWhenExpression><![CDATA[$F{dia05} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="80e21498-99c0-4914-a2df-5abc9b92dea7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia05}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style05" x="0" y="0" width="15" height="15" uuid="a9676cb2-849b-415a-93e0-3409666ae9d6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia05}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style5" x="0" y="0" width="15" height="15" uuid="61326413-4dbd-44f9-a72c-9247941ceee2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="a57ccf66-8c20-4fe0-869d-8305ad3d5ec4">
+						<printWhenExpression><![CDATA[$F{dia06} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="e0ec7e99-927e-470c-83d1-c7ca3b13602c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia06}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style06" x="0" y="0" width="15" height="15" uuid="93020f4f-11eb-4d82-94ea-7013a11aa336"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia06}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style6" x="0" y="0" width="15" height="15" uuid="f21b88f7-a47d-4c4e-8130-d36fff78ad39"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="e31d2c9d-46d4-46a3-ad10-a3a805bee078">
+						<printWhenExpression><![CDATA[$F{dia07} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="67dd44aa-4f8d-46d3-86bb-278a664cfb8e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia07}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style07" x="0" y="0" width="15" height="15" uuid="9a5ec990-576c-46f0-b025-980853504213"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia07}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style7" x="0" y="0" width="15" height="15" uuid="cb552131-3b7f-4128-82f0-393660d3bd8a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia07}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="7a96c660-01b5-4c7d-ba99-2d9111496948">
+						<printWhenExpression><![CDATA[$F{dia08} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9b8a5dca-fee1-40da-9f7f-d340d4400861"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia08}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style08" x="0" y="0" width="15" height="15" uuid="c9ca0eda-64be-49bc-af94-1d0633e42a4b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia08}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style8" x="0" y="0" width="15" height="15" uuid="7c177c28-1ed8-4300-95d1-ce25b45cd6f3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia08}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="14859214-d624-443a-bd78-e4fd1ddf5b43">
+						<printWhenExpression><![CDATA[$F{dia09} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4d591f82-7892-4299-8568-cdafc03082fc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia09}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style09" x="0" y="0" width="15" height="15" uuid="f86a4b77-60f9-44f4-9871-2dd84eb8b53e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia09}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style9" x="0" y="0" width="15" height="15" uuid="b3bd5680-aae0-48db-84c1-169034f8a8cb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia09}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="b821a372-e23a-495c-a548-d6893085a487">
+						<printWhenExpression><![CDATA[$F{dia10} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="6f770eb5-502a-4c39-bc54-ac9340e8a82e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia10}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style010" x="0" y="0" width="15" height="15" uuid="ed7f75fa-0f27-45fc-ae7d-c09866ba2426"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia10}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style10" x="0" y="0" width="15" height="15" uuid="2686f853-2842-48c2-8937-7411fc7b9858"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia10}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="279bcd74-433e-4560-8970-12af1e6c5312">
+						<printWhenExpression><![CDATA[$F{dia11} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="d4fad2f5-81b4-440d-b39c-8d85390843bb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia11}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style011" x="0" y="0" width="15" height="15" uuid="9abc78c5-c9b2-4217-963e-41ee5995b65b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia11}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style11" x="0" y="0" width="15" height="15" uuid="75bacdc5-9551-4604-a0c6-48f354ed06d2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia11}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="ba120f04-8439-45e3-a318-02d361c4645d">
+						<printWhenExpression><![CDATA[$F{dia12} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="6577d9b1-ccd7-4d3a-a295-35a88a3794b0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia12}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style012" x="0" y="0" width="15" height="15" uuid="afe66401-7ce9-4ca9-bb16-1aa28b4598c8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia12}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style12" x="0" y="0" width="15" height="15" uuid="26289f2b-69b0-46bc-af02-99d9dbc67396"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia12}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="79686f92-f6db-42d7-a027-d7bad0b07131">
+						<printWhenExpression><![CDATA[$F{dia13} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="27f5df2c-668c-44f8-b184-b77786147920"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia13}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style013" x="0" y="0" width="15" height="15" uuid="831b9f47-e864-441b-9035-397e74b58e87"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia13}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style13" x="0" y="0" width="15" height="15" uuid="2f20f7dd-b0ae-4712-bb3a-00f25eb6ba52"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia13}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="2c12ca48-4142-4204-ac8c-64fcf7e2eaac">
+						<printWhenExpression><![CDATA[$F{dia14} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="fd6fc03c-6bc6-4d2f-a039-b4d807ad198f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia14}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style014" x="0" y="0" width="15" height="15" uuid="8ed41588-0e96-4f09-b1b9-0185156b7698"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia14}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style14" x="0" y="0" width="15" height="15" uuid="c157c12c-9477-44ad-9fd0-d12514f8c219"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia14}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="ecc719a7-aaff-46b4-b597-80d3067e7926">
+						<printWhenExpression><![CDATA[$F{dia15} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="fe669dfd-bb67-4bb6-9382-74bbffef3aad"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia15}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style015" x="0" y="0" width="15" height="15" uuid="fc54bfeb-d1cc-4388-82e5-2608302f16c8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia15}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style15" x="0" y="0" width="15" height="15" uuid="50abe600-c9fa-4981-ae4f-5cb59c00c7fc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia15}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="0335efaf-67da-4ce0-83a3-b76bfb41321a">
+						<printWhenExpression><![CDATA[$F{dia16} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="76ee0911-74e8-4da0-b11b-a0b21c547462"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia16}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style016" x="0" y="0" width="15" height="15" uuid="38335a8e-269c-45ed-b466-f465d43c3431"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia16}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style16" x="0" y="0" width="15" height="15" uuid="ebaa4fa8-ae08-4be3-8ffb-4e62f4367ecb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia16}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="d5041e43-a39c-4487-b7c2-86da9a75f3c7">
+						<printWhenExpression><![CDATA[$F{dia17} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="30ab7b6e-b420-4f54-a4fd-6d4090471e7e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia17}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style017" x="0" y="0" width="15" height="15" uuid="a6e62071-916f-4241-b99a-6fce830cd80f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia17}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style17" x="0" y="0" width="15" height="15" uuid="653910c4-2330-4b98-ab1d-6d56516a38e8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia17}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="f0381ab7-0733-42ec-8d6e-f7a33e0dd82f">
+						<printWhenExpression><![CDATA[$F{dia18} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="4edc2d69-a5c3-4331-9f97-7085bc10b16b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia18}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style018" x="0" y="0" width="15" height="15" uuid="972e7f9f-d3a0-4382-b8e6-96f1f74fe384"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia18}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style18" x="0" y="0" width="15" height="15" uuid="06865b41-0f9b-430f-9f36-11b352bd9554"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia18}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="b268be67-18a3-409e-a161-06320d9c3927">
+						<printWhenExpression><![CDATA[$F{dia19} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="f56075ed-4c19-43ba-8cda-3e83921d7354"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia19}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style019" x="0" y="0" width="15" height="15" uuid="86326980-9fd0-4cab-9296-3c434e43d9f6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia19}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style19" x="0" y="0" width="15" height="15" uuid="2171772c-3adb-4c2a-8dc7-9fb469d36683"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia19}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="b9a623d0-b9f3-4c4b-b8ef-0502a5cfaa8c">
+						<printWhenExpression><![CDATA[$F{dia20} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="8878f096-c253-471c-8e84-ec7ac2dc15a3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia20}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style020" x="0" y="0" width="15" height="15" uuid="7ce6d218-d5cb-4203-ae3e-29cf3d9782ad"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia20}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="style20" x="0" y="0" width="15" height="15" uuid="15920003-5b89-45be-aece-38da0afca3c4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia20}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="0c3d59da-fc30-457b-acb1-11d21c1ad160">
+						<printWhenExpression><![CDATA[$F{dia21} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="41dfec2f-3f8f-40f3-96a0-1a21dd015533"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia21}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="55a497de-5b2e-44d5-9725-d66e7d8f4d58"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia21}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="b3245fa3-dd58-467c-a140-bf831bba1c7f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia21}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="4031ff64-1c16-4863-aeac-bd4a489192aa">
+						<printWhenExpression><![CDATA[$F{dia22} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="0a37705f-70d8-45d7-b08b-f7328aa33860"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia22}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="970dd200-d7e3-402c-8c73-50a588bcec06"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia22}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="dcac29b8-5b19-4f7f-bda9-bf7cc7e642bc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia22}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="86871db5-786d-496c-890d-15843d8f1c56">
+						<printWhenExpression><![CDATA[$F{dia23} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="8bea4637-519a-45fd-bc58-562e028dc24f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia23}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="16fd91c5-3e09-42c1-ab04-39c2fb27dc2f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia23}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="abcc59d2-7549-4c15-90b4-93990621c8ba"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia23}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="2b369e29-7e9c-49d0-9179-8e9931eee1d6">
+						<printWhenExpression><![CDATA[$F{dia24} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="8577d4b0-fa6f-4bc3-b73f-04930bef0cfd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia24}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="b4231b64-37ee-4fe4-a31a-ce5979eee73d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia24}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="a3fb2870-ef67-46ec-a7fb-f0a7852c15ae"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia24}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="ec4a87a7-2e9f-4b15-ab1f-1072c58c294d">
+						<printWhenExpression><![CDATA[$F{dia25} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="45f55eac-d194-4009-aaae-66b278e920ff"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia25}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c5c62c57-4249-4e7e-a1b5-6a090bcb3954"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia25}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="e4b4fff3-9897-4088-95a0-f654e8b636a5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia25}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="696cb0ee-6a45-46d8-8110-c9c8ea792cb7">
+						<printWhenExpression><![CDATA[$F{dia26} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="314005cf-3304-472e-a4c5-1d5f664fc176"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia26}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="78d9dec5-c60b-4508-adbd-5eb91b4c84e2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia26}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="57bc3a24-058c-4848-a30b-4c219a28d614"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia26}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="2ae2b277-13d8-4aca-b695-ddf333f88c1d">
+						<printWhenExpression><![CDATA[$F{dia27} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="893271c2-75c7-4297-8540-7f702e87517d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia27}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="634b2f4d-f7be-4ff7-a7ce-3bd47eacfb90"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia27}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="6ab7aee7-c887-4559-af31-17e25d2a7e30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia27}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="c4f31cd7-8808-48d0-a0b3-ad3ea86127d5">
+						<printWhenExpression><![CDATA[$F{dia28} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="bb47038b-ab33-4510-8d73-6201797af609"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia28}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="d46643c2-6d17-4d8c-a926-bfca60eba404"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia28}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="3e39a352-0c22-4dd3-9520-d2a907ad3da9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia28}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="6a159882-969e-4731-9a84-1b6d186a2a16">
+						<printWhenExpression><![CDATA[$F{dia29} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="9e8541dd-d313-49d9-9825-1bc7ecfb59f5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia29}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="2db66254-a6c6-4c3d-9afc-7436c9d8e9be"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia29}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="bcc84e1a-fc54-499e-9f30-2611ba6d4adf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia29}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="15" uuid="e666ea0a-cd42-4fbc-8333-eeee16e2dc7b">
+						<printWhenExpression><![CDATA[$F{dia30} > 0D ? true : false]]></printWhenExpression>
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="48b0f1ff-296c-4a19-a21b-bd293d7a81a2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{par_dia30}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="f64deb82-f9a6-4709-a69b-9bafc9d1496c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{dia30}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="15" height="15" uuid="c56059a5-37ad-450c-9be2-cc4b6c92b519"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{dia30}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="25" uuid="c694eb4d-bc0c-4b34-a5b2-84f00a00408d">
+						<jr:tableHeader style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="15" uuid="ecf6126c-a833-48d2-a39f-5b6ab337015e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="styletotal0" x="0" y="0" width="25" height="15" uuid="c3d6a2ff-b897-439c-ade3-2ded740f83da"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement style="styletotal" x="0" y="0" width="25" height="15" uuid="06e1267f-e68e-4234-8703-b4c6e2d6b473"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="5" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="10" uuid="fe882fe1-a797-45cd-99c0-743fcd2b9bf1"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_017" id="dlg_eje_017"
+		width="300px" modal="true" showEffect="drop" hideEffect="drop"
+		appendTo="@(body)">
+		<f:facet name="header">
+			<h:outputLabel
+				value="Ingresar Clave de #{CheckListEjecucionCtrlBn.checkListKpiEjecucionFirmaSeleccionado.nombre}" />
+		</f:facet>
+		<h:form id="frm_eje_017">
+			<p:growl id="msg"></p:growl>
+			<div class="ui-g-12 ui-lg-12 ui-md-12">
+				<p:panelGrid layout="grid" columns="3"
+					styleClass="ui-panelgrid-blank form-group">
+					<h:panelGroup styleClass="md-inputfield">
+						<p:inputText type="password"
+							value="#{CheckListEjecucionCtrlBn.checkListKpiEjecucionFirmaSeleccionado.pwdUsuarioIngresa}"
+							style="width:100%" />
+						<label>Clave</label>
+					</h:panelGroup>
+					<p:commandButton icon="ui-icon-check"
+						oncomplete="PF('dlg_eje_017').hide()" process="@this frm_eje_017"
+						action="#{CheckListEjecucionCtrlBn.verificarClaveCheckListKpi()}"
+						update="msg,:frm_eje_016:dtbResponsableFirma" title="Guardar" />
+				</p:panelGrid>
+			</div>
+		</h:form>
+	</p:dialog>
+</ui:composition>

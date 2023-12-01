@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
+		<h:form id="frm_rpt_013">
+			<p:panelGrid id="pnl" styleClass="sinborde w120" layout="grid"
+				columns="6">
+				<f:facet name="header">
+
+					<p:column colspan="6">
+						<div align="left">
+							<p:outputLabel
+								value="Reporte de niveles de esfuerzo de los procesos evaluados en un checklist" />
+						</div>
+					</p:column>
+				</f:facet>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbAnio"
+						value="#{rptNivelEsfuerzoProcesoBn.anioSeleccionado}"
+						converter="#{parametrosConverter}">
+						<f:selectItem itemLabel="Año" />
+						<f:selectItems value="#{rptNivelEsfuerzoProcesoBn.tipoAnioList}"
+							var="anio" itemLabel="#{anio.nombreLista}" itemValue="#{anio}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectCheckboxMenu id="cmbMeses" style="width:120px !important"
+						value="#{rptNivelEsfuerzoProcesoBn.mesesSeleccionados}"
+						label="Meses" converter="#{parametrosConverter}" filter="false"
+						filterMatchMode="startsWith">
+						<f:selectItems value="#{rptNivelEsfuerzoProcesoBn.tipoMesList}"
+							var="mes" itemLabel="#{mes.nombreLista}" itemValue="#{mes}"></f:selectItems>
+					</p:selectCheckboxMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbZona"
+						value="#{rptNivelEsfuerzoProcesoBn.zonaSeleccionada}"
+						converter="#{zonaConverter}">
+						<f:selectItem itemLabel="Zona" />
+						<f:selectItems value="#{rptNivelEsfuerzoProcesoBn.tipoZonaList}"
+							var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:120px !important" id="cmbEvaluacion"
+						value="#{rptNivelEsfuerzoProcesoBn.evaluacionSeleccionada}"
+						converter="#{evaluacionConverter}">
+						<f:selectItem itemLabel="Evaluación" />
+						<f:selectItems value="#{rptNivelEsfuerzoProcesoBn.evaluacionList}"
+							var="evaluacion" itemLabel="#{evaluacion.descripcion}"
+							itemValue="#{evaluacion}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:commandButton icon="fa fa-file-pdf-o"
+						action="#{ReporteBn.imprimirPdf()}" update="pnl_rep"
+						process="@this frm_rpt_013"
+						actionListener="#{rptNivelEsfuerzoProcesoBn.generarReporte01()}">
+					</p:commandButton>
+					<p:commandButton id="buttonExcel" icon="fa fa-file-excel-o"
+						ajax="false" immediate="true" process="@this frm_rpt_013"
+						actionListener="#{ReporteBn.imprimirExcel(18,appMain.usuario.idUsuario.toString(),null,null,null,null,null,null,null,null,null,true)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+			</p:panelGrid>
+			<p:panelGrid id="pnl_rep" styleClass="sinborde" style="width:100%">
+				<p:column>
+					<iframe height="480px" width="100%"
+						src="#{request.contextPath}/reporte?rptid=18&amp;p1=#{appMain.usuario.idUsuario.toString()}"></iframe>
+				</p:column>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

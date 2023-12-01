@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_10_2" id="dialog_10_2"
+		height="500px" closeOnEscape="true" hideEffect="drop"
+		showHeader="true" appendTo="@(body)" resizable="true"
+		responsive="true">
+		<f:facet name="header">
+			<h:outputText value="KPI " />
+			<p:outputLabel value="par_010_2.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_010_2">
+			<p:panelGrid columns="3" styleClass="fullsize sinborde"
+				columnClasses="ui-grid-col-1,ui-grid-col-1,ui-grid-col-10">
+				<p:column>
+					<p:commandButton title="Descargar en formato Pdf"
+						icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+						actionListener="#{ReporteBn.imprimirExcel(3,appMain.usuario.nombreUsuario,ProcesoBn.procesoSeleccionado.idproceso.toString(),null,null,null,null,null,null,null,null,false)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+				<p:column>
+					<p:commandButton title="Descargar en formato Excel"
+						icon="fa fa-file-excel-o" immediate="true" ajax="false"
+						actionListener="#{ReporteBn.imprimirExcel(3,appMain.usuario.nombreUsuario,ProcesoBn.procesoSeleccionado.idproceso.toString(),null,null,null,null,null,null,null,null,true)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+				<p:column>
+					<div align="right">
+						<p:commandButton title="Guardar" icon="ui-icon-check"
+							action="#{ProcesoBn.guardar()}" update=":frm_par_010"
+							oncomplete="PF('dialog_10_2').hide()" />
+					</div>
+				</p:column>
+			</p:panelGrid>
+			<p:spacer></p:spacer>
+			<p:dataTable id="fdt01" emptyMessage="No Existen Kpi"
+				var="procesoDetalle"
+				value="#{ProcesoBn.procesoSeleccionado.procesoDetalle}"
+				scrollable="true" scrollHeight="320" reflow="true"
+				tableStyle="table-layout: auto">
+				<f:facet name="header">
+					<div align="center">
+						<h:outputLabel
+							value="#{ProcesoBn.procesoSeleccionado.nombreProceso.toUpperCase()}" />
+					</div>
+					<div align="right">
+						<p:commandButton icon="ui-icon-add" id="btnResponsable"
+							process="@this fdt01" update="fdt01"
+							action="#{ProcesoBn.anadirProcesoDetalle()}"></p:commandButton>
+					</div>
+				</f:facet>
+				<p:column headerText="Orden" width="50">
+					<div align="center">
+						<p:spinner value="#{procesoDetalle.orden}" size="1"></p:spinner>
+					</div>
+				</p:column>
+				<p:column headerText="Kpi">
+					<h:inputTextarea rows="4"
+						value="#{procesoDetalle.nombreProcesoDetalle}" maxlength="1000"
+						styleClass="w100" />
+				</p:column>
+				<p:column headerText="Puntaje" width="50">
+					<div align="center">
+						<p:spinner value="#{procesoDetalle.puntaje}" size="1" min="1"
+							max="100"></p:spinner>
+					</div>
+				</p:column>
+				<p:column headerText="Esfuerzo" width="50">
+					<div align="center">
+						<p:selectOneMenu style="width:70px !important"
+							id="cmbNivelEsfuerzo" value="#{procesoDetalle.nivelEsfuerzo}"
+							converter="#{nivelEsfuerzoConverter}">
+							<f:selectItems value="#{ProcesoBn.nivelEsfuerzoList}"
+								var="nivelEsfuerzo" itemLabel="#{nivelEsfuerzo.descripcion}"
+								itemValue="#{nivelEsfuerzo}"></f:selectItems>
+						</p:selectOneMenu>
+					</div>
+				</p:column>
+				<p:column width="30" headerText="Editar">
+					<p:commandButton title="Editar"
+						action="#{ProcesoBn.anadirComentario(procesoDetalle)}"
+						oncomplete="PF('dialog_10_3').show()" update=":frm_par_010_3"
+						icon="ui-icon-pencil"></p:commandButton>
+				</p:column>
+				<p:column width="40" headerText="Eliminar">
+					<p:commandButton
+						action="#{ProcesoBn.quitarProcesoDetalle(procesoDetalle)}"
+						id="btnEliminar" icon="ui-icon-delete" update="fdt01"
+						process="@this fdt01" />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+		<ui:include src="/pages/parametros/par_010_3.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>

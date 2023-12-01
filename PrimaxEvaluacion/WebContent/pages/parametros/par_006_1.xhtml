@@ -1,0 +1,300 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_06_1" id="dialog_06_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value=" Ingreso/Modificación Estación " />
+			<p:outputLabel value="par_006_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_006_1">
+			<p:messages id="msg" autoUpdate="true" closable="true"></p:messages>
+			<div align="right">
+				<p:commandButton icon="ui-icon-check"
+					update=":frm_006_1,:frm_par_006" action="#{agenciaBn.guardar()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab00" title="Estación">
+					<p:panelGrid styleClass="sinborde w100">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Estación"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText styleClass="w100" placeholder="Nombre de Estación"
+									maxlength="50" rendered="true"
+									requiredMessage="Escriba el nombre de la estación"
+									value="#{agenciaBn.agenciaSeleccionada.nombreAgencia}"></p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Código"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText styleClass="w100" maxlength="10"
+									onblur="this.value= value.toUpperCase()"
+									requiredMessage="Ingrese el código de la agencia"
+									value="#{agenciaBn.agenciaSeleccionada.codigoAgencia}"
+									placeholder="Código de Agencia"></p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Región"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmb_reg"
+									requiredMessage="Seleccione la región"
+									style="width:120px !important"
+									value="#{agenciaBn.regionSeleccionada}"
+									converter="#{regionConverter}">
+									<f:selectItem itemLabel="Seleccione Región"
+										noSelectionOption="true" />
+									<f:selectItems value="#{agenciaBn.regiones}" var="reg"
+										itemLabel="#{reg.descRegion}" itemValue="#{reg}">
+									</f:selectItems>
+									<p:ajax event="change"
+										update="frm_006_1:tabWiwe0:cmb_provincia,frm_006_1:tabWiwe0:cmb_ciudad,frm_006_1:tabWiwe0:cmb_zona"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Provincia"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmb_provincia"
+									requiredMessage="Seleccione la provincia"
+									style="width:120px !important"
+									value="#{agenciaBn.provinciaSeleccionada}"
+									converter="#{provinciaConverter}">
+									<f:selectItem itemLabel="Seleccione Provincia"
+										noSelectionOption="true" />
+									<f:selectItems value="#{agenciaBn.provincias}" var="prov"
+										itemLabel="#{prov.nombreProvincia}" itemValue="#{prov}">
+									</f:selectItems>
+									<p:ajax event="change"
+										update="frm_006_1:tabWiwe0:cmb_ciudad,frm_006_1:tabWiwe0:cmb_zona"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Ciudad"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmb_ciudad"
+									requiredMessage="Seleccione la ciudad"
+									style="width:120px !important"
+									value="#{agenciaBn.cantonSeleccionado}"
+									converter="#{cantonConverter}">
+									<f:selectItem itemLabel="Seleccione Cantón"
+										noSelectionOption="true" />
+									<f:selectItems value="#{agenciaBn.cantones}" var="canton"
+										itemLabel="#{canton.nombreCanton}" itemValue="#{canton}">
+									</f:selectItems>
+									<p:ajax event="change" update=":frm_006_1:tabWiwe0:cmb_zona"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Zona"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmb_zona"
+									requiredMessage="Seleccione la zona"
+									style="width:120px !important"
+									value="#{agenciaBn.agenciaSeleccionada.zona}"
+									converter="#{zonaConverter}">
+									<f:selectItem itemLabel="Seleccione Zona"
+										noSelectionOption="true" />
+									<f:selectItems value="#{generalBn.zonas}" var="zona"
+										itemLabel="#{zona.nombreZona}" itemValue="#{zona}">
+									</f:selectItems>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Descripción"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText styleClass="w100" maxlength="400"
+									value="#{agenciaBn.agenciaSeleccionada.descripcionAgencia}"
+									placeholder="Breve descripción sobre la agencia">
+								</p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Estado"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu value="#{agenciaBn.agenciaSeleccionada.estado}"
+									id="es" style="width:60% !important">
+									<f:selectItems value="#{agenciaBn.estadosActIna}" />
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab id="tab01" title="Tipo Estación">
+					<p:panelGrid styleClass="sinborde w100">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="# Visitas"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:spinner value="#{agenciaBn.agenciaSeleccionada.numVisita}"
+									size="1" min="1" max="100"></p:spinner>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="# Visitas Inventario"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:spinner
+									value="#{agenciaBn.agenciaSeleccionada.numVisitaInventario}"
+									size="1" min="1" max="100"></p:spinner>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Frecuencia Visita"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:80px !important"
+									value="#{agenciaBn.frecuenciaVisitaSeleccionado}"
+									converter="#{frecuenciaVisitaConverter}">
+									<f:selectItem itemLabel="Frecuencia Visita" />
+									<f:selectItems value="#{agenciaBn.frecuenciaVisitaList}"
+										var="frecuenciaV" itemValue="#{frecuenciaV}"
+										itemLabel="#{frecuenciaV.descripcion}" />
+								</p:selectOneMenu>
+								<p:commandButton icon="fa fa-eye" update=":frm_006_2"
+									oncomplete="PF('dialog_06_2').show()"></p:commandButton>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Tipo Estación"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:80px !important"
+									value="#{agenciaBn.tipoEstacionSeleccionado}"
+									converter="#{tipoEstacionConverter}">
+									<f:selectItem itemLabel="Tipo Estación" />
+									<f:selectItems value="#{agenciaBn.tipoEstacionList}"
+										var="tipoEstacion" itemValue="#{tipoEstacion}"
+										itemLabel="#{tipoEstacion.descripcion}" />
+									<p:ajax event="change"
+										update=":frm_006_1:tabWiwe0:cmbCategoria"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Categoría Estación"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:selectManyCheckbox id="cmbCategoria"
+									value="#{agenciaBn.categoriaEstacionSeleccionados}"
+									layout="responsive" columns="3"
+									converter="#{categoriaEstacionConverter}">
+									<f:selectItems value="#{agenciaBn.categoriaEstacionList}"
+										var="categoriaE" itemLabel="#{categoriaE.descripcion}"
+										itemValue="#{categoriaE}" />
+								</p:selectManyCheckbox>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab id="tab02" title="Responsables">
+					<p:dataTable id="fdt01" emptyMessage="No Existen Responsables"
+						paginator="true" rows="5" var="responsable"
+						value="#{agenciaBn.responsables}" reflow="true"
+						tableStyle="table-layout: auto;">
+						<f:facet name="header">
+							<h:outputLabel />
+							<div align="right">
+								<p:commandButton id="btnResponsable" icon="ui-icon-add"
+									action="#{agenciaBn.anadirResponsable()}"
+									title="Agregar Responsable" process="@this fdt01"
+									update="fdt01"></p:commandButton>
+							</div>
+						</f:facet>
+						<p:column headerText="Identificación" style="width:100px">
+							<p:inputMask id="inpIde" mask="9999999999"
+								value="#{responsable.persona.identificacionPersona}"
+								styleClass="w100">
+								<p:ajax event="change" process="@this inpIde"
+									listener="#{agenciaBn.validarCedula(responsable.persona.identificacionPersona)}"
+									update=":frm_par_006:mensajes" />
+							</p:inputMask>
+						</p:column>
+						<p:column headerText="Nombres" style="width:250px">
+							<p:inputText value="#{responsable.persona.nombreCompleto}"
+								styleClass="w100" />
+						</p:column>
+						<p:column headerText="Cargo">
+							<p:selectOneMenu id="cmbTipoCargo" style="width:100px !important"
+								value="#{responsable.tipoCargo}"
+								converter="#{tipoCargoConverter}">
+								<f:selectItem itemLabel="Seleccione Cargo" />
+								<f:selectItems value="#{agenciaBn.tipoCargoList}"
+									var="tipoCargo" itemValue="#{tipoCargo}"
+									itemLabel="#{tipoCargo.descripcion}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column style="width:45px">
+							<div align="center">
+								<p:commandButton id="btnEliminar" icon="ui-icon-delete"
+									action="#{agenciaBn.quitarResponsable(responsable)}"
+									update="fdt01" process="@this fdt01"></p:commandButton>
+							</div>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+				<p:tab id="tab03" title="CheckList">
+					<p:dataTable id="fdt02" emptyMessage="No Existen checkList"
+						var="agenciaCheckList" paginator="true" rows="5"
+						value="#{agenciaBn.agenciaSeleccionada.agenciaCheckList}"
+						reflow="true" tableStyle="table-layout: auto;">
+						<p:column headerText="Código">
+							<h:outputText value="#{agenciaCheckList.checkList.codigo}"
+								style="width:40px" />
+						</p:column>
+						<p:column headerText="Evaluación">
+							<h:outputText
+								value="#{agenciaCheckList.checkList.evaluacion.descripcion}"
+								style="width:100px" />
+						</p:column>
+						<p:column headerText="Tipo Check">
+							<h:outputText
+								value="#{agenciaCheckList.checkList.tipoChecKList.descripcion}"
+								style="width:100px" />
+						</p:column>
+						<p:column style="width:45px">
+							<div align="center">
+								<p:commandButton id="btnEliminar" icon="ui-icon-delete"
+									action="#{agenciaBn.quitarCheckList(agenciaCheckList)}"
+									update="fdt02" process="@this fdt02"></p:commandButton>
+							</div>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+		<ui:include src="/pages/busqueda/bus_001.xhtml" />
+		<ui:include src="/pages/parametros/par_006_2.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>

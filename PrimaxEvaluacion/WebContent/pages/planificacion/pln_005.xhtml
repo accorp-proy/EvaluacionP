@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Plantillas Generadas</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_pln_005">
+			<h:outputScript library="js" name="calendar.js" />
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<p:panelGrid styleClass="sinborde w110" columns="8">
+				<p:row>
+					<p:fieldset legend="Información">
+						<p:panelGrid columns="8" styleClass="sinborde">
+							<p:column>
+								<p:selectOneMenu id="cmbEstacion" style="width:100% !important"
+									required="true"
+									value="#{CheckListEjecutadoBn.estacionSeleccionada}"
+									converter="#{agenciaConverter}" var="t" filter="true"
+									filterMatchMode="contains">
+									<f:selectItem itemLabel="Estación" />
+									<f:selectItems value="#{CheckListEjecutadoBn.estacionList}"
+										var="estacion" itemLabel="#{estacion.nombreAgencia}"
+										itemValue="#{estacion}" />
+									<p:column>
+										<img src="../../resources/images/iconos/bajo.png" />
+									</p:column>
+									<p:column>
+										<h:outputText value="#{t.nombreAgencia}" />
+									</p:column>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{CheckListEjecutadoBn.fDesde}" size="15"
+									placeholder="Fecha Desde" title="Fecha Desde" navigator="true"
+									pattern="dd/MM/yyy" locale="es">
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{CheckListEjecutadoBn.fHasta}" size="15"
+									placeholder="Fecha Hasta" title="Fecha Hasta" navigator="true"
+									pattern="dd/MM/yyy" locale="es">
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:95% !important" editable="false"
+									value="#{CheckListEjecutadoBn.estadoCheckListSeleccionado}">
+									<f:selectItems value="#{CheckListEjecutadoBn.estadoCheckList}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Botón permite realizar busqueda"
+									icon="ui-icon-search" action="#{CheckListEjecutadoBn.buscar()}"
+									update="frm_pln_005:dtbCheckList">
+								</p:commandButton>
+							</p:column>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:row>
+			</p:panelGrid>
+
+			<div align="center">
+				<p:dataTable paginator="true" rows="7" reflow="true"
+					tableStyle="table-layout: auto;" style="margin-bottom:20px"
+					emptyMessage="No existe Planificaciones" id="dtbCheckList"
+					value="#{CheckListEjecutadoBn.planificaciones}" var="checkList">
+					<p:column headerText="Fecha Planificación">
+						<h:outputText value="#{checkList.fechaPlanificacion}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Evaluación">
+						<h:outputText></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo CheckList">
+						<h:outputText></h:outputText>
+					</p:column>
+					<p:column headerText="Estado">
+						<h:outputText title="El estado en que se encuetra el CheckList"></h:outputText>
+					</p:column>
+					<p:column width="30" headerText="Eliminar">
+
+					</p:column>
+					<p:column width="30" headerText="CheckList">
+
+					</p:column>
+					<p:column width="30" headerText="Matriz">
+					</p:column>
+					<p:column width="30" headerText="Aprobar">
+						<p:commandButton icon="ui-icon-event-available"></p:commandButton>
+					</p:column>
+					<p:column width="30" headerText="Asignación">
+						<p:commandButton icon="ui-icon-event-available"></p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

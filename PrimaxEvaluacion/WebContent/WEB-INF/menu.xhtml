@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:pu="http://primefaces.org/ultima">
+	<h:form id="menuform">
+		<div class="layout-menu #{guestPreferences.menuClass}">
+			<div class="nano">
+				<div class="nano-content menu-scroll-content">
+					<ui:fragment
+						rendered="#{guestPreferences.profileMode == 'inline' and guestPreferences.menuLayout != 'menu-layout-static menu-layout-horizontal'}">
+						<div class="profile">
+							<div class="profile-image"></div>
+							<a id="profile-options"> <span class="profile-name">#{appMain.usuario.nombreUsuario}</span> <i class="material-icons">&#xE313;</i>
+							</a>
+						</div>
+						<ul id="profile-menu" class="ultima-menu">
+							<li role="menuitem"><a href="#" class="ripplelink"> <i
+									class="material-icons">&#xE32A;</i> <span>Cambio de Clave</span>
+							</a></li>
+							<li role="menuitem"><p:commandLink
+									action="#{appMain.logOut()}" process="@this">
+									<i class="fa fa-fw fa-sign-out"></i>
+									<span>Salir</span>
+								</p:commandLink></li>
+						</ul>
+					</ui:fragment>
+					<pu:menu widgetVar="me">
+						<ui:include src="/WEB-INF/recursive.xhtml">
+							<ui:param name="menues" value="#{appMain.modulos}" />
+						</ui:include>
+					</pu:menu>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</ui:composition>

@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_04_1" id="dialog_04_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="false" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Crear/Actualizar Canton [par_004_1]" />
+		</f:facet>
+		<h:form id="frm_004_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{cantonBn.guardar()}" update=":frm_par_004"></p:commandButton>
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde"
+				style="width:100%">
+				<p:outputLabel value="Provincia :" />
+				<p:selectOneMenu style="width:60% !important"
+					value="#{cantonBn.provinciaSeleccionada}"
+					converter="#{provinciaConverter}">
+					<f:selectItem itemLabel="Seleccione Provincia" />
+					<f:selectItems value="#{cantonBn.listaProvincias}" var="prov"
+						itemValue="#{prov}" itemLabel="#{prov.nombreProvincia}" />
+				</p:selectOneMenu>
+				<p:outputLabel>Ciudad :</p:outputLabel>
+				<p:inputText value="#{cantonBn.cantonSeleccionado.nombreCanton}"
+					style="text-transform:uppercase; width:95%"
+					title="Ingrese nombre de la ciudad"></p:inputText>
+				<p:outputLabel value="Codigo Inec :"></p:outputLabel>
+				<p:inputText value="#{cantonBn.cantonSeleccionado.inecCanton}"
+					requiredMessage="Codigo de Inec es requerido"
+					title="Ingrese codigo de canton del Inec">
+				</p:inputText>
+				<p:outputLabel> Estado :</p:outputLabel>
+				<p:selectOneMenu value="#{cantonBn.cantonSeleccionado.estado}"
+					id="es" style="width:60% !important">
+					<f:selectItems value="#{cantonBn.estadosActIna}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

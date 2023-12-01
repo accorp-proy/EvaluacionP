@@ -1,0 +1,314 @@
+@CHARSET "UTF-8";
+
+/*Iconos*/
+.download {
+	background-image: url('../resources/images/iconos/download.png')
+		!important;
+	height: 16px;
+	background-color: tranparent;
+}
+
+.modulo {
+	background-image: url('../resources/images/iconos/modulo2.png')
+		!important;
+	width: 32px;
+	height: 16px;
+}
+
+.mostrarestadistico {
+	background-image: url('../resources/images/menu/data.png') !important;
+	width: 32px;
+	height: 16px;
+}
+
+.buscar2 {
+	background-image: url('../resources/images/iconos/search3.png')
+		!important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.buscar {
+	background-image: url('../resources/images/menu/zoom1.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.asignar {
+	background-image: url('../resources/images/menu/assing.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.enviar_der {
+	background-image: url('../resources/images/menu/arrowRight.png')
+		!important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.delete {
+	background-image: url('../resources/images/iconos/eliminar.png')
+		!important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.new {
+	background-image: url('../resources/images/menu/new.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.delete1 {
+	background-image: url('../resources/images/menu/delete.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.approve {
+	background-image: url('../resources/images/iconos/approve.png')
+		!important;
+	width: 16px;
+}
+
+.reject {
+	background-image: url('../resources/images/iconos/reject.png')
+		!important;
+	width: 16px;
+}
+
+.cancel {
+	background-image: url('../resources/images/iconos/cancel.png')
+		!important;
+	width: 16px;
+}
+
+.cancel2 {
+	background-image: url('../resources/images/iconos/cancel2.png')
+		!important;
+	width: 16px;
+}
+
+.add {
+	background-image: url('../resources/images/iconos/add.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.edit2 {
+	background-image: url('../resources/images/iconos/edit.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.edit {
+	background-image: url('../resources/images/menu/edit.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.print {
+	background-image: url('../resources/images/menu/print2.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.agreg {
+	background-image: url('../resources/images/menu/EditMap.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.see {
+	background-image: url('../resources/images/iconos/see.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.save2 {
+	background-image: url('../resources/images/iconos/save2.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+.save {
+	background-image: url('../resources/images/menu/save3.png') !important;
+	width: 16px;
+	background-color: tranparent;
+}
+
+/*APP*/
+.home {
+	background-image: url('../resources/images/menu/home.png') !important;
+	width: 32px;
+	height: 16px;
+}
+
+.project {
+	background-image: url('../resources/images/menu/project.png') !important;
+	width: 32px;
+	height: 16px;
+}
+
+.project_chk {
+	background-image: url('../resources/images/menu/project_chk.png')
+		!important;
+	width: 32px;
+	height: 16px;
+}
+
+.pdf {
+	background-image: url('../resources/images/iconos/pdf.png') !important;
+	width: 32px;
+	height: 16px;
+}
+
+.excel {
+	background-image: url('../resources/images/iconos/excel.png') !important;
+	width: 32px;
+	height: 16px;
+}
+
+.w10 {
+	width: 10% !important;
+}
+
+.w20 {
+	width: 20% !important;
+}
+
+.w30 {
+	width: 30% !important;
+}
+
+.w70 {
+	width: 70% !important;
+}
+
+.w25 {
+	width: 25% !important;
+}
+
+.w75 {
+	width: 75% !important;
+}
+
+.w90 {
+	width: 90% !important;
+}
+
+.w100 {
+	width: 95% !important;
+}
+
+.w50 {
+	width: 50% !important;
+}
+
+.w40 {
+	width: 40%;
+}
+
+.w50topgrid {
+	width: 50% !important;
+	vertical-align: top;
+}
+
+.w60 {
+	width: 60% !important;
+}
+
+.w40 {
+	width: 40% !important;
+}
+
+.w50>ul {
+	width: 50% !important;
+}
+
+.w100>ul {
+	width: 96% !important;
+}
+
+.panel50 {
+	width: 50% !important;
+}
+
+.panel50>div {
+	border: none;
+}
+
+.panel25 {
+	width: 25%;
+}
+
+.sinborde tr {
+	border: none !important;
+}
+
+.sinborde td {
+	border: none !important;
+}
+
+.alinearDerecha td {
+	text-align: right;
+}
+
+.alinearDerechaDiv {
+	text-align: right;
+}
+
+.fullsize {
+	width: 99%;
+}
+
+.fileupload-simple>.ui-fileupload-content {
+	display: none;
+}
+
+.fileupload-simple>.ui-fileupload-buttonbar {
+	-moz-border-radius: 4px !important;
+	-webkit-border-radius: 4px !important;
+	border-radius: 4px !important;
+}
+
+.jqplot-data-label {
+	font-size: 12 px;
+}
+
+body .ui-growl {
+	top: 30px !important;
+}
+
+.centerdiv {
+	display: inline;
+	float: none;
+}
+
+.calendar120 input {
+	width: 120px !important;
+}
+
+.white {
+	color: #fff;
+}
+
+.float {
+	float: right
+}
+
+.float>button {
+	position: absolute;
+	right: 0;
+	z-index: 10;
+}
+
+.sincabecera thead {
+	display: none;
+}
+
+.ui-datatable.borderless thead th, .ui-datatable.borderless tbody,
+	.ui-datatable.borderless tbody tr, .ui-datatable.borderless tbody td {
+	border-style: none;
+}

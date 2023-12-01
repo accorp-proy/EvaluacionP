@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>.:PRIMAX:.</title>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{facesContext.externalContext.requestContextPath}/resources/images/iconos/icono.png" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/resources/images/fronted/favicon.ico" />
+</h:head>
+<h:body>
+
+	<h:form id="frm_pln_007">
+
+		<h:outputStylesheet library="css" name="main.css" />
+		<h:outputStylesheet library="css" name="layout_orange.css" />
+
+		<p:layout fullPage="true" id="lyt_pdr">
+			<p:layoutUnit id="lyt_wst" position="west" header="Filtro de Datos">
+				<div class="marcogrid" align="center">
+
+					<p:panelGrid styleClass="sinborde w200" columns="3">
+						<p:row>
+
+							<p:panelGrid columns="1" styleClass="sinborde">
+								<f:facet name="header">
+									<p:column>
+										<div align="left">
+											<p:commandButton value="Regresar"
+												action="#{EstadisticoBn.retroceder()}"></p:commandButton>
+										</div>
+									</p:column>
+								</f:facet>
+								<h:outputText></h:outputText>
+
+								<h:outputText id="labelResponsable"
+									value="#{EstadisticoBn.nombreResponsable}" />
+								<h:panelGroup>
+									<p:selectOneMenu id="cmbAnio" style="width:100% !important"
+										value="#{EstadisticoBn.anioSeleccionado}"
+										converter="#{parametrosConverter}">
+										<f:selectItem itemLabel="Año" />
+										<f:selectItems value="#{EstadisticoBn.anioList}" var="anio"
+											itemLabel="#{anio.nombreLista}" itemValue="#{anio}" />
+
+									</p:selectOneMenu>
+								</h:panelGroup>
+								<p:selectCheckboxMenu id="cmbMeses"
+									style="width:100% !important"
+									value="#{EstadisticoBn.mesesSeleccionados}" label="Meses"
+									converter="#{parametrosConverter}" filter="false"
+									filterMatchMode="startsWith">
+									<f:selectItems value="#{EstadisticoBn.mesList}" var="mes"
+										itemLabel="#{mes.nombreLista}" itemValue="#{mes}"></f:selectItems>
+								</p:selectCheckboxMenu>
+
+								<p:selectOneMenu style="width:100% !important" id="cmbZona"
+									value="#{EstadisticoBn.zonaSeleccionada}"
+									converter="#{parametrosConverter}">
+									<f:selectItem itemLabel="Zona" />
+									<f:selectItems value="#{EstadisticoBn.tipoZonaList}" var="zona"
+										itemLabel="#{zona.nombreLista}" itemValue="#{zona}"></f:selectItems>
+									<p:ajax event="change" update="frm_pln_007:cmbEstacion"></p:ajax>
+								</p:selectOneMenu>
+								<p:selectOneMenu id="cmbEstacion" style="width:100% !important"
+									value="#{EstadisticoBn.estacionSeleccionada}"
+									converter="#{agenciaConverter}" var="t" filter="true"
+									filterMatchMode="contains">
+									<f:selectItem itemLabel="Tienda" />
+									<f:selectItems value="#{EstadisticoBn.agenciaList}"
+										var="estacion" itemLabel="#{estacion.nombreAgencia}"
+										itemValue="#{estacion}" />
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Nombre" />
+										</f:facet>
+										<h:outputText value="#{t.nombreAgencia}" />
+									</p:column>
+									<p:ajax event="change" update="frm_pln_007:tabWiewDash"
+										listener="#{EstadisticoBn.cargarPuntajeOptimo()}"></p:ajax>
+								</p:selectOneMenu>
+
+								<p:selectOneMenu id="cmbEvaluacion"
+									style="width:100% !important"
+									value="#{EstadisticoBn.evaluacionSeleccionada}"
+									converter="#{evaluacionConverter}">
+									<f:selectItem itemLabel="Evaluación" />
+									<f:selectItems value="#{EstadisticoBn.evaluacionList}"
+										var="evaluacion" itemValue="#{evaluacion}"
+										itemLabel="#{evaluacion.descripcion}" />
+									<p:ajax event="change" update="frm_pln_007:cmbTipoCheck"></p:ajax>
+								</p:selectOneMenu>
+								<p:selectOneMenu id="cmbTipoCheck" style="width:100% !important"
+									value="#{EstadisticoBn.tipoChecKListSeleccionado}"
+									converter="#{tipoCheckListConverter}">
+									<f:selectItem itemLabel="Tipo CheckList" />
+									<f:selectItems value="#{EstadisticoBn.tiposChecKList}"
+										var="tipoCheckList" itemValue="#{tipoCheckList}"
+										itemLabel="#{tipoCheckList.descripcion}" />
+									<p:ajax event="change" update="frm_pln_007:selectProceso"></p:ajax>
+								</p:selectOneMenu>
+								<p:selectOneRadio id="selectProceso"
+									value="#{EstadisticoBn.procesosSeleccionado}"
+									converter="#{procesoConverter}" layout="responsive" columns="1">
+									<f:selectItems value="#{EstadisticoBn.procesosChecKList}"
+										var="proceso" itemLabel="#{proceso.nombreProceso}"
+										itemValue="#{proceso}" />
+								</p:selectOneRadio>
+
+								<p:commandButton value="Filtrar"
+									action="#{EstadisticoBn.filtrarModel()}"
+									process="@this frm_pln_007"
+									update="frm_pln_007:tabWiewDash,frm_pln_007:labelResponsable"></p:commandButton>
+
+							</p:panelGrid>
+						</p:row>
+
+					</p:panelGrid>
+				</div>
+			</p:layoutUnit>
+			<p:layoutUnit position="center" id="lyt_center">
+				<p:tabView id="tabWiewDash" style="width: 100;height: 100%;">
+					<p:tab title="Gráficos" id="tabGrafico">
+						<div class="ui-g dashboard">
+
+							<div class="ui-g-12 ui-md-6 ui-lg-3">
+								<div class="ui-g card colorbox colorbox-2">
+									<div class="ui-g-12" id="divDatos">
+										<span class="colorbox-name">#{EstadisticoBn.nombreEstacion}</span>
+										<span class="colorbox-name">#{EstadisticoBn.nombreEvaluacion}</span>
+										<span class="colorbox-name">#{EstadisticoBn.tipoCheck}</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="ui-g-12 ui-md-6 ui-lg-3">
+								<div class="ui-g card colorbox colorbox-1">
+									<div class="ui-g-4">
+										<i class="material-icons">&#xE86C;</i>
+									</div>
+									<div class="ui-g-8" id="divPuntaje">
+										<span class="colorbox-name">Meta</span> <span
+											class="colorbox-count">#{EstadisticoBn.puntajeOptimo}</span>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-3">
+								<div class="ui-g card colorbox colorbox-2">
+									<div class="ui-g-4">
+										<i class="material-icons">&#xE160;</i>
+									</div>
+									<div class="ui-g-8">
+										<span class="colorbox-name">Diferencia</span> <span
+											class="colorbox-count">#{EstadisticoBn.puntajeDiferencia}</span>
+									</div>
+								</div>
+							</div>
+							<div class="ui-g-12 ui-md-6 ui-lg-3">
+								<div class="ui-g card colorbox colorbox-3">
+									<div class="ui-g-12">
+										<span class="colorbox-name">Posición</span> <span
+											class="colorbox-count">#{EstadisticoBn.posicionEstacion}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<p:panelGrid styleClass="w55 sinborde">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Nivel de Riesgo" style="font-weight:bold"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<div class="count" style="background-color: #FF663A">Crítico:
+										Menor 59</div>
+								</p:column>
+								<p:column>
+									<div class="count" style="background-color: #CC0000">Alto:
+										Entre 60 y 69</div>
+								</p:column>
+								<p:column>
+									<div class="count" style="background-color: #FFFF33">Medio:Entre
+										70 y 84</div>
+								</p:column>
+								<p:column>
+									<div class="count" style="background-color: #00CC33">Bajo:
+										Mayor 85</div>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+
+						<p:panelGrid styleClass="w100 sinborde">
+							<p:row>
+								<p:column style="width:500px">
+									<p:chart type="metergauge" style="height: 200px"
+										model="#{EstadisticoBn.meterGaugeModel}"></p:chart>
+								</p:column>
+								<p:column style="width:500px">
+									<p:chart type="bar" model="#{EstadisticoBn.horizontalBarModel}"
+										style="height:300px" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+						<p:panelGrid styleClass="w100 sinborde">
+							<p:row>
+								<p:column style="width:500px">
+									<p:chart type="bar"
+										model="#{EstadisticoBn.horizontalBarModelM}"
+										style="height:300px" />
+								</p:column>
+								<p:column style="width:500px">
+									<p:chart type="bar"
+										model="#{EstadisticoBn.horizontalBarModelP}"
+										style="height:300px" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="Informativo">
+					</p:tab>
+				</p:tabView>
+				<div>
+					<ui:insert name="block">
+						<p:ajaxStatus onstart="PF('statusDialog').show()"
+							onsuccess="PF('statusDialog').hide()"></p:ajaxStatus>
+						<p:dialog header="Cargando" widgetVar="statusDialog"
+							closable="false" resizable="false" showEffect="puff">
+							<p:panelGrid columns="2" styleClass="sinborde">
+								<h:graphicImage value="/resources/images/fronted/loading.gif" />
+								<h:outputText value="Espere por favor..." />
+							</p:panelGrid>
+						</p:dialog>
+					</ui:insert>
+				</div>
+			</p:layoutUnit>
+		</p:layout>
+	</h:form>
+</h:body>
+</html>

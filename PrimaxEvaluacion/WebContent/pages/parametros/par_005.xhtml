@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Conexiones - [par_002]</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_005">
+			<p:growl sticky="true" id="msg"></p:growl>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:outputLabel value="Conexiones"></p:outputLabel>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+				</f:facet>
+			</p:toolbar>
+			<p:dataTable reflow="true" tableStyle="table-layout: auto"
+				emptyMessage="No existe conexiones" id="dtbPincipal"
+				value="#{conexionBn.listaConexiones}" var="con">
+				<p:column headerText="Base">
+					<h:outputText value="#{con.tipoLibDb}"></h:outputText>
+				</p:column>
+				<p:column headerText="Tipo de Base" style="text-align:center">
+					<h:outputText value="#{con.tipoDb}" />
+				</p:column>				
+				<p:column headerText="Ip">
+					<h:outputText value="#{con.ip}"></h:outputText>
+				</p:column>
+				<p:column headerText="Usuario">
+					<h:outputText value="#{con.usuario}"></h:outputText>
+				</p:column>
+				<p:column headerText="Contraseña">
+					<h:outputText value="#{con.contrasenia}"></h:outputText>
+				</p:column>
+				<p:column headerText="Editar" style="text-align:center">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{conexionBn.cargarConexion(con)}"
+						oncomplete="PF('dialog_par_005_1').show()" update=":frm_005_1"></p:commandButton>
+					<p:spacer width="20px"></p:spacer>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<p:dialog widgetVar="dialog_par_005_1" modal="true"
+			id="dialog_par_005_1" responsive="true" closeOnEscape="true"
+			hideEffect="drop" showHeader="true" appendTo="@(body)"
+			resizable="false">
+			<f:facet name="header">
+				<h:outputText value="Modificacion de conexion" />
+			</f:facet>
+			<h:form styleClass="fullsize" id="frm_005_1">
+				<p:growl showDetail="false" id="mensajes" />
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12 ui-lg-12">
+						<div class="card card-w-title" align="center">
+							<h1>datos de conexion</h1>
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank form-group">
+								<h:panelGroup styleClass="md-inputfield">
+									<p:inputText value="#{conexionBn.conexionSeleccionada.tipoDb}"
+										readonly="true" />
+									<label>Tipo de Base</label>
+								</h:panelGroup>
+								<h:panelGroup styleClass="md-inputfield">
+									<p:inputText
+										value="#{conexionBn.conexionSeleccionada.tipoLibDb}"
+										readonly="true" />
+									<label>Base</label>
+								</h:panelGroup>
+								<h:panelGroup styleClass="md-inputfield">
+									<p:inputText value="#{conexionBn.conexionSeleccionada.ip}" />
+									<label>Ip</label>
+								</h:panelGroup>
+								<h:panelGroup styleClass="md-inputfield">
+									<p:inputText value="#{conexionBn.conexionSeleccionada.usuario}" />
+									<label>Usuario</label>
+								</h:panelGroup>
+								<h:panelGroup styleClass="md-inputfield">
+									<p:inputText
+										value="#{conexionBn.conexionSeleccionada.contrasenia}" />
+									<label>Contraseña</label>
+								</h:panelGroup>
+							</p:panelGrid>
+						</div>
+					</div>
+				</div>
+				<p:commandButton title="Guardar" value="Guardar"
+					action="#{conexionBn.actualizarConexion()}"
+					oncomplete="PF('dialog_par_005_1').hide()" update=":frm_par_005" />
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

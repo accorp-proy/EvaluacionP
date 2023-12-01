@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Comodin</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_012">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<p:panelGrid id="pnl_00" styleClass="fullSize" columns="2"
+				columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<div align="left">
+								<p:outputLabel value="KPI Crítico "></p:outputLabel>
+								<p:outputLabel value="par_012.xhtml"
+									rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div align="right">
+								<p:inputText id="inpBusqueda" value="#{KPICriticoBn.condicion}"></p:inputText>
+								<p:commandButton title="Buscar"
+									action="#{KPICriticoBn.buscar()}" update="dtbKpiCritico"
+									icon="ui-icon-search" styleClass="secondary"></p:commandButton>
+								<p:commandButton title="Nuevo" update=":frm_par_012_1"
+									action="#{KPICriticoBn.nuevo()}"
+									oncomplete="PF('dialog_12_1').show()"
+									icon="ui-icon-open-in-new" styleClass="secondary"></p:commandButton>
+							</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable paginator="true" rows="15" reflow="true"
+				tableStyle="table-layout: auto;" style="margin-bottom:20px"
+				emptyMessage="No existe Comodin" id="dtbKpiCritico"
+				value="#{KPICriticoBn.kPICriticos}" var="kpiCritico">
+				<p:column headerText="Nombre">
+					<h:outputText value="#{kpiCritico.nombre}"></h:outputText>
+				</p:column>
+				<p:column headerText="Descripción">
+					<h:outputText value="#{kpiCritico.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="Imagen">
+					<h:outputText value="#{kpiCritico.nombreImagen}"></h:outputText>
+				</p:column>
+				<p:column headerText="Estado">
+					<h:outputText value="#{kpiCritico.estado.descripcion}"></h:outputText>
+				</p:column>
+				<p:column width="30">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{KPICriticoBn.modificar(kpiCritico)}"
+						oncomplete="PF('dialog_12_1').show()" update=":frm_par_012_1"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/parametros/par_012_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

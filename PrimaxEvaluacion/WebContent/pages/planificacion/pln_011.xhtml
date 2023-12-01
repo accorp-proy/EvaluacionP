@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Planificación Inventario</ui:define>
+
+	<style type="text/css">
+.main-content {
+	padding: 0;
+}
+</style>
+	<ui:define name="content">
+		<h:form id="frm_pln_011">
+			<style type="text/css">
+.schedule-agendada, .schedule-blue .fc-event-skin, .schedule-blue a {
+	background-color: #BFBFBF;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-en-ejecucion, .schedule-yellow .fc-event-skin,
+	.schedule-yellow a {
+	background-color: #00B0F0;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-ejecutado, .schedule-green .fc-event-skin, .schedule-green a {
+	background-color: #70AD47;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-no-ejecutado, .schedule-red .fc-event-skin, .schedule-red a {
+	background-color: #FF0000;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-inconcluso, .schedule-orange .fc-event-skin, .schedule-orange a
+	{
+	background-color: #ED7D31;
+	color: black;
+	border-color: #41719C;
+}
+</style>
+			<h:outputScript library="js" name="calendar.js" />
+			<div align="left">
+				<p:commandButton id="btnAgregar" title="Buscar"
+					icon="ui-icon-search" />
+			</div>
+			<h:panelGrid style="width: 100%; height: 100%" columnClasses="value">
+				<p:schedule id="schedule"
+					value="#{PlanificacionInventarioBn.eventModel}"
+					timeFormat="H:mm:ss a" widgetVar="myschedule" locale="es"
+					tooltip="true">
+					<p:ajax event="dateSelect"
+						listener="#{PlanificacionInventarioBn.onDateSelect}"
+						update=":frm_pln_012" oncomplete="PF('dlg_pln_012').show();" />
+					<p:ajax event="eventSelect" update=":frm_pln_012"
+						listener="#{PlanificacionInventarioBn.onEventSelect}"
+						oncomplete="PF('dlg_pln_012').show();" />
+					<p:ajax event="eventResize" update=":frm_pln_012"
+						listener="#{PlanificacionInventarioBn.onEventResize}" />
+					<p:commandButton icon="ui-icon-search"></p:commandButton>
+				</p:schedule>
+			</h:panelGrid>
+		</h:form>
+		<ui:include src="/pages/planificacion/pln_012.xhtml"></ui:include>
+	</ui:define>
+
+</ui:composition>

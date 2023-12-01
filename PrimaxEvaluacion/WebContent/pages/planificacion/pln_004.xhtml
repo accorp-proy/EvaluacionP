@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_pln_004" id="dlg_pln_004"
+		appendTo="@(body)" width="300px">
+		<f:facet name="header">
+			<h:outputLabel value="Asignar Auditor " />
+			<p:outputLabel value="pln_004.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pln_004">
+			<div align="right">
+				<p:commandButton icon="ui-icon-save" process="frm_pln_004"
+					update=":frm_pln_002" styleClass="secondary" title="Guardar"
+					action="#{PlanificacionBn.anadirCheckList()}">
+				</p:commandButton>
+			</div>
+			<p:panelGrid styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Auditor"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="cmbAuditor" style="width:100% !important"
+							converter="#{usuarioConverter}"
+							value="#{PlanificacionBn.usuarioSeleccionado}">
+							<f:selectItem itemLabel="Auditor" />
+							<f:selectItems value="#{PlanificacionBn.usuarioSeleccionados}"
+								var="auditor" itemValue="#{auditor}"
+								itemLabel="#{auditor.personaUsuario.identificacionPersona} - #{auditor.personaUsuario.nombreCompleto}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

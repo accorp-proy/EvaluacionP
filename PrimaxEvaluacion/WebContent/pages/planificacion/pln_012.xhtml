@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_pln_012" id="dlg_pln_012"
+		appendTo="@(body)" resizable="true" height="410px">
+		<f:facet name="header">
+			<h:outputLabel value="Planificar Inventario" />
+			<p:outputLabel value="pln_012.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pln_012">
+			<h:outputScript library="js" name="calendar.js" />
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<div align="right">
+				<p:commandButton icon="ui-icon-save" process="@this frm_pln_012"
+					action="#{PlanificacionInventarioBn.guardar()}"
+					update=":frm_pln_011,:frm_pln_012" styleClass="secondary"
+					title="Guardar">
+				</p:commandButton>
+			</div>
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab01" title="Inventario">
+					<p:panelGrid styleClass="sinborde w100" layout="grid" columns="2"
+						columnClasses="ui-grid-col-4,ui-grid-col-8">
+						<p:column>
+							<p:outputLabel value="Fecha Planificación"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:calendar title="Fecha Planificación"
+								value="#{PlanificacionInventarioBn.planificacionSeleccionada.fechaPlanificacion}"
+								pattern="dd/MM/yyyy  HH:mm" locale="es">
+							</p:calendar>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Eliminar"
+								rendered="#{PlanificacionInventarioBn.bloqueo eq true}"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectBooleanCheckbox
+								rendered="#{PlanificacionInventarioBn.bloqueo eq true}"
+								value="#{PlanificacionInventarioBn.planificacionSeleccionada.eliminada}" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Inventario"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectCheckboxMenu id="cmbTipoInv"
+								style="width:120px !important" label="Tipo" filter="false"
+								value="#{PlanificacionInventarioBn.tipoInventarioSeleccionados}"
+								converter="#{tipoInventarioConverter}">
+								<f:selectItems
+									value="#{PlanificacionInventarioBn.tipoInventarioList}"
+									var="tipoInv" itemLabel="#{tipoInv.descripcion}"
+									itemValue="#{tipoInv}"></f:selectItems>
+							</p:selectCheckboxMenu>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Zona"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu style="width:70px !important" id="cmbZona"
+								value="#{PlanificacionInventarioBn.zonaSeleccionada}"
+								disabled="#{PlanificacionInventarioBn.bloqueo}"
+								converter="#{zonaConverter}">
+								<f:selectItem itemLabel="Zona" />
+								<f:selectItems value="#{PlanificacionInventarioBn.tipoZonaList}"
+									var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+								<p:ajax event="change" update="frm_pln_012:tabWiwe0:cmbEstacion"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Estación"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cmbEstacion" style="width:70% !important"
+								disabled="#{PlanificacionInventarioBn.bloqueo}"
+								value="#{PlanificacionInventarioBn.estacionSeleccionada}"
+								converter="#{agenciaConverter}" var="t" filter="true"
+								filterMatchMode="contains">
+								<f:selectItem itemLabel="Estación" />
+								<f:selectItems value="#{PlanificacionInventarioBn.estacionList}"
+									var="estacion" itemLabel="#{estacion.nombreAgencia}"
+									itemValue="#{estacion}" />
+								<p:column>
+									<img src="../../resources/images/iconos/bajo.png" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{t.nombreAgencia}" />
+								</p:column>
+							</p:selectOneMenu>
+						</p:column>
+
+						<p:column>
+							<p:outputLabel value="Responsable"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="selectManyResponsable"
+								disabled="#{PlanificacionInventarioBn.bloqueo}"
+								style="width:100% !important"
+								value="#{PlanificacionInventarioBn.responsableSeleccionado}"
+								converter="#{usuarioConverter}" var="t" filter="false"
+								filterMatchMode="contains" showCheckbox="true">
+								<f:selectItems value="#{PlanificacionInventarioBn.listAuditor}"
+									var="auditor" itemValue="#{auditor}"
+									itemLabel="#{auditor.personaUsuario.identificacionPersona} - #{auditor.personaUsuario.nombreCompleto}" />
+								<p:column>
+									<h:outputText
+										value="#{t.personaUsuario.identificacionPersona} - #{t.personaUsuario.nombreCompleto}" />
+								</p:column>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Participante"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectManyMenu id="selectManyParticipante"
+								disabled="#{PlanificacionInventarioBn.bloqueo}"
+								style="width:100% !important" scrollHeight="100"
+								value="#{PlanificacionInventarioBn.participanteSeleccionados}"
+								converter="#{usuarioConverter}" var="t" filter="true"
+								filterMatchMode="contains" showCheckbox="true">
+								<f:selectItems value="#{PlanificacionInventarioBn.listAuditor}"
+									var="auditor" itemValue="#{auditor}"
+									itemLabel="#{auditor.personaUsuario.identificacionPersona} - #{auditor.personaUsuario.nombreCompleto}" />
+								<p:column>
+									<h:outputText
+										value="#{t.personaUsuario.identificacionPersona} - #{t.personaUsuario.nombreCompleto}" />
+								</p:column>
+							</p:selectManyMenu>
+						</p:column>
+					</p:panelGrid>
+
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</p:dialog>
+</ui:composition>

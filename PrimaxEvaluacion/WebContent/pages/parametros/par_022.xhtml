@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Tipo de Estación</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_par_022">
+			<p:growl showDetail="false" id="mensajes"></p:growl>
+			<p:panelGrid id="pnl_00" styleClass="fullSize" columns="2"
+				columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid">
+				<f:facet name="header">
+					<p:row>
+						<p:column>
+							<div align="left">
+								<p:outputLabel value="Tipo de Inventario "></p:outputLabel>
+								<p:outputLabel value="par_022.xhtml"
+									rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+							</div>
+						</p:column>
+						<p:column>
+							<div align="right">
+								<p:inputText id="inpBusqueda"
+									value="#{TipoInventarioBn.condicion}"></p:inputText>
+								<p:commandButton title="Buscar"
+									action="#{TipoInventarioBn.buscar()}" update="dtbTipoInventario"
+									icon="ui-icon-search" styleClass="secondary"></p:commandButton>
+								<p:commandButton title="Nuevo" update=":frm_par_22_1"
+									action="#{TipoInventarioBn.nuevo()}"
+									oncomplete="PF('dialog_22_1').show()"
+									icon="ui-icon-open-in-new" styleClass="secondary"></p:commandButton>
+							</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			<p:dataTable paginator="true" rows="15" reflow="true"
+				tableStyle="table-layout: auto;" style="margin-bottom:20px"
+				emptyMessage="No existe Tipo de Estación" id="dtbTipoInventario"
+				value="#{TipoInventarioBn.tipoInventarios}" var="tipoInventario">
+				<p:column headerText="Código">
+					<h:outputText value="#{tipoInventario.codigo}"></h:outputText>
+				</p:column>
+				<p:column headerText="Tipo de Inventario">
+					<h:outputText value="#{tipoInventario.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="Estado">
+					<h:outputText value="#{tipoInventario.estado.descripcion}"></h:outputText>
+				</p:column>
+				<p:column headerText="Tipo" width="30">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						action="#{TipoInventarioBn.modificar(tipoInventario)}"
+						oncomplete="PF('dialog_22_1').show()" update=":frm_par_22_1"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/pages/parametros/par_022_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Opciones del Sistema [sec-004]</ui:define>
+	<ui:define name="content">
+		<style type="text/css">
+.ui-treetable table {
+	table-layout: fixed
+}
+
+.value {
+	font-weight: bold
+}
+
+.ui-dialog table {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+		<h:form id="mod_00">
+			<p:growl showDetail="true" id="mensajes" autoUpdate="true"></p:growl>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:outputLabel value="Opciones del Sistema"></p:outputLabel>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+				</f:facet>
+				<f:facet name="right">
+					<p:commandButton value="Opción Principal" icon="ui-icon-plus"
+						action="#{ModuloBn.nuevaOpcion()}" update=":dialog_02"
+						oncomplete="PF('dialog_02').show()"></p:commandButton>
+					<p:commandButton value="SubOpción" action="#{ModuloBn.nuevoHijo()}"
+						update=":dialog_02"></p:commandButton>
+					<p:commandButton value="Editar" update=":dialog_02"
+						action="#{ModuloBn.cargarOpcion()}"></p:commandButton>
+				</f:facet>
+			</p:toolbar>
+			<div class="ui-g-12">
+				<div class="card card-w-title">
+					<h1>Opciones</h1>
+					<p:treeTable value="#{ModuloBn.arbol}" var="men" id="dataMod"
+						selectionMode="single" selection="#{ModuloBn.selectedNode}">
+						<f:facet name="header">
+                                Opciones del Sistema
+                            </f:facet>
+						<p:column headerText="Nombre">
+							<h:outputText value="#{men.descMenu}" />
+						</p:column>
+						<p:column headerText="Orden">
+							<div align="center">
+								<h:outputText value="#{men.ordenMenu}" />
+							</div>
+						</p:column>
+						<p:column headerText="Estado">
+							<div align="center">
+								<h:outputText value="#{men.estado.descripcion}" />
+							</div>
+						</p:column>
+						<p:column headerText="Ruta">
+							<h:outputText value="#{men.urlMenu}" />
+						</p:column>
+					</p:treeTable>
+				</div>
+			</div>
+		</h:form>
+		<ui:include src="/pages/seguridades/sec_004_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

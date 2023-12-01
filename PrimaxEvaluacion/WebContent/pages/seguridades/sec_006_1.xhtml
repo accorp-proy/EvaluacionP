@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dialog_04" id="dialog_04" resizable="false"
+		hideEffect="drop" closeOnEscape="true" height="450px">
+		<f:facet name="header">
+			<h:outputText value="Ingreso/Modificación de Usuario [sec-006-1]" />
+		</f:facet>
+		<h:form id="fd04">
+			<p:messages id="msgs" showDetail="true" />
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check" process="fd04"
+					action="#{usuarioCtrl.guardar()}" update=":usu_00"></p:commandButton>
+			</div>
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-12 ui-lg-4">
+					<div class="card card-w-title" style="height: 480px">
+						<h2>Datos Generales</h2>
+						<p:panelGrid columns="1" layout="grid"
+							styleClass="ui-panelgrid-blank form-group">
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText style="width:70%"
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.identificacionPersona}">
+								</p:inputText>
+								<p:commandButton title="Buscar" icon="ui-icon-search"
+									process="@this" listener="#{UsuarioBn.nuevaBusquedaPersona()}"
+									update=":frmPersona" oncomplete="PF('dialog_06').show()"></p:commandButton>
+								<label>Cédula</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText id="txt_pnom"
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.nombreCompleto}"
+									onblur="value=value.toUpperCase()"></p:inputText>
+								<label>Nombre Completo</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:calendar navigator="true" pattern="dd/MM/yyyy"
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.fechaNacimiento}"></p:calendar>
+								<label>Fecha de Nacimiento</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputMask mask="(99)999-9999"
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.telefonoConvencional}"></p:inputMask>
+								<label>Telefono Convencional</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.direccionDomicilio}" />
+								<label>Direción</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputMask mask="(99)99999999"
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.telefonoMovil}"></p:inputMask>
+								<label>Teléfono Celular</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.email}"></p:inputText>
+								<label>Correo Electrónico</label>
+							</h:panelGroup>
+						</p:panelGrid>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-lg-4">
+					<div class="card card-w-title" style="height: 480px">
+						<h2>Imagen</h2>
+						<div align="center">
+							<p:graphicImage id="graImageAct"
+								value="#{UsuarioBn.usuarioSeleccionado.personaUsuario.personaImagen.imgPath}"
+								width="140px" height="140px"></p:graphicImage>
+						</div>
+						<h2>Roles</h2>
+						<p:dataTable scrollable="true" scrollHeight="120"
+							value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.rolesUsario}"
+							emptyMessage="Sin roles" var="roluser" id="fdt04">
+							<f:facet name="header">
+								<div align="right">
+									<p:commandButton icon="ui-icon-plus" process="@this"
+										title="añadir"
+										action="#{usuarioCtrl.limpiarListaSeleccionados()}"
+										update=":dialog_05" oncomplete="PF('dialog_05').show()"></p:commandButton>
+								</div>
+							</f:facet>
+							<p:column headerText="Roles">
+								<h:outputText value="#{roluser.rol.nomRol}" />
+							</p:column>
+							<p:column width="30">
+								<p:commandButton icon="ui-icon-closethick" title="Quitar rol"
+									update="fdt04" process="@this"
+									action="#{usuarioCtrl.eliminaRol(roluser)}"></p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-lg-4">
+					<div class="card card-w-title" style="height: 480px">
+						<h2>Clave de Usuario</h2>
+						<p:panelGrid columns="1" layout="grid"
+							styleClass="ui-panelgrid-blank form-group" id="pnl_usuario">
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.nombreUsuario}"
+									id="txt_Nombre" onblur="value=value.toUpperCase()"
+									title="Ingrese el nombre del usuario de autenticación al portal">
+									<p:ajax event="blur" listener="#{usuarioCtrl.validateUser}"
+										update="msgs" process="@this"></p:ajax>
+								</p:inputText>
+								<pe:tooltip for="txt_Nombre" showEvent="focus" hideEvent="blur" />
+								<label>Usuario</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText type="password"
+									title="Clave de Usuario debe contener #{UsuarioBn.msgRx}"
+									value="#{UsuarioBn.saltedPwd}" id="txt_pass">
+									<p:ajax event="blur" update="msgs"
+										listener="#{usuarioCtrl.validarPwd}" process="@this,txt_pass" />
+								</p:inputText>
+								<label>Contraseña</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:inputText type="password"
+									value="#{usuarioCtrl.usuarioBean.llaveComprobacion}">
+									<p:ajax event="blur" listener="#{usuarioCtrl.validatePwd}"
+										update="msgs" process="pnl_usuario"></p:ajax>
+								</p:inputText>
+								<label>Confirmar contraseña</label>
+							</h:panelGroup>
+							<h:panelGroup styleClass="md-inputfield">
+								<p:calendar navigator="true" pattern="dd/MM/yyyy"
+									value="#{UsuarioBn.usuarioSeleccionado.vigenciaUsuario}"></p:calendar>
+								<label>Vigencia Usuario</label>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:selectOneMenu
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.estado}">
+									<f:selectItems value="#{collectorEM.estadosCompleto}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:selectCheckboxMenu id="multiple" converter="#{zonaConverter}"
+									value="#{usuarioCtrl.usuarioBean.zonaSeleccionadas}"
+									label="Zona">
+									<f:selectItems value="#{usuarioCtrl.usuarioBean.zonaList}"
+										var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}" />
+								</p:selectCheckboxMenu>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:signature style="width:360px;height:150px" widgetVar="sig"
+									guideline="true" readonly="true"
+									value="#{usuarioCtrl.usuarioBean.usuarioSeleccionado.personaUsuario.firma}" />
+
+							</h:panelGroup>
+						</p:panelGrid>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		<ui:include src="/pages/seguridades/sec_006_3.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>

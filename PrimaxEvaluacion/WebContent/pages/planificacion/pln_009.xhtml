@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Dashboard</ui:define>
+	<style type="text/css">
+.main-content {
+	padding: 0;
+}
+</style>
+
+	<ui:define name="content">
+
+		<style type="text/css">
+.gestion {
+	background-color: #DDEBF7 !important;
+	background-image: none !important;
+	color: #000000 !important;
+}
+</style>
+		<style type="text/css">
+.porcentaje {
+	background-color: #62F6BD !important;
+	background-image: none !important;
+	color: #000000 !important;
+}
+</style>
+		<h:form id="frm_pln_009">
+			<p:layout fullPage="false" id="lyt_pdr">
+				<p:layoutUnit position="west" id="lyt_centes">
+					<p:panelGrid styleClass="sinborde w200" columns="3">
+						<p:row>
+
+							<p:panelGrid columns="1" styleClass="sinborde">
+								<h:outputText id="labelResponsable" />
+								<h:panelGroup>
+									<p:selectOneMenu id="cmbAnio" style="width:100% !important"
+										value="#{TableroControlBn.anioSeleccionado}"
+										converter="#{parametrosConverter}">
+										<f:selectItem itemLabel="Año" />
+										<f:selectItems value="#{TableroControlBn.anioList}" var="anio"
+											itemLabel="#{anio.nombreLista}" itemValue="#{anio}" />
+
+									</p:selectOneMenu>
+								</h:panelGroup>
+								<p:selectCheckboxMenu id="cmbMeses"
+									style="width:100% !important"
+									value="#{TableroControlBn.mesesSeleccionados}" label="Meses"
+									converter="#{parametrosConverter}" filter="false">
+									<f:selectItems value="#{TableroControlBn.mesList}" var="mes"
+										itemLabel="#{mes.nombreLista}" itemValue="#{mes}"></f:selectItems>
+								</p:selectCheckboxMenu>
+								<p:selectCheckboxMenu style="width:100% !important"
+									id="cmbTipoEstacion" label="Negocio" filter="false"
+									value="#{TableroControlBn.tipoEstacionSeleccionados}"
+									converter="#{tipoEstacionConverter}">
+									<f:selectItems value="#{TableroControlBn.tipoEstacionList}"
+										var="tipoE" itemLabel="#{tipoE.descripcion}"
+										itemValue="#{tipoE}"></f:selectItems>
+								</p:selectCheckboxMenu>
+								<p:selectCheckboxMenu style="width:100% !important" id="cmbZona"
+									value="#{TableroControlBn.zonaSeleccionadas}" filter="false"
+									label="Zona" converter="#{zonaConverter}">
+									<f:selectItems value="#{TableroControlBn.zonaList}" var="zona"
+										itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+									<p:ajax event="change" process="@this cmbTipoEstacion,cmbZona" update="frm_pln_009:cmbEstacion"></p:ajax>
+								</p:selectCheckboxMenu>
+								<p:selectOneMenu id="cmbEstacion" style="width:100% !important"
+									value="#{TableroControlBn.estacionSeleccionada}"
+									converter="#{agenciaConverter}" var="t" filter="true"
+									filterMatchMode="contains">
+									<f:selectItem itemLabel="Estación" />
+									<f:selectItems value="#{TableroControlBn.agenciaList}"
+										var="estacion" itemLabel="#{estacion.nombreAgencia}"
+										itemValue="#{estacion}" />
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Nombre" />
+										</f:facet>
+										<h:outputText value="#{t.nombreAgencia}" />
+									</p:column>
+								</p:selectOneMenu>
+
+								<p:selectCheckboxMenu id="cmbEvaluacion"
+									style="width:100% !important"
+									value="#{TableroControlBn.evaluacionSeleccionadas}"
+									filter="false" label="Evaluación"
+									converter="#{evaluacionConverter}">
+									<f:selectItems value="#{TableroControlBn.evaluacionList}"
+										var="evaluacion" itemValue="#{evaluacion}"
+										itemLabel="#{evaluacion.descripcion}" />
+								</p:selectCheckboxMenu>
+								<p:selectOneMenu id="cmbNivelEvaluacion"
+									style="width:100% !important"
+									value="#{TableroControlBn.nivelEvaluacionSeleccionado}"
+									converter="#{nivelEvaluacionConverter}">
+									<f:selectItems value="#{TableroControlBn.nivelEvaluacionList}"
+										var="nivelEvaluacion" itemValue="#{nivelEvaluacion}"
+										itemLabel="#{nivelEvaluacion.descripcion}" />
+								</p:selectOneMenu>
+								<p:commandButton value="Filtrar"
+									action="#{TableroControlBn.filtrarModel()}"
+									process="@this frm_pln_009"
+									update="frm_pln_009:tabWiewDash,frm_pln_009:labelResponsable"></p:commandButton>
+
+							</p:panelGrid>
+
+						</p:row>
+					</p:panelGrid>
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center" id="lyt_center">
+					<p:tabView id="tabWiewDash" style="width: 100;height: 100%;">
+						<p:tab title="Gráficos" id="tabGrafico">
+							<div class="ui-g dashboard">
+								<p:panelGrid styleClass="sinborde">
+									<div class="ui-g-12 ui-md-6 ui-lg-3">
+										<div class="ui-g card colorbox colorbox-1">
+											<div class="ui-g-3" style="background-color: #03A9F4">
+												<span class="colorbox-name">#{TableroControlBn.tableroC.numeroTienda}
+												</span>
+											</div>
+											<div class="ui-g-9" style="background-color: #03A9F4">
+												<span class="colorbox-name"># Estación/Tienda</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion01 ne '0'}">
+									<div class="ui-g-12 ui-md-6 ui-lg-3">
+										<div class="ui-g card colorbox colorbox-1">
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color01}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra01}">#{TableroControlBn.tableroC.evaluacion01}</span>
+											</div>
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color01}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra01}">#{TableroControlBn.tableroC.puntaje01}</span>
+											</div>
+											<div class="ui-g-3"
+												style="background-color: #{TableroControlBn.tableroC.color01}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra01}">#{TableroControlBn.tableroC.nivel03}</span>
+											</div>
+
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion02 ne '0'}">
+									<div class="ui-g-12 ui-md-6 ui-lg-3">
+										<div class="ui-g card colorbox colorbox-2">
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color02}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra02}">#{TableroControlBn.tableroC.evaluacion02}</span>
+											</div>
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color02}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra02}">#{TableroControlBn.tableroC.puntaje02}</span>
+											</div>
+											<div class="ui-g-3"
+												style="background-color: #{TableroControlBn.tableroC.color02}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra02}">#{TableroControlBn.tableroC.nivel02}</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion03 ne '0'}">
+									<div class="ui-g-12 ui-md-3 ui-lg-2,ui-lg-2">
+										<div class="ui-g card colorbox colorbox-3">
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color03}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra03}">#{TableroControlBn.tableroC.evaluacion03}</span>
+											</div>
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color03}">
+
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra03}">#{TableroControlBn.tableroC.puntaje03}</span>
+											</div>
+											<div class="ui-g-3" align="right"
+												style="background-color: #{TableroControlBn.tableroC.color03}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra03}">#{TableroControlBn.tableroC.nivel03}</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion04 ne '0'}">
+									<div class="ui-g-12 ui-md-3 ui-lg-2,ui-lg-2">
+										<div class="ui-g card colorbox colorbox-4">
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color04}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra04}">#{TableroControlBn.tableroC.evaluacion04}</span>
+											</div>
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color04}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra04}">#{TableroControlBn.tableroC.puntaje04}</span>
+											</div>
+											<div class="ui-g-3"
+												style="background-color: #{TableroControlBn.tableroC.color04}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra04}">#{TableroControlBn.tableroC.nivel04}</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion05 ne '0'}">
+									<div class="ui-g-12 ui-md-6 ui-lg-3">
+										<div class="ui-g card colorbox colorbox-5">
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color05}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra05}">#{TableroControlBn.tableroC.evaluacion05}</span>
+											</div>
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color05}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra05}">#{TableroControlBn.tableroC.puntaje05}</span>
+
+											</div>
+											<div class="ui-g-3"
+												style="background-color: #{TableroControlBn.tableroC.color05}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra05}">#{TableroControlBn.tableroC.nivel05}</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion06 ne '0'}">
+									<div class="ui-g-12 ui-md-6 ui-lg-3">
+										<div class="ui-g card colorbox colorbox-6">
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color06}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra06}">#{TableroControlBn.tableroC.evaluacion06}</span>
+											</div>
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color06}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra06}">#{TableroControlBn.tableroC.puntaje06}</span>
+											</div>
+											<div class="ui-g-3"
+												style="background-color: #{TableroControlBn.tableroC.color06}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra06}">#{TableroControlBn.tableroC.nivel06}</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+								<p:panelGrid styleClass="sinborde"
+									rendered="#{TableroControlBn.tableroC.evaluacion07 ne '0'}">
+									<div class="ui-g-12 ui-md-6 ui-lg-3">
+										<div class="ui-g card colorbox colorbox-7">
+											<div class="ui-g-2"
+												style="background-color: #{TableroControlBn.tableroC.color07}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra07}">#{TableroControlBn.tableroC.puntaje07}
+												</span>
+											</div>
+											<div class="ui-g-7"
+												style="background-color: #{TableroControlBn.tableroC.color07}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra07}">#{TableroControlBn.tableroC.evaluacion07}</span>
+											</div>
+											<div class="ui-g-3"
+												style="background-color: #{TableroControlBn.tableroC.color07}">
+												<span class="colorbox-name"
+													style="color: #{TableroControlBn.tableroC.colorLetra07}">#{TableroControlBn.tableroC.nivel07}</span>
+											</div>
+										</div>
+									</div>
+								</p:panelGrid>
+
+							</div>
+							<div align="right">
+								<p:commandButton icon="fa fa-file-excel-o" ajax="false"
+									immediate="true"
+									actionListener="#{ReporteBn.imprimirExcel(25,appMain.usuario.idUsuario.toString(),TableroControlBn.nivel01,TableroControlBn.nivel02,TableroControlBn.nivel03,TableroControlBn.nivel04,TableroControlBn.nivel05,TableroControlBn.nivel06,TableroControlBn.porcentajeC,TableroControlBn.porcentajeE,null,true)}">
+									<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+								</p:commandButton>
+							</div>
+							<div class="ui-g-6">
+								<p:dataTable id="dtbEvaluacionZona"
+									emptyMessage="No existe información"
+									value="#{TableroControlBn.tabla1}" var="tabla">
+									<f:facet name="header">
+										<div align="center">
+											<p:outputLabel value="# Evaluaciones por Zona " />
+										</div>
+									</f:facet>
+									<p:column headerText="Zona" style="width:80px;font-weight:bold">
+										<div align="center">
+											<p:outputLabel value="#{tabla.zona}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel01}"
+										rendered="#{TableroControlBn.nivel01 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel01}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel02}"
+										rendered="#{TableroControlBn.nivel02 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel02}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel03}"
+										rendered="#{TableroControlBn.nivel03 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel03}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel04}"
+										rendered="#{TableroControlBn.nivel04 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel04}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel05}"
+										rendered="#{TableroControlBn.nivel05 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel05}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel06}"
+										rendered="#{TableroControlBn.nivel06 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel06}" />
+										</div>
+									</p:column>
+									<p:column headerText="Total">
+										<div align="center">
+											<p:outputLabel value="#{tabla.total}" />
+										</div>
+									</p:column>
+									<p:columnGroup type="footer">
+										<p:row>
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="TOTAL" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel01 ne '0'}"
+												footerText="#{TableroControlBn.nivel01T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel02 ne '0'}"
+												footerText="#{TableroControlBn.nivel02T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel03 ne '0'}"
+												footerText="#{TableroControlBn.nivel03T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel04 ne '0'}"
+												footerText="#{TableroControlBn.nivel04T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel05 ne '0'}"
+												footerText="#{TableroControlBn.nivel05T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel06 ne '0'}"
+												footerText="#{TableroControlBn.nivel06T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="#{TableroControlBn.nivelT}" />
+										</p:row>
+										<p:row>
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												footerText="% Calificación" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel01 ne '0'}"
+												footerText="#{TableroControlBn.nivel01C}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel02 ne '0'}"
+												footerText="#{TableroControlBn.nivel02C}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel03 ne '0'}"
+												footerText="#{TableroControlBn.nivel03C}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel04 ne '0'}"
+												footerText="#{TableroControlBn.nivel04C}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel05 ne '0'}"
+												footerText="#{TableroControlBn.nivel05C}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel06 ne '0'}"
+												footerText="#{TableroControlBn.nivel06C}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje" />
+										</p:row>
+									</p:columnGroup>
+								</p:dataTable>
+							</div>
+
+							<div class="ui-g-6">
+								<p:dataTable id="dtbEstacionZona"
+									emptyMessage="No existe información"
+									value="#{TableroControlBn.tabla2}" var="tabla">
+									<f:facet name="header">
+										<div align="center">
+											<p:outputLabel value="# Estaciones por Resultados por Zona " />
+										</div>
+									</f:facet>
+									<p:column headerText="Zona" style="width:80px;font-weight:bold">
+										<div align="center">
+											<p:outputLabel value="#{tabla.zona}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel01}"
+										rendered="#{TableroControlBn.nivel01 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel01}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel02}"
+										rendered="#{TableroControlBn.nivel02 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel02}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel03}"
+										rendered="#{TableroControlBn.nivel03 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel03}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel04}"
+										rendered="#{TableroControlBn.nivel04 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel04}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel05}"
+										rendered="#{TableroControlBn.nivel05 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel05}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel06}"
+										rendered="#{TableroControlBn.nivel06 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel06}" />
+										</div>
+									</p:column>
+									<p:column headerText="Total">
+										<div align="center">
+											<p:outputLabel value="#{tabla.total}" />
+										</div>
+									</p:column>
+									<p:columnGroup type="footer">
+										<p:row>
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="TOTAL" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel01 ne '0'}"
+												footerText="#{TableroControlBn.nivel01E}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel02 ne '0'}"
+												footerText="#{TableroControlBn.nivel02E}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel03 ne '0'}"
+												footerText="#{TableroControlBn.nivel03E}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel04 ne '0'}"
+												footerText="#{TableroControlBn.nivel04E}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel05 ne '0'}"
+												footerText="#{TableroControlBn.nivel05E}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel06 ne '0'}"
+												footerText="#{TableroControlBn.nivel06E}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="#{TableroControlBn.nivelE}" />
+										</p:row>
+										<p:row>
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												footerText="% Eficiencia" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel01 ne '0'}"
+												footerText="#{TableroControlBn.nivel01F}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel02 ne '0'}"
+												footerText="#{TableroControlBn.nivel02F}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel03 ne '0'}"
+												footerText="#{TableroControlBn.nivel03F}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel04 ne '0'}"
+												footerText="#{TableroControlBn.nivel04F}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel05 ne '0'}"
+												footerText="#{TableroControlBn.nivel05F}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje"
+												rendered="#{TableroControlBn.nivel06 ne '0'}"
+												footerText="#{TableroControlBn.nivel06F}%" />
+											<p:column style="font-weight:bold" styleClass="porcentaje" />
+										</p:row>
+									</p:columnGroup>
+								</p:dataTable>
+							</div>
+
+							<div class="ui-g-6">
+								<p:dataTable id="dtbEvaluacionMes"
+									emptyMessage="No existe información"
+									value="#{TableroControlBn.tabla4}" var="tabla">
+									<f:facet name="header">
+										<div align="center">
+											<p:outputLabel value="# Evaluaciones por Mes "></p:outputLabel>
+										</div>
+									</f:facet>
+									<p:column headerText="Mes" style="width:60px;font-weight:bold">
+										<div align="center">
+											<p:outputLabel value="#{tabla.mes}"></p:outputLabel>
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel01}"
+										rendered="#{TableroControlBn.nivel01 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel01}"></p:outputLabel>
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel02}"
+										rendered="#{TableroControlBn.nivel02 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel02}"></p:outputLabel>
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel03}"
+										rendered="#{TableroControlBn.nivel03 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel03}"></p:outputLabel>
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel04}"
+										rendered="#{TableroControlBn.nivel04 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel04}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel05}"
+										rendered="#{TableroControlBn.nivel05 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel05}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel06}"
+										rendered="#{TableroControlBn.nivel06 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel06}" />
+										</div>
+									</p:column>
+									<p:column headerText="Total">
+										<div align="center">
+											<p:outputLabel value="#{tabla.total}" />
+										</div>
+									</p:column>
+									<p:columnGroup type="footer">
+										<p:row>
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="TOTAL" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel01 ne '0'}"
+												footerText="#{TableroControlBn.nivel01T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel02 ne '0'}"
+												footerText="#{TableroControlBn.nivel02T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel03 ne '0'}"
+												footerText="#{TableroControlBn.nivel03T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel04 ne '0'}"
+												footerText="#{TableroControlBn.nivel04T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel05 ne '0'}"
+												footerText="#{TableroControlBn.nivel05T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel06 ne '0'}"
+												footerText="#{TableroControlBn.nivel06T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="#{TableroControlBn.nivelT}" />
+										</p:row>
+									</p:columnGroup>
+								</p:dataTable>
+							</div>
+							<div class="ui-g-6">
+								<p:dataTable id="dtbDetalleEstacion" scrollable="true"
+									scrollHeight="280" emptyMessage="No existe información"
+									value="#{TableroControlBn.tabla3}" var="tabla">
+									<f:facet name="header">
+										<div align="center">
+											<p:outputLabel value="Detalle de Estaciones de Servicio " />
+										</div>
+									</f:facet>
+									<p:column headerText="Agencia"
+										style="width:150px;font-weight:bold">
+										<div align="left">
+											<p:outputLabel value="#{tabla.agencia}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel01}"
+										rendered="#{TableroControlBn.nivel01 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel01}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel02}"
+										rendered="#{TableroControlBn.nivel02 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel02}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel03}"
+										rendered="#{TableroControlBn.nivel03 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel03}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel04}"
+										rendered="#{TableroControlBn.nivel04 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel04}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel05}"
+										rendered="#{TableroControlBn.nivel05 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel05}" />
+										</div>
+									</p:column>
+									<p:column headerText="#{TableroControlBn.nivel06}"
+										rendered="#{TableroControlBn.nivel06 ne '0'}">
+										<div align="center">
+											<p:outputLabel value="#{tabla.nivel06}" />
+										</div>
+									</p:column>
+									<p:column headerText="Total">
+										<div align="center">
+											<p:outputLabel value="#{tabla.total}" />
+										</div>
+									</p:column>
+									<p:columnGroup type="footer">
+										<p:row>
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="TOTAL" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel01 ne '0'}"
+												footerText="#{TableroControlBn.nivel01T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel02 ne '0'}"
+												footerText="#{TableroControlBn.nivel02T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel03 ne '0'}"
+												footerText="#{TableroControlBn.nivel03T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel04 ne '0'}"
+												footerText="#{TableroControlBn.nivel04T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel05 ne '0'}"
+												footerText="#{TableroControlBn.nivel05T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												rendered="#{TableroControlBn.nivel06 ne '0'}"
+												footerText="#{TableroControlBn.nivel06T}" />
+											<p:column style="font-weight:bold" styleClass="gestion"
+												footerText="#{TableroControlBn.nivelT}" />
+										</p:row>
+									</p:columnGroup>
+								</p:dataTable>
+
+							</div>
+						</p:tab>
+					</p:tabView>
+				</p:layoutUnit>
+			</p:layout>
+		</h:form>
+	</ui:define>
+</ui:composition>

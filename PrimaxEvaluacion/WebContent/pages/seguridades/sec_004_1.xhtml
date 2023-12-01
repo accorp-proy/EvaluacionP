@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dialog_02" id="dialog_02" appendTo="@(body)"
+		hideEffect="drop" responsive="true" closeOnEscape="true"
+		showHeader="true" resizable="true">
+		<f:facet name="header">
+			<h:outputText value="Mantenimiento de módulo [sec-004-1]" />
+		</f:facet>
+		<h:form>
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{ModuloBn.guardarModulo()}" update=":mod_00"
+					oncomplete="PF('dialog_02').hide()"></p:commandButton>
+			</div>
+			<p:panelGrid styleClass="sinborde" style="width:100%">
+				<p:row>
+					<p:column>
+						<h:outputText value="Padre" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{ModuloBn.menuSeleccionado.menuPadre.descMenu}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="width:40%">
+						<h:outputText value="Nombre :" />
+					</p:column>
+					<p:column>
+						<p:inputText value="#{ModuloBn.menuSeleccionado.descMenu}"
+							required="true" requiredMessage="Valor de Nombre es Requerido"
+							title="Nombre del módulo" style="width:100%"></p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="Ruta" />
+					</p:column>
+					<p:column>
+						<p:inputText title="Ruta del archivo" style="width:100%"
+							value="#{ModuloBn.menuSeleccionado.urlMenu}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="Icono" />
+					</p:column>
+					<p:column>
+						<p:inputText title="Icono de la Opción" style="width:100%"
+							value="#{ModuloBn.menuSeleccionado.icoMenu}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="# Ubicación" />
+					</p:column>
+					<p:column>
+						<p:inputNumber decimalPlaces="0"
+							title="Lugar donde aparece la opción" style="width:100%"
+							value="#{ModuloBn.menuSeleccionado.ordenMenu}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputText value="Estado :" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu style="width:100% !important" editable="false"
+							value="#{ModuloBn.menuSeleccionado.estado}">
+							<f:selectItems value="#{collectorEM.estados}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

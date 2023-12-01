@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pu="http://primefaces.org/ultima">
+
+	<div class="topbar clearfix">
+		<div class="topbar-left">
+			<div class="logo"></div>
+		</div>
+
+		<div class="topbar-right">
+			<a id="menu-button" href="#"> <i></i>
+			</a> <a id="topbar-menu-button" href="#"> <i class="material-icons">&#xE5D4;</i>
+			</a>
+			<ul class="topbar-items fadeInDown animated">
+				<ui:fragment
+					rendered="#{guestPreferences.profileMode == 'overlay'||guestPreferences.menuLayout == 'menu-layout-static menu-layout-horizontal'}">
+					<li class="profile-item"><a>
+							<div align="center" style="color: #fff">
+								<p:outputLabel value="#{appMain.usuario.nombreUsuario}"></p:outputLabel>
+							</div>
+					</a>
+						<ul id="profile-menu" class="ultima-menu">
+							<li role="menuitem"><p:commandLink
+									oncomplete="PF('dlg_par_001').show()">
+									<i class="fa fa-fw fa-user"></i>
+									<span>Contraseña</span>
+								</p:commandLink></li>
+							<li role="menuitem"><p:commandLink
+									action="#{appMain.logOut()}" process="@this">
+									<i class="fa fa-fw fa-sign-out"></i>
+									<span>Salir</span>
+								</p:commandLink></li>
+						</ul></li>
+				</ui:fragment>
+				<!-- 
+				<li class="search-item"><h:panelGroup
+						styleClass="md-inputfield">
+						<p:inputText />
+						<label>Search</label>
+						<i class="topbar-icon material-icons">&#xE8B6;</i>
+					</h:panelGroup>
+				</li>
+				 -->
+			</ul>
+		</div>
+	</div>
+	<ui:include src="/pages/parametros/par_001.xhtml" />
+</ui:composition>

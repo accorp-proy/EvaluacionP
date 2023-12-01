@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_10_1" id="dialog_10_1"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Proceso " />
+			<p:outputLabel value="par_010_1.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_010_1">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{ProcesoBn.guardar()}" update=":frm_par_010"
+					oncomplete="PF('dialog_10_1').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:outputLabel value="Tipo CheckList :" />
+				<p:selectOneMenu style="width:80% !important" required="true"
+					value="#{ProcesoBn.tipoChecKListSeleccionado}"
+					converter="#{tipoCheckListConverter}">
+					<f:selectItem itemLabel="Seleccione Tipo CheckList" />
+					<f:selectItems value="#{ProcesoBn.tiposChecList}" var="tipoCheck"
+						itemValue="#{tipoCheck}" itemLabel="#{tipoCheck.descripcion}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Orden" />
+				<p:spinner value="#{ProcesoBn.procesoSeleccionado.orden}" size="5"
+					min="0" max="1000">
+				</p:spinner>
+				<p:outputLabel value="Descripción Proceso " />
+				<p:inputText value="#{ProcesoBn.procesoSeleccionado.nombreProceso}"
+					required="true" requiredMessage="Valor de Nombre es requerido"></p:inputText>
+				<p:outputLabel> Estado </p:outputLabel>
+				<p:selectOneMenu style="width:50% !important" editable="false"
+					value="#{ProcesoBn.procesoSeleccionado.estado}">
+					<f:selectItems value="#{ProcesoBn.estadosActIna}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso1Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bd8ddab6-f5d1-4fe6-bd65-7d8fc43eea7a">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{condicioncolor}=='true']]></conditionExpression>
+			<style forecolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{condicioncolor}=='false']]></conditionExpression>
+			<style forecolor="#0F0101"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+kpi.id_check_list_proceso_ejecucion as id,
+('En el arqueo efectuado al promotor de '||lower(tip.descripcion)||' '||kpi.nombre_vendedor ||' '||'se detectó un ' ||(CASE WHEN kpi.valor_diferencia < 0 THEN 'faltante de' else 'sobrante de' end ) ) as seccion,
+('efectivo por el valor de') as seccion1,
+kpi.valor_diferencia::numeric as valorDiferencia,
+(CASE WHEN kpi.valor_diferencia < 0 THEN 'true' else 'false' end ) as condicionColor
+from  check_list_kpi_ejecucion_et kpi
+inner join tipo_estacion_et tip
+on kpi.id_tipo_estacion = tip.id_tipo_estacion
+inner join criterio_evaluacion_et eva
+on kpi.id_criterio_evaluacion = eva.id_criterio_evaluacion
+and eva.tipo = 'C'
+where  kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso}
+and kpi.descripcion not like '%Permisible%'
+and kpi.estado = 'ACT'
+and kpi.valor_diferencia <> 0
+order by kpi.id_check_list_kpi_ejecucion]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="seccion" class="java.lang.String"/>
+	<field name="seccion1" class="java.lang.String"/>
+	<field name="valordiferencia" class="java.math.BigDecimal"/>
+	<field name="condicioncolor" class="java.lang.String"/>
+	<variable name="orden" class="java.lang.Long" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement stretchType="RelativeToTallestObject" x="30" y="0" width="428" height="15" isPrintWhenDetailOverflows="true" uuid="e0aedd29-a628-4ada-af0b-90e9703e94ab"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seccion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement style="style1" stretchType="RelativeToBandHeight" x="176" y="15" width="60" height="15" isRemoveLineWhenBlank="true" uuid="51e771bf-3d2c-4c84-ad13-8df439e575ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valordiferencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="15" width="116" height="15" uuid="6b4ca381-261a-472e-b642-4f1ee5b777ab"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seccion1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="style1" x="146" y="15" width="30" height="15" uuid="e7eb6c47-7b46-4c49-96b9-a6f3113e285a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[USD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="30" width="426" height="10" uuid="a24404c7-6c81-46ca-b686-36d58b8de5c1"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="0" width="10" height="15" uuid="553f3ba4-3292-4cbc-bc9a-3ce306934d0a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{orden}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="10" height="15" uuid="cebc4a56-2197-40ba-813a-b4a26ebd985c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+					<paragraph rightIndent="1"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="5" height="15" uuid="804dd242-5c88-4b13-b0be-7af7060c0a6c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="0" width="5" height="15" uuid="a2bc50a4-abe9-4256-bc50-c619bdef7e2e"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

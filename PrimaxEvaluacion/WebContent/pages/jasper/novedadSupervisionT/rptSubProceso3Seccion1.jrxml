@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSubProceso3Seccion1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="627b1595-40bd-4191-9751-54f222f48337">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="par_id_proceso" class="java.lang.Long"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select pro.descripcion as proceso from check_list_proceso_ejecucion_et pro where pro.id_check_list_proceso_ejecucion=$P{par_id_proceso};]]>
+	</queryString>
+	<field name="proceso" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="15" width="422" height="15" uuid="a2d08e41-217b-49bd-8b61-1554a5fd8b0e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Facturas Pendientes de ingreso.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="15" width="30" height="15" uuid="e2be6c3b-a4a1-46c5-8929-9ecaf3faaf1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1.1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="452" height="15" uuid="94a23d7c-c6ba-48e5-b364-229467243f22"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Documentación pendiente por regularizar en JDE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="0" width="25" height="15" uuid="47194c23-791d-45cd-8912-957c12f78b71"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1.]]></text>
+			</staticText>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="80" y="30" width="404" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="5639a1e5-f89d-4295-9a17-7a2648128ac8"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubFactura.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="45">
+			<staticText>
+				<reportElement x="80" y="0" width="427" height="15" uuid="134e38f0-5d90-41c0-9f3e-53be2d729c36"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Notas de Crédito Pendientes de ingreso.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="30" height="15" uuid="7179fa59-9779-40b5-ba87-4002dccbbea7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1.2.]]></text>
+			</staticText>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="80" y="15" width="404" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="76fabc68-3e08-4c7a-9670-08ca9eccf00c"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubNotaCredito.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="45">
+			<staticText>
+				<reportElement x="80" y="0" width="427" height="15" uuid="221d2479-774e-4c8f-b057-990cb2fa45b9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Notas de Devoluciones.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="30" height="15" uuid="039c84bd-08ec-433c-bdb8-902cc1bb1af9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1.3.]]></text>
+			</staticText>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="80" y="15" width="404" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="beadf3f9-e050-4835-b271-e8d1a265a5d6"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubNotaDevolucion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="45">
+			<staticText>
+				<reportElement x="80" y="0" width="427" height="15" uuid="00d3b998-f898-41f3-a8d6-bf9b81eb753c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Actas de Entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="30" height="15" uuid="59d83392-565d-42ff-938e-646326ddafb0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.1.4.]]></text>
+			</staticText>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="80" y="15" width="404" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="95db7744-1a6c-440f-b9eb-e22e9f81529b"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubActaEntrega.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

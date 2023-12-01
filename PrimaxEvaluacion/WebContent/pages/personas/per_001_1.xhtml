@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dialog widgetVar="dlg_per_01" id="dlg_per_01" modal="true"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText
+				value=" Ingreso/Modificación Datos Personales [per-001-1]" />
+		</f:facet>
+		<h:form id="frm_per_0011">
+			<div align="right">
+				<p:commandButton icon="ui-icon-check"
+					update=":frm_per_0011,:frm_per_001" action="#{personaBn.guardar()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<p:tabView id="tabView_00">
+				<p:tab id="tab_00" title="Información General">
+					<p:panelGrid styleClass="sinborde w100 ui-panelgrid-blank"
+						id="grd_data">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Identificación"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText maxlength="10"
+									value="#{personaBn.personaSeleccionada.identificacionPersona}">
+									<p:ajax process="@this" event="blur"
+										listener="#{personaBn.validarPersona()}" update="@form"></p:ajax>
+								</p:inputText>
+							</p:column>
+
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Nombre Completo"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{personaBn.personaSeleccionada.nombreCompleto}"></p:inputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Nacimiento"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:calendar yearRange="c-80:c+80"
+									value="#{personaBn.personaSeleccionada.fechaNacimiento}"
+									navigator="true"></p:calendar>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Dirección"></p:outputLabel>
+							</p:column>
+							<p:column>
+								<p:inputTextarea styleClass="w100"
+									value="#{personaBn.personaSeleccionada.direccionDomicilio}"></p:inputTextarea>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="4">
+								<p:fieldset legend="Datos de Contacto">
+									<p:panelGrid>
+										<p:row>
+											<p:column>
+												<p:outputLabel value="Teléfono"></p:outputLabel>
+											</p:column>
+											<p:column>
+												<p:inputMask mask="(999) 999-999"
+													value="#{personaBn.personaSeleccionada.telefonoConvencional}"></p:inputMask>
+											</p:column>
+										</p:row>
+										<p:row>
+											<p:column>
+												<p:outputLabel value="Móvil"></p:outputLabel>
+											</p:column>
+											<p:column>
+												<p:inputMask mask="(099) 9999999"
+													value="#{personaBn.personaSeleccionada.telefonoMovil}"></p:inputMask>
+											</p:column>
+										</p:row>
+										<p:row>
+											<p:column>
+												<p:outputLabel value="Correo"></p:outputLabel>
+											</p:column>
+											<p:column>
+												<p:inputText label="Correo"
+													value="#{personaBn.personaSeleccionada.email}"
+													validator="EmailValidator"></p:inputText>
+											</p:column>
+										</p:row>
+									</p:panelGrid>
+								</p:fieldset>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab id="tab_01" title="Firma ">
+					<div class="ui-fluid">
+						<p:panelGrid columns="1" columnClasses="ui-grid-col-6"
+							layout="grid" styleClass="ui-panelgrid-blank">
+							<p:signature style="width:360px;height:150px" widgetVar="sig"
+								guideline="true" value="#{personaBn.personaSeleccionada.firma}" />
+							<p:commandButton icon="fa fa-book" type="button"
+								title="Limpiar Firma" onclick="PF('sig').clear()" />
+						</p:panelGrid>
+					</div>
+				</p:tab>
+			</p:tabView>
+		</h:form>
+	</p:dialog>
+</ui:composition>

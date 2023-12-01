@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptNovedadControl" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b83bdb9-a95e-4984-8dc2-331118a376f8">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="24"/>
+	<parameter name="par_id_check_list" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="par_usuario" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\ReportesProyectos\\PrimaxEvaluacion\\NovedadCCTV\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+eje.id_check_list_ejecucion as id,
+rep.codigo_replace as codigoReporte,
+rep.fecha_reporte as fechaReporte,
+rep.fecha_verificacion as fechaVerificacion,
+rep.nombre as nombreReporte,
+rep.sub_titulo as subTitulo,
+est.nombre_agencia as nombreEstacion,
+rep.descripcion_replace as descripcion,
+(rep.codigo_replace ||' '||est.nombre_agencia) as piePagina
+from check_list_ejecucion_et eje
+inner join planificacion_et pla
+on eje.id_planificacion = pla.id_planificacion
+inner join check_list_ejecucion_reporte_et rep
+on eje.id_check_list_ejecucion = rep.id_check_list_ejecucion
+inner join agencia_et est
+on pla.id_agencia = est.id_agencia
+where eje.id_check_list_ejecucion = $P{par_id_check_list}
+and eje.estado='ACT'
+and pla.estado='ACT']]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="codigoreporte" class="java.lang.String"/>
+	<field name="fechareporte" class="java.sql.Timestamp"/>
+	<field name="fechaverificacion" class="java.sql.Timestamp"/>
+	<field name="nombrereporte" class="java.lang.String"/>
+	<field name="subtitulo" class="java.lang.String"/>
+	<field name="nombreestacion" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="piepagina" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="234" height="15" uuid="cc532500-6450-4603-9679-18c755ed3884"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Reporte de Visita Virtual: CCTV]]></text>
+			</staticText>
+			<image hAlign="Center">
+				<reportElement x="374" y="0" width="181" height="32" isRemoveLineWhenBlank="true" uuid="4bedfcd4-a6a7-4345-9685-38cde1c2aa5b"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="65" height="15" backcolor="#DDD9C3" uuid="39948bc6-41e1-4556-99b0-0bb2b1587cd0"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Reporte :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="15" width="65" height="15" backcolor="#DDD9C3" uuid="6a275c90-ba86-40fa-bb08-f1c4238bde4c"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Estación :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="275" y="0" width="130" height="15" backcolor="#DDD9C3" uuid="b2252cca-5439-4f6f-b970-f89fe67d608c"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Fecha Reporte :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="275" y="15" width="130" height="15" backcolor="#DDD9C3" uuid="6667c878-8fc4-4091-bf48-31fb5a022e81"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Fecha Verificación :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="40" width="555" height="15" uuid="1283ca01-0b17-4367-a788-bc3b41f70e08"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrereporte}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="405" y="0" width="150" height="15" uuid="5f8957e2-3b1f-4dcb-8006-f714b7eecd83"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechareporte}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="405" y="15" width="150" height="15" uuid="1d28fab2-25e5-4469-b260-f7c5215839c2"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaverificacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="65" y="0" width="210" height="15" uuid="045ffe5a-780f-4886-8b01-e62ff5b8517f"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoreporte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="15" width="210" height="15" uuid="fe179c9a-40e5-42fb-9cfe-3a29b605ee10"/>
+				<box>
+					<topPen lineWidth="0.3"/>
+					<leftPen lineWidth="0.3"/>
+					<bottomPen lineWidth="0.3"/>
+					<rightPen lineWidth="0.3"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreestacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="65" width="555" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="886cbed7-2181-4e30-b219-834d338138d3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="555" height="10" uuid="d462bcc2-8399-46c9-86b2-4422d2e33156"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="55" width="555" height="10" uuid="038bf390-1acb-4281-ab32-7250b6f836cf"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="555" height="16" uuid="384ac166-e77b-429e-aa9f-a6690dcf58b9"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="96" width="555" height="15" isPrintWhenDetailOverflows="true" uuid="8f5b4694-3f88-4a8c-8c73-5efd64839b2c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtitulo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="50" uuid="f2eca5c6-adef-4767-b733-adeb968bd459"/>
+				<subreportParameter name="par_id_check_list">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptNovedadComentario.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="50" isRemoveLineWhenBlank="true" uuid="cf7ba7fd-e3a6-40d5-a171-8f592e1ed6e0"/>
+				<subreportParameter name="par_id_check_list">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptNovedadImagen.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="50" uuid="f10e7666-f19d-4ae7-9d8e-fb7b550c976c"/>
+				<subreportParameter name="par_id_check_list_ejecucion">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="par_usuario">
+					<subreportParameterExpression><![CDATA[$P{par_usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptCheckListEjecutadoGeneral.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="555" height="15" uuid="756a52fd-ff74-452c-a2cb-0222fcf69a88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{piepagina}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="4" backcolor="#FFC000" uuid="2f4ee6f0-0b8a-41d0-99fb-ac6fa8d332d4"/>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

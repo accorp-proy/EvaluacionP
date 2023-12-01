@@ -1,0 +1,126 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Dashboard</ui:define>
+	<style type="text/css">
+.main-content {
+	padding: 0;
+}
+</style>
+	<ui:define name="content">
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_car_main" rendered="#{dashboardBn.tipoAuditor}">
+			<style type="text/css">
+.schedule-agendada, .schedule-blue .fc-event-skin, .schedule-blue a {
+	background-color: #BFBFBF;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-en-ejecucion, .schedule-yellow .fc-event-skin,
+	.schedule-yellow a {
+	background-color: #00B0F0;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-ejecutado, .schedule-green .fc-event-skin, .schedule-green a {
+	background-color: #70AD47;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-no-ejecutado, .schedule-red .fc-event-skin, .schedule-red a {
+	background-color: #FF0000;
+	color: black;
+	border-color: #41719C;
+}
+
+.schedule-inconcluso, .schedule-orange .fc-event-skin, .schedule-orange a
+	{
+	background-color: #ED7D31;
+	color: black;
+	border-color: #41719C;
+}
+</style>
+			<h:outputScript library="js" name="calendar.js" />
+			<div align="left">
+				<p:commandButton value="Evaluación/Inventario"></p:commandButton>
+				<p:spacer width="5"></p:spacer>
+				<p:inputSwitch value="#{dashboardBn.visualizar}" label="Evaluación"
+					onLabel="OF" offLabel="Inventario">
+					<p:ajax update="schedule" />
+				</p:inputSwitch>
+			</div>
+			<p:spacer></p:spacer>
+			<p:schedule id="schedule" value="#{dashboardBn.eventModel}"
+				timeFormat="H:mm" axisFormat="H:mm" widgetVar="myschedule"
+				locale="es">
+				<p:ajax event="eventSelect" update=":frm_pln_003"
+					listener="#{dashboardBn.onEventSelect}"
+					oncomplete="PF('dlg_pln_003').show();" />
+				<p:commandButton icon="ui-icon-search"></p:commandButton>
+			</p:schedule>
+		</h:form>
+		<h:form id="frm_ger_001" rendered="#{dashboardBn.tipoGerente}">
+			<div align="center">
+				<p:dataTable paginator="true" rows="9" reflow="true"
+					tableStyle="table-layout: auto;" style="margin-bottom:20px"
+					emptyMessage="No existe Formatos" id="dtbCheckList"
+					value="#{dashboardBn.checkListEjecuciones}" var="checkList">
+					<p:column headerText="Código">
+						<h:outputText value="#{checkList.codigo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Fecha Ejecución">
+						<h:outputText value="#{checkList.fechaRegistro}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Evaluación">
+						<h:outputText value="#{checkList.evaluacion.descripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo CheckList">
+						<h:outputText value="#{checkList.tipoChecKList.descripcion}"></h:outputText>
+					</p:column>
+
+					<p:column headerText="Estado CheckList">
+						<h:outputText value="#{checkList.estadoCheckList.descripcion}"
+							title="El estado en que se encuetra el CheckList"></h:outputText>
+					</p:column>
+					<p:column headerText="Plan Acción">
+						<h:outputText value="#{checkList.estadoPlanAccion.descripcion}"
+							title="El estado en que se encuetra el Plan de acción"></h:outputText>
+					</p:column>
+					<p:column width="5" headerText="Acción">
+						<div align="center">
+							<p:commandButton icon="ui-icon-event-available"
+								disabled="#{checkList.estadoPlanAccion.descripcion ne 'PENDIENTE'}"
+								title="Botón permite ingresar plan Acción"
+								onclick="PF('dlg_conf_3').show()" process="@this frm_ger_001"
+								action="#{dashboardBn.modificar(checkList)}"></p:commandButton>
+						</div>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+		<p:confirmDialog widgetVar="dlg_conf_3" header="Confirmar"
+			appendTo="@(body)" message="Esta seguro de ingresar Plan de Acción ?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf_3').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check"
+					oncomplete="PF('dlg_conf_3').hide()"
+					update="frm_ger_001:dtbCheckList" action="#{dashboardBn.guardar()}"
+					process="@this"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+		<ui:include src="/pages/planificacion/pln_003.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

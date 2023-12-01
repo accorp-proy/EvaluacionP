@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_par_001" id="dlg_par_001"
+		width="400px" modal="true" showEffect="drop" hideEffect="drop"
+		appendTo="@(body)">
+		<f:facet name="header">
+			<h:outputLabel value="Cambio de contraseña" />
+		</f:facet>
+		<h:form id="frm_par_001">
+			<p:growl id="msg"></p:growl>
+			<div class="ui-g-12 ui-lg-12 ui-md-12">
+				<p:panelGrid layout="grid" columns="3"
+					styleClass="ui-panelgrid-blank form-group">
+					<h:panelGroup>
+						<p:outputLabel value="#{appMain.usuario.nombreUsuario}" />
+					</h:panelGroup>
+					<h:panelGroup styleClass="md-inputfield">
+						<p:inputText type="password" value="#{appMain.clave}"
+							style="width:100%" />
+						<label>Clave</label>
+					</h:panelGroup>
+					<p:commandButton icon="ui-icon-check"
+						oncomplete="PF('dlg_par_001').hide()"
+						action="#{appMain.actualizarClave()}" update="msg" />
+				</p:panelGrid>
+			</div>
+		</h:form>
+	</p:dialog>
+</ui:composition>

@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
+		<h:form id="f_00">
+			<p:growl id="mensajes" autoUpdate="true"></p:growl>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:outputLabel value="Mantenimiento de Roles"></p:outputLabel>
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+					<p:commandButton icon="ui-icon-plus" value="Nuevo"
+						action="#{MenuRolBn.nuevo()}"
+						oncomplete="PF('dlg_seg_005').show()" update=":dlg_seg_005"
+						title="Nuevo Rol"></p:commandButton>
+				</f:facet>
+			</p:toolbar>
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-12">
+					<p:dataTable id="dat_rol" paginator="true" rows="8"
+						value="#{MenuRolBn.rolesSistema}" emptyMessage="Sin Roles"
+						var="rols" reflow="true" tableStyle="table-layout: auto;">
+						<f:facet name="header">
+							<h:outputText value="Roles de usuarios" />
+						</f:facet>
+						<p:column headerText="Nombre de Rol">
+							<h:outputText value="#{rols.nomRol}" />
+						</p:column>
+						<p:column headerText="Estado" style="text-alig:center">
+							<h:outputText value="#{rols.estado.descripcion}" />
+						</p:column>
+						<p:column>
+							<div align="center">
+								<p:commandButton icon="ui-icon-pencil"
+									action="#{MenuRolBn.edit(rols)}"
+									oncomplete="PF('dlg_seg_005').show()" update=":dlg_seg_005"
+									process="@this" title="Editar Rol"></p:commandButton>
+								<p:commandButton action="#{MenuRolBn.editAcesos(rols)}"
+									icon="fa fa-shield" id="btn_edit" title="Modificar Accesos"
+									update=":fr_02" oncomplete="PF('dlg_seg_013').show()"></p:commandButton>
+							</div>
+						</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+		</h:form>
+		<ui:include src="/pages/seguridades/sec_003_1.xhtml"></ui:include>
+		<ui:include src="/pages/seguridades/sec_003_2.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

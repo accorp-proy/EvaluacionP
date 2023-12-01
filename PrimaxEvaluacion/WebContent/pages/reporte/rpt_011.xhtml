@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
+		<h:form id="frm_rpt_011">
+			<p:panelGrid id="pnl" styleClass="sinborde w120" layout="grid"
+				columns="10">
+				<f:facet name="header">
+
+					<p:column colspan="10">
+						<div align="left">
+							<p:outputLabel value="Reporte histórico consolidado por procesos" />
+						</div>
+					</p:column>
+				</f:facet>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important" id="cmbAnio"
+						value="#{rptConsolidadoProcesoBn.anioSeleccionado}"
+						converter="#{parametrosConverter}">
+						<f:selectItem itemLabel="Año" />
+						<f:selectItems value="#{rptConsolidadoProcesoBn.tipoAnioList}"
+							var="anio" itemLabel="#{anio.nombreLista}" itemValue="#{anio}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectCheckboxMenu id="cmbMeses" style="width:80px !important"
+						value="#{rptConsolidadoProcesoBn.mesesSeleccionados}"
+						label="Meses" converter="#{parametrosConverter}" filter="false"
+						filterMatchMode="startsWith">
+						<f:selectItems value="#{rptConsolidadoProcesoBn.tipoMesList}"
+							var="mes" itemLabel="#{mes.nombreLista}" itemValue="#{mes}"></f:selectItems>
+					</p:selectCheckboxMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important" id="cmbZona"
+						value="#{rptConsolidadoProcesoBn.zonaSeleccionada}"
+						converter="#{zonaConverter}">
+						<f:selectItem itemLabel="Zona" />
+						<f:selectItems value="#{rptConsolidadoProcesoBn.tipoZonaList}"
+							var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important" id="cmbEvaluacion"
+						value="#{rptConsolidadoProcesoBn.evaluacionSeleccionada}"
+						converter="#{evaluacionConverter}">
+						<f:selectItem itemLabel="Evaluación" />
+						<f:selectItems value="#{rptConsolidadoProcesoBn.evaluacionList}"
+							var="evaluacion" itemLabel="#{evaluacion.descripcion}"
+							itemValue="#{evaluacion}"></f:selectItems>
+						<p:ajax event="change" update="frm_rpt_011:cmbTipoCheck"></p:ajax>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:100px !important" id="cmbTipoCheck"
+						value="#{rptConsolidadoProcesoBn.tipoChecKListSeleccionado}"
+						converter="#{tipoCheckListConverter}">
+						<f:selectItem itemLabel="Tipo CheckList" />
+						<f:selectItems value="#{rptConsolidadoProcesoBn.tiposChecKList}"
+							var="tipoCheck" itemLabel="#{tipoCheck.descripcion}"
+							itemValue="#{tipoCheck}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important"
+						id="cmbNivelEvaluacion"
+						value="#{rptConsolidadoProcesoBn.nivelEvaluacionSeleccionado}"
+						converter="#{nivelEvaluacionConverter}">
+						<f:selectItems
+							value="#{rptConsolidadoProcesoBn.nivelEvaluacionList}"
+							var="nivelEvaluacion" itemValue="#{nivelEvaluacion}"
+							itemLabel="#{nivelEvaluacion.descripcion}" />
+						<p:ajax event="change" update="frm_rpt_011:cmbNivelEvaluacionD"></p:ajax>
+					</p:selectOneMenu>
+					<p:commandButton icon="fa fa-eye" update=":frm_011_1"
+						title="Visualizar Nivel Evaluación"
+						action="#{rptConsolidadoProcesoBn.guardarNivelE()}"
+						oncomplete="PF('dialog_011_1').show()"></p:commandButton>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important"
+						id="cmbNivelEvaluacionD"
+						value="#{rptConsolidadoProcesoBn.nivelEvaluacionDetalleSeleccionado}"
+						converter="#{nivelEvaluacionDetalleConverter}">
+						<f:selectItem itemLabel="Nivel" />
+						<f:selectItems
+							value="#{rptConsolidadoProcesoBn.nivelEvaluacionDetalleList}"
+							var="nivelEvaluacionD"
+							itemLabel="#{nivelEvaluacionD.descripcion}"
+							itemValue="#{nivelEvaluacionD}"></f:selectItems>
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:selectOneMenu style="width:80px !important" id="cmbTipo"
+						value="#{rptConsolidadoProcesoBn.tipoSeleccionado}">
+						<f:selectItems value="#{rptConsolidadoProcesoBn.tipos}" var="tipo"
+							itemLabel="#{tipo}" itemValue="#{tipo}" />
+					</p:selectOneMenu>
+				</p:column>
+				<p:column>
+					<p:commandButton icon="fa fa-file-pdf-o"
+						action="#{ReporteBn.imprimirPdf()}" update="pnl_rep"
+						process="@this frm_rpt_011"
+						actionListener="#{rptConsolidadoProcesoBn.generarReporte01()}">
+					</p:commandButton>
+					<p:commandButton id="buttonExcel" icon="fa fa-file-excel-o"
+						ajax="false" immediate="true" process="@this frm_rpt_011"
+						actionListener="#{ReporteBn.imprimirExcel(23,appMain.usuario.idUsuario.toString(),rptConsolidadoProcesoBn.tipoSeleccionado,null,null,null,null,null,null,null,null,true)}">
+						<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+					</p:commandButton>
+				</p:column>
+			</p:panelGrid>
+			<p:panelGrid id="pnl_rep" styleClass="sinborde" style="width:100%">
+				<p:column>
+					<iframe height="480px" width="100%"
+						src="#{request.contextPath}/reporte?rptid=23&amp;p1=#{appMain.usuario.idUsuario.toString()}&amp;p2=#{rptConsolidadoProcesoBn.tipoSeleccionado.toString()}"></iframe>
+				</p:column>
+			</p:panelGrid>
+		</h:form>
+		<ui:include src="/pages/reporte/rpt_011_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

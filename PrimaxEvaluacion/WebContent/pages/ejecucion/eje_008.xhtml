@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_eje_008" id="dlg_eje_008"
+		appendTo="@(body)" width="600px" height="480px" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Tienda " />
+			<p:outputLabel value="eje_008.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_eje_008">
+			<h:outputScript library="js" name="calendar.js" />
+			<div align="right">
+				<p:commandButton icon="ui-icon-check" process="@this frm_eje_008"
+					action="#{CheckListEjecucionCtrlBn.guardarDocPendiente()}"
+					title="Guardar"></p:commandButton>
+			</div>
+			<br />
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab00" title="Documentos">
+					<p:dataTable id="fdt01"
+						emptyMessage="No Existen Doc.Pendiente Regularizar JDE"
+						var="checkListA" scrollHeight="250" scrollable="true"
+						value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionTienda.checkListKpiEjecucionA}">
+						<f:facet name="header">
+							<div align="center">
+								<p:outputLabel
+									value="Documentación pendiente por regularizar en JDE"></p:outputLabel>
+							</div>
+						</f:facet>
+						<p:column headerText="Doc.Pendiente Regularizar JDE"
+							style="width:15px">
+							<p:selectOneMenu id="cmbTipoDocPendiente"
+								style="width:95% !important" value="#{checkListA.parametroKpi}"
+								converter="#{parametrosConverter}">
+								<f:selectItems
+									value="#{CheckListEjecucionCtrlBn.tipoDocPendienteList}"
+									var="tipoDocP" itemValue="#{tipoDocP}"
+									itemLabel="#{tipoDocP.nombreLista}" />
+								<p:ajax event="change" update="fdt01" process="@this fdt01"
+									listener="#{CheckListEjecucionCtrlBn.mostrarTexto(checkListA.parametroKpi,checkListA)}"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column headerText="Observación" style="width:85px">
+							<p:inputTextarea value="#{checkListA.observacion}"
+								maxlength="500" styleClass="w100" rows="4" autoResize="false" />
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+				<p:tab id="tab01" title="Productos">
+					<p:dataTable id="fdt02"
+						emptyMessage="No Existen Productos caducados en percha"
+						var="checkListB" scrollHeight="250" scrollable="true"
+						value="#{CheckListEjecucionCtrlBn.checkListProcesoEjecucionTienda.checkListKpiEjecucionB}">
+						<f:facet name="header">
+							<div align="right">
+								<p:commandButton id="btnAnadirProducto" icon="ui-icon-add"
+									action="#{CheckListEjecucionCtrlBn.anadirProductoCaducado()}"
+									update="fdt02" process="@this fdt02"
+									title="Agregar Productos caducados en percha"></p:commandButton>
+							</div>
+						</f:facet>
+						<p:column headerText="Percha" style="width:20px">
+							<p:inputTextarea value="#{checkListB.percha}" styleClass="w100"
+								rows="4" autoResize="false" maxlength="100" />
+						</p:column>
+						<p:column headerText="Producto" style="width:35px">
+							<p:inputTextarea value="#{checkListB.producto}" styleClass="w100"
+								rows="4" autoResize="false" maxlength="100" />
+						</p:column>
+						<p:column headerText="Cantidad" style="width:10px">
+							<div align="center">
+								<p:spinner value="#{checkListB.cantidad}" min="0" max="1000"
+									size="1"></p:spinner>
+							</div>
+						</p:column>
+						<p:column headerText="Fecha Caducidad" style="width:25px">
+							<p:calendar value="#{checkListB.fechaCaducidad}"
+								title="Fecha Caducidad" navigator="true" pattern="dd/MM/yyyy"
+								locale="es"></p:calendar>
+						</p:column>
+						<p:column headerText="Eliminar" style="width:10px">
+							<div align="center">
+								<p:commandButton id="btnEliminar" icon="ui-icon-delete"
+									update="fdt02" process="@this fdt02"
+									action="#{CheckListEjecucionCtrlBn.quitarProductoCaducado(checkListB)}"></p:commandButton>
+							</div>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:tabView>
+
+
+		</h:form>
+	</p:dialog>
+</ui:composition>

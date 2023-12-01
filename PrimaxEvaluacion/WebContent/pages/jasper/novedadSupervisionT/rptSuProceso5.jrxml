@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSuProceso4" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="68f1b13b-d698-4032-83f5-2edd3bef2202">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ProcesoAdministrativo" uuid="eb763477-dffc-44de-ac27-afde09a07e20">
+		<parameter name="par_id_proceso" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+kpi.id_check_list_kpi_ejecucion as id,
+kpi.orden as orden,
+kpi.descripcion as kpi,
+(CASE WHEN  cri.id_parametro_general  = 27 then 'X' else null end ) as cumple,
+(CASE WHEN  cri.id_parametro_general <> 27 then 'X' else null end ) as Nocumple,
+kpi.comentario_control as observacion
+from check_list_kpi_ejecucion_et kpi
+inner join proceso_detalle_et det
+on kpi.id_proceso_detalle=det.id_proceso_detalle
+inner join proceso_et pro
+on det.id_proceso=pro.id_proceso
+inner join check_list_proceso_ejecucion_et proc
+on kpi.id_check_list_proceso_ejecucion = proc.id_check_list_proceso_ejecucion
+inner join criterio_evaluacion_detalle_et cri
+on kpi.id_criterio_evaluacion_detalle_seleccionado = cri.id_criterio_evaluacion_detalle
+inner join criterio_evaluacion_et cric
+on cri.id_criterio_evaluacion = cric.id_criterio_evaluacion
+where kpi.id_check_list_proceso_ejecucion=$P{par_id_proceso}
+and kpi.visualizar_reporte='false'
+union all
+select
+kpi.id_check_list_kpi_ejecucion_a as id,
+kpi.orden as orden,
+kpi.descripcion as kpi,
+(CASE WHEN  par.nombre_lista = 'Cumple' then 'X' else null end ) as cumple,
+(CASE WHEN  par.nombre_lista = 'No Cumple' then 'X' else null end ) as Nocumple,
+kpi.observacion as observacion
+from check_list_kpi_ejecucion_a_et kpi
+inner join parametros_generales_et par
+on kpi.id_parametro_criterio=par.id_parametro_general
+where kpi.estado='ACT'
+and kpi.id_check_list_proceso_ejecucion =$P{par_id_proceso}
+order by 2;]]>
+		</queryString>
+		<field name="id" class="java.lang.Long"/>
+		<field name="orden" class="java.lang.Long"/>
+		<field name="kpi" class="java.lang.String"/>
+		<field name="cumple" class="java.lang.String"/>
+		<field name="nocumple" class="java.lang.String"/>
+		<field name="observacion" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="par_id_proceso" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select pro.descripcion as proceso ,
+(select (CASE WHEN sum(kpi.puntaje_ejecucion) = sum(kpi.puntaje) then 'no se evidencia mayor novedad' else
+               'se evidencia las siguientes novedades:' end)  from  check_list_kpi_ejecucion_et kpi where  kpi.id_check_list_proceso_ejecucion= pro.id_check_list_proceso_ejecucion and kpi.descripcion not like '%Permisible%' and kpi.visualizar='true') as seccion
+from check_list_proceso_ejecucion_et pro
+inner join check_list_kpi_ejecucion_et kpi
+on pro.id_check_list_proceso_ejecucion = kpi.id_check_list_proceso_ejecucion
+and kpi.descripcion like '%Permisible%'
+where pro.id_check_list_proceso_ejecucion=$P{par_id_proceso}]]>
+	</queryString>
+	<field name="proceso" class="java.lang.String"/>
+	<field name="seccion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="60">
+			<staticText>
+				<reportElement x="25" y="5" width="443" height="15" forecolor="#00B050" uuid="93b0021f-c11f-47a7-a07b-9ec0b93fd06b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[ARQUEOS A PROMOTORES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="25" height="15" forecolor="#00B050" uuid="049b40f1-2893-4a28-af9f-dbf13576f8e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="20" width="443" height="10" uuid="03a3165c-63cb-4034-b7cc-c48e98059d65"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="468" height="5" uuid="533cccb4-7f09-404b-b5c6-879d132fae85"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="30" width="443" height="15" uuid="ba2fd834-3a88-454f-87e0-1ff071864f6e"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[En los arqueos efectuados en el área de Pista y Tienda después del envío del blindado ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="25" y="45" width="443" height="15" uuid="911e1a58-124f-473e-8778-fa6f639c0dd7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seccion}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="58">
+			<subreport>
+				<reportElement x="25" y="8" width="443" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="9da6c297-9571-468a-9d5c-ebdfec71ee20"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso5Seccion1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="25" y="0" width="443" height="50" uuid="2460eec9-77c0-42d1-80bf-666ba2b0d493"/>
+				<subreportParameter name="par_id_proceso">
+					<subreportParameterExpression><![CDATA[$P{par_id_proceso}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rptSubProceso5Seccion2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

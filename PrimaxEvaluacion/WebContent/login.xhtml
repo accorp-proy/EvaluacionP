@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>.:PRIMAX:.</title>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{facesContext.externalContext.requestContextPath}/resources/images/iconos/icono.png" />
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/jquery.growl.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/login/css/style.css"
+		rel="stylesheet" type="text/css" />
+	<!-- /custom style sheet -->
+	<!-- fontawesome css -->
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/login/css/fontawesome-all.css"
+		rel="stylesheet" />
+	<!-- /fontawesome css -->
+	<!-- google fonts-->
+	<link
+		href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet" />
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<h:outputScript name="js/ripple.js" library="ultima-layout" />
+	<h:outputScript name="js/layout.js" library="ultima-layout" />
+	<!--  	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />-->
+
+</h:head>
+
+<h:body>
+	<h1></h1>
+	<div class=" w3l-login-form">
+		<h2>Bienvenido</h2>
+		<h:form id="login-form">
+			<div class=" w3l-form-group">
+				<label>Usuario:</label>
+				<div class="group">
+					<i class="fas fa-user"></i>
+					<p:inputText id="user" value="#{loginBean.user}" maxlength="30"
+						placeholder="Ingresar Usuario"
+						onkeypress="return onSubmitEvent(event)" onblur="upperCase()">
+					</p:inputText>
+				</div>
+			</div>
+			<div class=" w3l-form-group">
+				<label>Clave:</label>
+				<div class="group">
+					<i class="fas fa-unlock"></i>
+					<p:password id="pass" value="#{loginBean.pass}" maxlength="30"
+						placeholder="Ingresar Clave"
+						onkeypress="return onSubmitEvent(event)">
+					</p:password>
+				</div>
+			</div>
+			<p:commandButton id="login-button" styleClass="login__submit"
+				onclick="doLogin()" value="Iniciar">
+				<p:ajax delay="600" process="@form" listener="#{loginBean.login}"></p:ajax>
+			</p:commandButton>
+		</h:form>
+	</div>
+
+	<h:outputStylesheet name="css/ripple.css" library="ultima-layout" />
+	<h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css"
+		library="ultima-layout" />
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery.growl.js"></script>
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/resources/js/app.js"></script>
+</h:body>
+</html>

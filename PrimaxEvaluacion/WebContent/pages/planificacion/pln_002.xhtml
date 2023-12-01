@@ -1,0 +1,247 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog responsive="true" widgetVar="dlg_pln_002" id="dlg_pln_002"
+		appendTo="@(body)" resizable="true">
+		<f:facet name="header">
+			<h:outputLabel value="Ingreso Planificación " />
+			<p:outputLabel value="pln_001.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pln_002">
+			<h:outputScript library="js" name="calendar.js" />
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<div align="right">
+				<p:commandButton icon="ui-icon-save" process="@this frm_pln_002"
+					action="#{PlanificacionBn.guardar()}"
+					update=":frm_pln_001,:frm_pln_002" styleClass="secondary"
+					title="Guardar">
+				</p:commandButton>
+			</div>
+			<p:tabView id="tabWiwe0">
+				<p:tab id="tab00" title="Estación">
+					<p:panelGrid styleClass="sinborde w100" layout="grid" columns="2"
+						columnClasses="ui-grid-col-4,ui-grid-col-8">
+
+						<p:column>
+							<p:outputLabel value="Fecha Ingreso"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:calendar title="Fecha Planificación"
+								value="#{PlanificacionBn.planificacionSeleccionada.fechaPlanificacion}"
+								pattern="dd/MM/yyyy  HH:mm" locale="es">
+							</p:calendar>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Inventario"
+								rendered="#{PlanificacionBn.bloqueo eq false}"></p:outputLabel>
+							<p:outputLabel value="Eliminar"
+								rendered="#{PlanificacionBn.bloqueo eq true}"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectBooleanCheckbox
+								rendered="#{PlanificacionBn.bloqueo eq false}"
+								value="#{PlanificacionBn.planificacionSeleccionada.inventario}" />
+							<p:selectBooleanCheckbox
+								rendered="#{PlanificacionBn.bloqueo eq true}"
+								value="#{PlanificacionBn.planificacionSeleccionada.eliminada}" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Zonas"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu style="width:70px !important" id="cmbZona"
+								value="#{PlanificacionBn.zonaSeleccionada}"
+								converter="#{zonaConverter}">
+								<f:selectItem itemLabel="Zona" />
+								<f:selectItems value="#{PlanificacionBn.tipoZonaList}"
+									var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+								<p:ajax event="change" update="frm_pln_002:tabWiwe0:cmbEstacion"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Estación"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cmbEstacion" style="width:70% !important"
+								disabled="#{PlanificacionBn.bloqueo}"
+								value="#{PlanificacionBn.estacionSeleccionada}"
+								converter="#{agenciaConverter}" var="t" filter="true"
+								filterMatchMode="contains">
+								<f:selectItem itemLabel="Estación" />
+								<f:selectItems value="#{PlanificacionBn.estacionList}"
+									var="estacion" itemLabel="#{estacion.nombreAgencia}"
+									itemValue="#{estacion}" />
+								<p:column>
+									<img src="../../resources/images/iconos/bajo.png" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{t.nombreAgencia}" />
+								</p:column>
+								<p:ajax event="change"
+									listener="#{PlanificacionBn.cargarCheckListHabilitado()}"
+									update="frm_pln_002:tabWiwe0:selectManyResponsable,frm_pln_002:tabWiwe0:dtbAgenciaCheckList"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="Auditores"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectManyMenu id="selectManyResponsable"
+								disabled="#{PlanificacionBn.bloqueo}"
+								style="width:100% !important" scrollHeight="100"
+								value="#{PlanificacionBn.usuarioSeleccionados}"
+								converter="#{usuarioConverter}" var="t" filter="true"
+								filterMatchMode="contains" showCheckbox="true">
+								<f:selectItems value="#{PlanificacionBn.listAuditor}"
+									var="auditor" itemValue="#{auditor}"
+									itemLabel="#{auditor.personaUsuario.identificacionPersona} - #{auditor.personaUsuario.nombreCompleto}" />
+								<p:column>
+									<h:outputText
+										value="#{t.personaUsuario.identificacionPersona} - #{t.personaUsuario.nombreCompleto}" />
+								</p:column>
+							</p:selectManyMenu>
+						</p:column>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab id="tab01" title="Controles">
+					<p:panelGrid styleClass="sinborde w100" layout="grid" columns="4">
+						<p:column>
+							<p:selectOneMenu id="cmbNivelEvaluacion"
+								style="width:100px !important"
+								value="#{PlanificacionBn.nivelEvaluacionSeleccionado}"
+								converter="#{nivelEvaluacionConverter}">
+								<f:selectItem itemLabel="Nivel Evaluación" />
+								<f:selectItems value="#{PlanificacionBn.nivelEvaluacionList}"
+									var="nivelEvaluacion" itemValue="#{nivelEvaluacion}"
+									itemLabel="#{nivelEvaluacion.descripcion}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cmbEvaluacion"
+								style="width:100px !important"
+								value="#{PlanificacionBn.evaluacionSeleccionada}"
+								converter="#{evaluacionConverter}">
+								<f:selectItem itemLabel="Evaluación" />
+								<f:selectItems value="#{PlanificacionBn.evaluacionList}"
+									var="evaluacion" itemValue="#{evaluacion}"
+									itemLabel="#{evaluacion.descripcion}" />
+								<p:ajax event="change"
+									update="frm_pln_002:tabWiwe0:cmbTipoCheck"></p:ajax>
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="cmbTipoCheck" style="width:100px !important"
+								value="#{PlanificacionBn.tipoChecKListSeleccionado}"
+								converter="#{tipoCheckListConverter}">
+								<f:selectItem itemLabel="Tipo CheckList" />
+								<f:selectItems value="#{PlanificacionBn.tiposChecKList}"
+									var="tipoCheckList" itemValue="#{tipoCheckList}"
+									itemLabel="#{tipoCheckList.descripcion}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column>
+							<p:commandButton value="Buscar"
+								action="#{PlanificacionBn.buscarHabilitados()}"
+								update="frm_pln_002:tabWiwe0:dtbAgenciaCheckList"></p:commandButton>
+						</p:column>
+
+					</p:panelGrid>
+					<div class="ui-g-4">
+						<div class="card">
+							<p:dataTable id="dtbAgenciaCheckList"
+								tableStyle="table-layout:auto"
+								emptyMessage="No cuenta con CheckList Aprobados"
+								style="margin-bottom:10px" reflow="true"
+								value="#{PlanificacionBn.estacionSeleccionada.agenciaCheckList}"
+								var="agenciaCheckList"
+								rowKey="#{agenciaCheckList.idAgenciaCheckList}"
+								scrollable="true" scrollHeight="184" selectionMode="single"
+								selection="#{PlanificacionBn.agenciaCheckListSeleccionado}">
+								<p:column headerText="Nombre de CheckList">
+									<h:outputText value="#{agenciaCheckList.checkList.descripcion}" />
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+					<div class="ui-g-8">
+						<div class="card" style="height: 300px">
+							<p:panelGrid columns="4" layout="grid" style="width:100%"
+								styleClass="ui-panelgrid-blank form-group"></p:panelGrid>
+							<p:dataTable id="dtbCheckListAgregado" scrollable="true"
+								scrollHeight="200" tableStyle="table-layout:auto"
+								emptyMessage="Registro no encontrado" style="margin-bottom:10px"
+								reflow="true"
+								value="#{PlanificacionBn.planificacionSeleccionada.checkListEjecucion}"
+								var="checkListEjecucion">
+								<f:facet name="header">
+									<h:outputText value="CheckList Agregados" />
+									<div align="right">
+										<p:commandButton icon="ui-icon-plus"
+											disabled="#{PlanificacionBn.bloqueo}"
+											update=":frm_pln_004,frm_pln_002:mensajes,frm_pln_002:tabWiwe0:dtbAgenciaCheckList"
+											action="#{PlanificacionBn.mostrarDialogAuditor()}"
+											title="Agregar"></p:commandButton>
+									</div>
+								</f:facet>
+								<p:column headerText="Nombre CheckList" style="width:50%">
+									<h:outputText
+										value="#{checkListEjecucion.codigo} - #{checkListEjecucion.descripcion}" />
+								</p:column>
+								<p:column headerText="Riesgo">
+									<h:graphicImage value="/resources/images/iconos/4.png"
+										rendered="#{checkListEjecucion.calificacion == 1}"
+										title="Fecha Ultima Control 01-01-2020"
+										styleClass="ui-icon ui-icon-check"
+										style="display: block; margin: 0px auto;" />
+									<h:graphicImage value="/resources/images/iconos/3.png"
+										rendered="#{checkListEjecucion.calificacion == 2}"
+										title="Fecha Ultima Control 01-01-2020"
+										styleClass="ui-icon ui-icon-check"
+										style="display: block; margin: 0px auto;" />
+									<h:graphicImage value="/resources/images/iconos/1.png"
+										rendered="#{checkListEjecucion.calificacion == 3}"
+										title="Fecha Ultima Control 01-01-2020"
+										styleClass="ui-icon ui-icon-check"
+										style="display: block; margin: 0px auto;" />
+								</p:column>
+								<p:column headerText="Usuario">
+									<h:outputText
+										value="#{checkListEjecucion.usuarioAsignado.nombreUsuario}" />
+								</p:column>
+								<p:column headerText="Proceso">
+									<div align="center">
+										<p:commandButton icon="ui-icon-update"
+											process="@this dtbCheckListAgregado"
+											title="Se muestran los procesos del CheckList"
+											disabled="#{PlanificacionBn.bloqueo}"
+											onclick="PF('dlg_pln_006').show()" update=":frm_pln_006"
+											action="#{PlanificacionBn.checkListProcesoEjecucionSeleccionado(checkListEjecucion)}"></p:commandButton>
+									</div>
+								</p:column>
+								<p:column headerText="Eliminar">
+									<div align="center">
+										<div align="center">
+											<p:commandButton icon="ui-icon-trash" title="Eliminar"
+												process="@this dtbCheckListAgregado"
+												update="dtbCheckListAgregado"
+												disabled="#{PlanificacionBn.bloqueo}"
+												action="#{PlanificacionBn.eliminarCheckListEjecucion(checkListEjecucion)}">
+											</p:commandButton>
+										</div>
+									</div>
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</p:tab>
+				
+			</p:tabView>
+		</h:form>
+		<ui:include src="/pages/planificacion/pln_004.xhtml"></ui:include>
+		<ui:include src="/pages/planificacion/pln_006.xhtml"></ui:include>
+	</p:dialog>
+</ui:composition>

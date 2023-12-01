@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_10_3" id="dialog_10_3"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Comentarios " />
+			<p:outputLabel value="par_010_3.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_par_010_3">
+			<div align="right">
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{ProcesoBn.guardarComentario()}"
+					oncomplete="PF('dialog_10_3').hide()" />
+			</div>
+			<p:panelGrid columns="2" styleClass="fullsize sinborde">
+				<p:outputLabel value="KPI Matriz:" />
+				<p:selectOneRadio id="visualizar"
+					value="#{ProcesoBn.vizualizaMatrizSeleccionado}" layout="grid"
+					columns="3">
+					<f:selectItems value="#{ProcesoBn.condicionMatriz}"
+						var="vizualizaM" itemLabel="#{vizualizaM}"
+						itemValue="#{vizualizaM}" />
+				</p:selectOneRadio>
+				<p:outputLabel value="Riesgo Latente :" />
+				<p:inputTextarea rows="5" cols="40" scrollHeight="5"
+					maxlength="1000" autoResize="false"
+					value="#{ProcesoBn.procesoDetalleSeleccionado.riesgoLatente}"></p:inputTextarea>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</ui:composition>

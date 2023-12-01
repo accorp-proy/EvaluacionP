@@ -1,0 +1,1859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteEvaluacionPuntaje" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="1364a67e-f9ee-42f8-a2ec-de8420e77aca">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="426"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<style name="style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m01c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m02c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style3">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m03c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style4">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m04c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style5">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+       <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m05c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style6">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+       <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m06c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style7">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+      <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m07c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style8">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m08c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style9">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m09c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style10">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+         <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m10c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style11">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m11c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style12">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+       <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m12c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="style13">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#8ED21E']]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#FDF553']]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#ED0E0E']]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#D2471E']]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#C1E5FF']]></conditionExpression>
+			<style backcolor="#C1E5FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#A09EA4']]></conditionExpression>
+			<style backcolor="#A09EA4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#0066CC']]></conditionExpression>
+			<style backcolor="#0066CC"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#A874C4']]></conditionExpression>
+			<style backcolor="#A874C4"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#FF8041']]></conditionExpression>
+			<style backcolor="#FF8041"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#01CED1']]></conditionExpression>
+			<style backcolor="#01CED1"/>
+		</conditionalStyle>
+          <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#458F32']]></conditionExpression>
+			<style backcolor="#458F32"/>
+		</conditionalStyle>
+        <conditionalStyle>
+			<conditionExpression><![CDATA[$F{m13c} == '#F7DB02']]></conditionExpression>
+			<style backcolor="#F7DB02"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec3">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec4">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec5">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec6">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec7">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec8">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec9">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec10">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec11">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec12">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylec13">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{mes13c} == null]]></conditionExpression>
+			<style backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{mes13c} != null && $V{mes13c} >= 85]]></conditionExpression>
+			<style backcolor="#8ED21E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{mes13c} != null && $V{mes13c} >= 70 && $V{mes13c} <= 84]]></conditionExpression>
+			<style backcolor="#FDF553"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{mes13c} != null && $V{mes13c} <= 59]]></conditionExpression>
+			<style backcolor="#ED0E0E"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{mes13c} != null && $V{mes13c} >= 60 && $V{mes13c} <= 69]]></conditionExpression>
+			<style backcolor="#D2471E"/>
+		</conditionalStyle>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ConsultaReporte" uuid="8d39dd25-f2d8-4683-b73c-e909468dc0ab">
+		<parameter name="par_id_usuario" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes01c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes02c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes03c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes04c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes05c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes06c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes07c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes08c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes09c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes10c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes11c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mes12c" class="java.lang.Long">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select
+rpt.zona ,
+rpt.tipo,
+rpt.codigo_agencia as bodega,
+rpt.nombre_agencia as nombre,
+rpt.ciudad as ciudad,
+rpt.fecha_ejecucion as anio,
+rpt.mes_01::numeric as m01,
+rpt.mes_02::numeric as m02,
+rpt.mes_03::numeric as m03,
+rpt.mes_04::numeric as m04,
+rpt.mes_05::numeric as m05,
+rpt.mes_06::numeric as m06,
+rpt.mes_07::numeric as m07,
+rpt.mes_08::numeric as m08,
+rpt.mes_09::numeric as m09,
+rpt.mes_10::numeric as m10,
+rpt.mes_11::numeric as m11,
+rpt.mes_12::numeric as m12,
+rpt.mes_01_c as m01c,
+rpt.mes_02_c as m02c,
+rpt.mes_03_c as m03c,
+rpt.mes_04_c as m04c,
+rpt.mes_05_c as m05c,
+rpt.mes_06_c as m06c,
+rpt.mes_07_c as m07c,
+rpt.mes_08_c as m08c,
+rpt.mes_09_c as m09c,
+rpt.mes_10_c as m10c,
+rpt.mes_11_c as m11c,
+rpt.mes_12_c as m12c,
+consultar_nivel_evaluacion_color(rpt.id_nivel_evaluacion,round((((COALESCE(NULL ,rpt.mes_01, '0')::numeric + COALESCE(NULL ,rpt.mes_02, '0')::numeric + COALESCE(NULL ,rpt.mes_03, '0')::numeric + COALESCE(NULL ,rpt.mes_04, '0')::numeric + COALESCE(NULL ,rpt.mes_05, '0')::numeric + COALESCE(NULL ,rpt.mes_06, '0')::numeric +
+COALESCE(NULL ,rpt.mes_07, '0')::numeric + COALESCE(NULL ,rpt.mes_08, '0')::numeric + COALESCE(NULL ,rpt.mes_09, '0')::numeric + COALESCE(NULL ,rpt.mes_10, '0')::numeric + COALESCE(NULL ,rpt.mes_11, '0')::numeric + COALESCE(NULL ,rpt.mes_12, '0')::numeric)) / ((CASE WHEN rpt.mes_01 is null then 0 else 1 end) + (CASE WHEN rpt.mes_02 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_03 is null then 0 else 1 end) + (CASE WHEN rpt.mes_04 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_05 is null then 0 else 1 end) + (CASE WHEN rpt.mes_06 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_07 is null then 0 else 1 end) + (CASE WHEN rpt.mes_08 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_09 is null then 0 else 1 end) + (CASE WHEN rpt.mes_10 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_11 is null then 0 else 1 end) + (CASE WHEN rpt.mes_12 is null then 0 else 1 end)) ),2)) as m13c,
+round((((COALESCE(NULL ,rpt.mes_01, '0')::numeric + COALESCE(NULL ,rpt.mes_02, '0')::numeric + COALESCE(NULL ,rpt.mes_03, '0')::numeric + COALESCE(NULL ,rpt.mes_04, '0')::numeric + COALESCE(NULL ,rpt.mes_05, '0')::numeric + COALESCE(NULL ,rpt.mes_06, '0')::numeric +
+COALESCE(NULL ,rpt.mes_07, '0')::numeric + COALESCE(NULL ,rpt.mes_08, '0')::numeric + COALESCE(NULL ,rpt.mes_09, '0')::numeric + COALESCE(NULL ,rpt.mes_10, '0')::numeric + COALESCE(NULL ,rpt.mes_11, '0')::numeric + COALESCE(NULL ,rpt.mes_12, '0')::numeric)) / ((CASE WHEN rpt.mes_01 is null then 0 else 1 end) + (CASE WHEN rpt.mes_02 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_03 is null then 0 else 1 end) + (CASE WHEN rpt.mes_04 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_05 is null then 0 else 1 end) + (CASE WHEN rpt.mes_06 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_07 is null then 0 else 1 end) + (CASE WHEN rpt.mes_08 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_09 is null then 0 else 1 end) + (CASE WHEN rpt.mes_10 is null then 0 else 1 end) +
+(CASE WHEN rpt.mes_11 is null then 0 else 1 end) + (CASE WHEN rpt.mes_12 is null then 0 else 1 end)) ),2) as promedio,
+(select count(*) from reporte_evaluacion_puntaje_et where aud_usuario=rpt.aud_usuario) as conteo
+from reporte_evaluacion_puntaje_et rpt
+inner join nivel_evaluacion_detalle_et nivd
+on rpt.id_nivel_evaluacion_detalle = nivd.id_nivel_evaluacion_detalle
+where rpt.aud_usuario = $P{par_id_usuario}
+order by rpt.zona ,rpt.codigo_agencia;]]>
+		</queryString>
+		<field name="zona" class="java.lang.String"/>
+		<field name="tipo" class="java.lang.String"/>
+		<field name="bodega" class="java.lang.String"/>
+		<field name="nombre" class="java.lang.String"/>
+		<field name="ciudad" class="java.lang.String"/>
+		<field name="anio" class="java.sql.Timestamp"/>
+		<field name="m01" class="java.math.BigDecimal"/>
+		<field name="m02" class="java.math.BigDecimal"/>
+		<field name="m03" class="java.math.BigDecimal"/>
+		<field name="m04" class="java.math.BigDecimal"/>
+		<field name="m05" class="java.math.BigDecimal"/>
+		<field name="m06" class="java.math.BigDecimal"/>
+		<field name="m07" class="java.math.BigDecimal"/>
+		<field name="m08" class="java.math.BigDecimal"/>
+		<field name="m09" class="java.math.BigDecimal"/>
+		<field name="m10" class="java.math.BigDecimal"/>
+		<field name="m11" class="java.math.BigDecimal"/>
+		<field name="m12" class="java.math.BigDecimal"/>
+		<field name="m01c" class="java.lang.String"/>
+		<field name="m02c" class="java.lang.String"/>
+		<field name="m03c" class="java.lang.String"/>
+		<field name="m04c" class="java.lang.String"/>
+		<field name="m05c" class="java.lang.String"/>
+		<field name="m06c" class="java.lang.String"/>
+		<field name="m07c" class="java.lang.String"/>
+		<field name="m08c" class="java.lang.String"/>
+		<field name="m09c" class="java.lang.String"/>
+		<field name="m10c" class="java.lang.String"/>
+		<field name="m11c" class="java.lang.String"/>
+		<field name="m12c" class="java.lang.String"/>
+		<field name="m13c" class="java.lang.String"/>
+		<field name="promedio" class="java.math.BigDecimal"/>
+		<field name="conteo" class="java.lang.Long"/>
+	</subDataset>
+	<parameter name="par_id_usuario" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+(select sum(COALESCE(NULL ,rpt.mes_01, '0')::numeric) / count(*)::numeric as mes01 from reporte_evaluacion_puntaje_et rpt where mes_01 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_02, '0')::numeric) / count(*)::numeric as mes02 from reporte_evaluacion_puntaje_et rpt where mes_02 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_03, '0')::numeric) / count(*)::numeric as mes03 from reporte_evaluacion_puntaje_et rpt where mes_03 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_04, '0')::numeric) / count(*)::numeric as mes04 from reporte_evaluacion_puntaje_et rpt where mes_04 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_05, '0')::numeric) / count(*)::numeric as mes05 from reporte_evaluacion_puntaje_et rpt where mes_05 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_06, '0')::numeric) / count(*)::numeric as mes06 from reporte_evaluacion_puntaje_et rpt where mes_06 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_07, '0')::numeric) / count(*)::numeric as mes07 from reporte_evaluacion_puntaje_et rpt where mes_07 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_08, '0')::numeric) / count(*)::numeric as mes08 from reporte_evaluacion_puntaje_et rpt where mes_08 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_09, '0')::numeric) / count(*)::numeric as mes09 from reporte_evaluacion_puntaje_et rpt where mes_09 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_10, '0')::numeric) / count(*)::numeric as mes10 from reporte_evaluacion_puntaje_et rpt where mes_10 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_11, '0')::numeric) / count(*)::numeric as mes11 from reporte_evaluacion_puntaje_et rpt where mes_11 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion),
+(select sum(COALESCE(NULL ,rpt.mes_12, '0')::numeric) / count(*)::numeric as mes12 from reporte_evaluacion_puntaje_et rpt where mes_12 is not null and aud_usuario =$P{par_id_usuario} group by rpt.id_nivel_evaluacion)
+from reporte_evaluacion_puntaje_et rpt where aud_usuario=$P{par_id_usuario} limit(1);]]>
+	</queryString>
+	<field name="mes01" class="java.math.BigDecimal"/>
+	<field name="mes02" class="java.math.BigDecimal"/>
+	<field name="mes03" class="java.math.BigDecimal"/>
+	<field name="mes04" class="java.math.BigDecimal"/>
+	<field name="mes05" class="java.math.BigDecimal"/>
+	<field name="mes06" class="java.math.BigDecimal"/>
+	<field name="mes07" class="java.math.BigDecimal"/>
+	<field name="mes08" class="java.math.BigDecimal"/>
+	<field name="mes09" class="java.math.BigDecimal"/>
+	<field name="mes10" class="java.math.BigDecimal"/>
+	<field name="mes11" class="java.math.BigDecimal"/>
+	<field name="mes12" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="82" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="0" y="0" width="555" height="82" uuid="f6487fd6-b26e-4f3b-9b50-e8f652ae8a3d"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ConsultaReporte" uuid="9319e099-5782-4e76-b9cd-3ace9cb6e3e7">
+						<datasetParameter name="par_id_usuario">
+							<datasetParameterExpression><![CDATA[$P{par_id_usuario}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes01c">
+							<datasetParameterExpression><![CDATA[$F{mes01}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes02c">
+							<datasetParameterExpression><![CDATA[$F{mes02}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes03c">
+							<datasetParameterExpression><![CDATA[$F{mes03}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes04c">
+							<datasetParameterExpression><![CDATA[$F{mes04}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes05c">
+							<datasetParameterExpression><![CDATA[$F{mes05}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes06c">
+							<datasetParameterExpression><![CDATA[$F{mes06}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes07c">
+							<datasetParameterExpression><![CDATA[$F{mes07}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes08c">
+							<datasetParameterExpression><![CDATA[$F{mes08}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes09c">
+							<datasetParameterExpression><![CDATA[$F{mes09}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes10c">
+							<datasetParameterExpression><![CDATA[$F{mes10}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes11c">
+							<datasetParameterExpression><![CDATA[$F{mes11}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="mes12c">
+							<datasetParameterExpression><![CDATA[$F{mes12}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="55" uuid="9abd3852-dc71-49ba-a1e0-985847759b25">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="55" height="15" uuid="a02e3233-a463-40fd-8600-db2a1827e426"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ZONA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="55" height="15" uuid="fee6ac6e-f426-4218-82a0-185fc3e1aad3"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{zona}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="7c8416bc-cd1c-4b9c-8d6c-0d182bb1a7f8">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="68" height="15" uuid="995f2780-3b7e-4d12-8a1f-ad0fa075abc9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[NEGOCIO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="68" height="15" uuid="18ed6e9e-9acb-47f7-8ff0-60eb6aad1a90"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="ecfb2e70-b1f4-4eae-b9f1-77aa822df74b">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="15" uuid="a05fd27b-5a4c-43a7-b54d-08552bdc4340"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[BODEGA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="60" height="15" uuid="1945f808-6284-44f3-9cc1-eb27d92ea228"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{bodega}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="1576415d-317f-40b2-9bc7-8c5f12c1fb07">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="150" height="15" uuid="00fb3027-44ff-42c5-b965-7de1cf19c6b0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[EESS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="150" height="15" uuid="6b7cd957-6ced-452c-acd0-390b9ca70b36"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="1703a459-3ad6-4a4f-9aae-23733977e41c">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="75" height="15" uuid="23653842-0465-40db-b12d-df5f049a7b63"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[CIUDAD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="75" height="15" uuid="def5094e-34d3-4eba-9313-6667c2c6b34a"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8"/>
+									<paragraph leftIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="4db6826d-14cd-4558-8820-8dd162c7993e">
+						<printWhenExpression><![CDATA[$F{mes01} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="c5d90a4d-1ae4-4ea3-bc2f-f68f4ccc2a6a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M01]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec1" mode="Opaque" x="0" y="0" width="30" height="15" uuid="4c95f346-2fea-4d5e-a4fc-a8069f50ad03"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes01c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style1" mode="Opaque" x="0" y="0" width="30" height="15" uuid="3844f219-a7de-49e9-ad03-a0ba0813dcce"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m01}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="c4da8a91-3e57-4119-9a8a-0adc841478e1">
+						<printWhenExpression><![CDATA[$F{mes02} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="90fb8ae0-ecd9-48bd-b696-810efa921418"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M02]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec2" mode="Opaque" x="0" y="0" width="30" height="15" uuid="be4f796b-6754-4b23-ac1a-6623af85f363"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes02c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style2" mode="Opaque" x="0" y="0" width="30" height="15" uuid="77501a0c-08da-4ad7-9a73-5879fa66e32c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m02}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="066e5648-c474-4b4c-9722-d5c6d011392d">
+						<printWhenExpression><![CDATA[$F{mes03} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="de906411-6b5b-4840-bacf-dfdd99d351c3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M03]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec3" mode="Opaque" x="0" y="0" width="30" height="15" uuid="2d67f3c0-78bb-48a7-8f94-f07fbff93cc8"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes03c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style3" mode="Opaque" x="0" y="0" width="30" height="15" uuid="8a924110-47ba-45df-b40f-9852ceaf133d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m03}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="79a183dd-e49d-420f-b491-f9a89056bdca">
+						<printWhenExpression><![CDATA[$F{mes04} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="98ceeb2c-fb51-4a5d-afa1-3d2c5ad6bf53"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M04]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec4" mode="Opaque" x="0" y="0" width="30" height="15" uuid="810c81ee-6e0c-462d-b9e8-ca810f28f515"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes04c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style4" mode="Opaque" x="0" y="0" width="30" height="15" uuid="139fba47-cdcb-45e6-9352-eacb5b313ce7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m04}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="54f3021e-b9b2-4ebf-b4db-f323f00aabf3">
+						<printWhenExpression><![CDATA[$F{mes05} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="c8f97ccf-58a7-425f-b192-2623553781ee"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M05]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec5" mode="Opaque" x="0" y="0" width="30" height="15" uuid="7b9c284c-9178-411b-b220-33f99d87fe88"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes05c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style5" mode="Opaque" x="0" y="0" width="30" height="15" uuid="0281d04d-631d-480e-99cb-180c84a86769"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m05}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="84557ee1-9002-46aa-98c9-b9cc79f0e169">
+						<printWhenExpression><![CDATA[$F{mes06} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="9b75a05d-78db-48c0-be28-dacd61d96e26"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M06]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec6" mode="Opaque" x="0" y="0" width="30" height="15" uuid="5d30c264-2136-4195-ac55-ad0718e3c88c"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes06c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style6" mode="Opaque" x="0" y="0" width="30" height="15" uuid="93106379-ef64-4d33-926f-36b5d6107f71"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m06}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="d38dc1e9-f38f-4087-8c67-e91e7cb80ee2">
+						<printWhenExpression><![CDATA[$F{mes07} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="0f13fe73-fb59-4cd7-9065-ddd331217097"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M07]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec7" mode="Opaque" x="0" y="0" width="30" height="15" uuid="496436bd-6e42-4d8b-af0c-17aeebc6b1c0"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes07c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style7" mode="Opaque" x="0" y="0" width="30" height="15" uuid="c72ab76f-374b-43c6-bb92-84db2a66694e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m07}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="2028cb91-6719-434e-9fe0-7b23d89edc53">
+						<printWhenExpression><![CDATA[$F{mes08} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="4a21e4bd-0f9b-4cc7-8ec5-425ef0875a3f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M08]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec8" mode="Opaque" x="0" y="0" width="30" height="15" uuid="8a0b789c-4be5-4672-8723-0bcfb656a3f7"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes08c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style8" mode="Opaque" x="0" y="0" width="30" height="15" uuid="3068c150-db1a-4dcc-a795-b089e23af628"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m08}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="b249f12e-eea5-4945-a2f3-f13655c571be">
+						<printWhenExpression><![CDATA[$F{mes09} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="f93c8562-9f2e-4f7c-8e2d-1c52ab22ad18"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M09]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec9" mode="Opaque" x="0" y="0" width="30" height="15" uuid="d83c3a1e-8790-4aa7-87b4-90bc016f4132"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes09c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style9" mode="Opaque" x="0" y="0" width="30" height="15" uuid="675d42de-895f-4f39-aca4-b9c0d759a1ca"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m09}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="1b52ebae-0917-4db5-b483-656b7c42c338">
+						<printWhenExpression><![CDATA[$F{mes10} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="9345819d-88de-48de-9124-7da1c8d80ebc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M10]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec10" mode="Opaque" x="0" y="0" width="30" height="15" uuid="0f64e670-9c62-4871-b107-dedf921c23a3"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes10c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style10" mode="Opaque" x="0" y="0" width="30" height="15" uuid="9b149662-5c20-4fd6-a085-2fa2ff4acb7f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m10}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="1e6b4058-bfad-4c73-a47d-f41de79858c5">
+						<printWhenExpression><![CDATA[$F{mes11} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="b3c95022-87f7-440c-994c-b7f22dd92518"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M11]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec11" mode="Opaque" x="0" y="0" width="30" height="15" uuid="6e7f9fcd-60bc-45d8-befa-7c81108ece45"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes11c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style11" mode="Opaque" x="0" y="0" width="30" height="15" uuid="8aadec68-fa56-46f5-b7c0-e4c19c1623c7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m11}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="30" uuid="18cd3daa-9d6e-49e4-b5c1-f8a3dfcd3fce">
+						<printWhenExpression><![CDATA[$F{mes12} > 0L ? true : false]]></printWhenExpression>
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="30" height="15" uuid="ec06f4ac-82ac-49b6-a0ec-fd768922ff4a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[M12]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="stylec12" mode="Opaque" x="0" y="0" width="30" height="15" uuid="b4f18b96-3700-483c-a92c-31589a609a63"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{mes12c}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement style="style12" mode="Opaque" x="0" y="0" width="30" height="15" uuid="7aa7a7a3-508a-41f0-bb43-d5cb48c4be5f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{m12}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="a65cada9-4345-42e8-9b8b-373ae38cdce5">
+						<jr:columnHeader style="table 1_CH" height="15" rowSpan="1">
+							<textField pattern="yyyy" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="40" height="15" backcolor="#999999" uuid="80386bf8-208e-41f3-b47e-13896b76dcaf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:columnFooter height="15" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="15" rowSpan="1">
+							<textField pattern="###0" isBlankWhenNull="true">
+								<reportElement style="style13" mode="Opaque" x="0" y="0" width="40" height="15" uuid="e9ed7792-11f2-468b-be53-85f12e34565b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

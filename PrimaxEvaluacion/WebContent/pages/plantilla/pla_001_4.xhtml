@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<p:dialog modal="true" widgetVar="dialog_001_4" id="dialog_001_4"
+		closeOnEscape="true" hideEffect="drop" showHeader="true"
+		appendTo="@(body)" resizable="true" responsive="true">
+		<f:facet name="header">
+			<h:outputText value="Modificación KPI " />
+			<p:outputLabel value="par_001_4.xhtml"
+				rendered="#{appMain.usuario.idUsuario eq 1}"></p:outputLabel>
+		</f:facet>
+		<h:form id="frm_pla_001_4">
+			<div align="left"></div>
+			<div align="right">
+				<p:commandButton icon="ui-icon-flare"
+					title="Muestra Etiquetas Disponibles" update=":frm_pla_001_5"
+					action="#{PlantillaCriterioGeneralBn.cargarEtiqueta(2)}"
+					styleClass="secondary" oncomplete="PF('dialog_001_5').show()"></p:commandButton>
+				<p:spacer width="5"></p:spacer>
+				<p:commandButton title="Guardar" icon="ui-icon-check"
+					action="#{PlantillaCriterioGeneralBn.guardarKPI()}"
+					update=":frm_pla_001:tabWiwe0:filEvaluacionP"
+					oncomplete="PF('dialog_001_4').hide()" />
+			</div>
+			<p:panelGrid styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Visualizar KPI" />
+					</p:column>
+					<p:column>
+						<p:selectBooleanCheckbox
+							value="#{PlantillaCriterioGeneralBn.checkListKpiSeleccionado.visualizarReporte}"></p:selectBooleanCheckbox>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:inputText placeholder="orden KPI" styleClass="w30"
+							value="#{PlantillaCriterioGeneralBn.checkListKpiSeleccionado.ordenReporte}" />
+					</p:column>
+					<p:column>
+						<p:inputTextarea
+							value="#{PlantillaCriterioGeneralBn.checkListKpiSeleccionado.seccion}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:inputText
+							value="#{PlantillaCriterioGeneralBn.checkListKpiSeleccionado.ordenReporte0}"
+							placeholder="Orden" styleClass="w30"></p:inputText>
+					</p:column>
+					<p:column>
+						<p:inputTextarea
+							value="#{PlantillaCriterioGeneralBn.checkListKpiSeleccionado.seccion0}"
+							placeholder="Descripción" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Visualizar KPI en tabla" />
+					</p:column>
+					<p:column>
+						<p:selectBooleanCheckbox
+							value="#{PlantillaCriterioGeneralBn.checkListKpiSeleccionado.visualizarTabla}"></p:selectBooleanCheckbox>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
+
+	</p:dialog>
+</ui:composition>

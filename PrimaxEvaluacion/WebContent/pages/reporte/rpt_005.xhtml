@@ -1,0 +1,178 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Consulta Plan Acción</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_rpt_05">
+			<p:growl showDetail="true" id="mensajes">
+			</p:growl>
+			<p:panelGrid styleClass="sinborde w120" columns="9" layout="grid">
+				<p:row>
+					<p:fieldset legend="Reporte plan de acción">
+						<p:panelGrid columns="9" styleClass="sinborde w120" layout="grid">
+							<p:column>
+								<p:selectOneMenu style="width:80px !important" id="cmbZona"
+									value="#{ConsultaPlanAccionBn.zonaSeleccionada}"
+									converter="#{zonaConverter}">
+									<f:selectItem itemLabel="Zona" />
+									<f:selectItems value="#{ConsultaPlanAccionBn.tipoZonaList}"
+										var="zona" itemLabel="#{zona.nombreZona}" itemValue="#{zona}"></f:selectItems>
+									<p:ajax event="change" update="frm_rpt_05:cmbEstacion"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbEstacion" style="width:80px !important"
+									value="#{ConsultaPlanAccionBn.estacionSeleccionada}"
+									converter="#{agenciaConverter}" var="t" filter="true"
+									filterMatchMode="contains">
+									<f:selectItem itemLabel="Estación" />
+									<f:selectItems value="#{ConsultaPlanAccionBn.estacionList}"
+										var="estacion" itemLabel="#{estacion.nombreAgencia}"
+										itemValue="#{estacion}" />
+									<p:column>
+										<h:outputText value="#{t.nombreAgencia}" />
+									</p:column>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbEvaluacion"
+									style="width:80px !important"
+									value="#{ConsultaPlanAccionBn.evaluacionSeleccionada}"
+									converter="#{evaluacionConverter}">
+									<f:selectItem itemLabel="Evaluación" />
+									<f:selectItems value="#{ConsultaPlanAccionBn.evaluacionList}"
+										var="evaluacion" itemValue="#{evaluacion}"
+										itemLabel="#{evaluacion.descripcion}" />
+									<p:ajax event="change" update="frm_rpt_05:cmbTipoCheck"></p:ajax>
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cmbTipoCheck"
+									style="width:100px !important"
+									value="#{ConsultaPlanAccionBn.tipoChecKListSeleccionado}"
+									converter="#{tipoCheckListConverter}">
+									<f:selectItem itemLabel="Tipo CheckList" />
+									<f:selectItems value="#{ConsultaPlanAccionBn.tiposChecKList}"
+										var="tipoCheckList" itemValue="#{tipoCheckList}"
+										itemLabel="#{tipoCheckList.descripcion}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:110px !important"
+									id="cmbNivelEvaluacion"
+									value="#{ConsultaPlanAccionBn.nivelEvaluacionSeleccionado}"
+									converter="#{nivelEvaluacionConverter}">
+									<f:selectItem itemLabel="Nivel Evaluación" />
+									<f:selectItems
+										value="#{ConsultaPlanAccionBn.nivelEvaluacionList}"
+										var="nivelEvaluacion" itemValue="#{nivelEvaluacion}"
+										itemLabel="#{nivelEvaluacion.descripcion}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{ConsultaPlanAccionBn.fDesde}" size="10"
+									placeholder="Fecha Desde" title="Fecha Desde" navigator="true"
+									pattern="dd/MM/yyy" locale="es">
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:calendar value="#{ConsultaPlanAccionBn.fHasta}" size="10"
+									placeholder="Fecha Hasta" title="Fecha Hasta" navigator="true"
+									pattern="dd/MM/yyy" locale="es">
+								</p:calendar>
+							</p:column>
+							<p:column>
+								<p:selectOneMenu style="width:100px !important" editable="false"
+									title="Estados plan de acción"
+									value="#{ConsultaPlanAccionBn.estadoPlanAccionSeleccionado}">
+									<f:selectItems value="#{ConsultaPlanAccionBn.estadoPlanAccion}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column>
+								<p:commandButton title="Botón permite realizar busqueda"
+									icon="ui-icon-search" action="#{ConsultaPlanAccionBn.buscar()}"
+									update="dtbCheckList">
+								</p:commandButton>
+							</p:column>
+						</p:panelGrid>
+					</p:fieldset>
+				</p:row>
+			</p:panelGrid>
+			<div align="center">
+				<p:dataTable paginator="true" rows="7" reflow="true"
+					tableStyle="table-layout: auto;" style="margin-bottom:20px"
+					emptyMessage="No existe Formatos" id="dtbCheckList"
+					value="#{ConsultaPlanAccionBn.checkListEjecuciones}"
+					var="checkList">
+					<p:column headerText="Código">
+						<h:outputText value="#{checkList.codigo}"></h:outputText>
+					</p:column>
+					<p:column headerText="Fecha Ejecución">
+						<h:outputText value="#{checkList.fechaRegistro}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Evaluación">
+						<h:outputText value="#{checkList.evaluacion.descripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Tipo CheckList">
+						<h:outputText value="#{checkList.tipoChecKList.descripcion}"></h:outputText>
+					</p:column>
+					<p:column headerText="Nivel Evaluación">
+						<div align="center">
+							<h:outputText value="#{checkList.nivelEvaluacion.descripcion}"></h:outputText>
+						</div>
+					</p:column>
+					<p:column headerText="Plan Acción">
+						<h:outputText value="#{checkList.estadoPlanAccion.descripcion}"
+							title="El estado en que se encuetra el Plan de acción"></h:outputText>
+					</p:column>
+					<p:column width="30" headerText="Acción">
+						<div align="center">
+							<p:commandButton title="Descargar en formato PDF"
+								rendered="#{checkList.evaluacion.criterio == true}"
+								disabled="#{checkList.estadoPlanAccion.descripcion ne 'INGRESADO'}"
+								icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+								actionListener="#{ReporteBn.imprimirExcel(15,appMain.usuario.nombreUsuario,checkList.idCheckListEjecucion.toString(),checkList.planificacion.agencia.idAgencia.toString(),null,null,null,null,null,null,null,false)}">
+								<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+							</p:commandButton>
+							<p:commandButton title="Descargar en formato PDF"
+								rendered="#{checkList.evaluacion.criterio == false}"
+								disabled="#{checkList.estadoPlanAccion.descripcion ne 'INGRESADO'}"
+								icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+								actionListener="#{ReporteBn.imprimirExcel(16,appMain.usuario.nombreUsuario,checkList.idCheckListEjecucion.toString(),checkList.planificacion.agencia.idAgencia.toString(),null,null,null,null,null,null,null,false)}">
+								<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+							</p:commandButton>
+						</div>
+					</p:column>
+					<p:column headerText="Seguimiento">
+						<div align="center">
+							<p:commandButton
+								title="Descargar en formato PDF Seguimiento Plan Acción"
+								rendered="#{checkList.evaluacion.criterio == false}"
+								disabled="#{checkList.estadoPlanAccion.descripcion ne 'INGRESADO'}"
+								icon="fa fa-file-pdf-o" immediate="true" ajax="false"
+								actionListener="#{ReporteBn.imprimirExcel(20,appMain.usuario.idUsuario.toString(),checkList.idCheckListEjecucion.toString(),checkList.planificacion.agencia.idAgencia.toString(),null,null,null,null,null,null,null,false)}">
+								<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+							</p:commandButton>
+						</div>
+					</p:column>
+					<p:column headerText="Adjuntos">
+						<div align="center">
+							<p:commandButton oncomplete="PF('dlg_pln_005_1').show();"
+								action="#{ConsultaPlanAccionBn.modificar(checkList)}"
+								update=":frm_pln_005_1"
+								title="Permite subir archivos Adjuntos al de Plan Acción"
+								disabled="#{checkList.estadoPlanAccion.descripcion ne 'INGRESADO'}"
+								icon="fa fa-file-pdf-o"></p:commandButton>
+						</div>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+		<ui:include src="/pages/reporte/rpt_005_1.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,135 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Plan de Acción Criterio General</ui:define>
+	<ui:define name="content">
+		<h:form id="frm_ger_002">
+			<p:growl showDetail="false" id="mensajes">
+			</p:growl>
+			<p:panelGrid styleClass="sinborde w100">
+				<p:row>
+					<p:column>
+						<p:commandButton action="#{GerenciaCriterioGBn.retroceder()}"
+							icon="fa fa-mail-reply" title="Botón permite retroceder"></p:commandButton>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Fecha Control:"></p:outputLabel>
+						<p:spacer width="5"></p:spacer>
+						<p:outputLabel
+							value="#{GerenciaCriterioGBn.checkListEjecucion.planificacion.fechaPlanificacion}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Estación:"></p:outputLabel>
+						<p:spacer width="5"></p:spacer>
+						<p:outputLabel
+							value="#{GerenciaCriterioGBn.checkListEjecucion.planificacion.agencia.nombreAgencia}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="Nivel Riesgo:"></p:outputLabel>
+						<p:spacer width="5"></p:spacer>
+						<p:outputLabel
+							value="#{GerenciaCriterioGBn.checkListEjecucion.nivelRiesgoS}"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<h:graphicImage value="/resources/images/iconos/4.png"
+							rendered="#{GerenciaCriterioGBn.checkListEjecucion.nivelRiesgo == 4}"
+							title="Nivel de Riego Bajo" styleClass="ui-icon ui-icon-check"
+							style="display: block; margin: 0px auto;" />
+						<h:graphicImage value="/resources/images/iconos/3.png"
+							rendered="#{GerenciaCriterioGBn.checkListEjecucion.nivelRiesgo == 3}"
+							title="Nivel de Riego Medio" styleClass="ui-icon ui-icon-check"
+							style="display: block; margin: 0px auto;" />
+						<h:graphicImage value="/resources/images/iconos/1.png"
+							rendered="#{GerenciaCriterioGBn.checkListEjecucion.nivelRiesgo == 1}"
+							title="Nivel de Riego Crítico" styleClass="ui-icon ui-icon-check"
+							style="display: block; margin: 0px auto;" />
+					</p:column>
+					<p:column>
+						<p:commandButton title="Descargar CheckList en formato Excel"
+							icon="fa fa-file-excel-o" immediate="true" ajax="false"
+							actionListener="#{ReporteBn.imprimirExcel(6,appMain.usuario.nombreUsuario,GerenciaCriterioGBn.checkListEjecucion.idCheckListEjecucion.toString(),GerenciaCriterioGBn.checkListEjecucion.tipoChecKList.descripcion,GerenciaCriterioGBn.checkListEjecucion.codigo,null,null,null,null,null,null,true)}">
+							<p:fileDownload value="#{appMain.download}"></p:fileDownload>
+						</p:commandButton>
+					</p:column>
+					<p:column></p:column>
+					<p:column>
+						<div align="left">
+							<p:commandButton id="btnGuardar" icon="fa fa-save"
+								title="Guardar Plan Acción" onclick="PF('dlg_conf_0').show()"></p:commandButton>
+						</div>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable id="dtbCheckList" var="detalle" styleClass="w100"
+				value="#{GerenciaCriterioGBn.checkListEjecucion.checkListProcesoEjecucion}"
+				emptyMessage="No existen Procesos">
+				<f:facet name="header">
+                      #{GerenciaCriterioGBn.checkListEjecucion.evaluacion.descripcion} - #{GerenciaCriterioGBn.checkListEjecucion.tipoChecKList.descripcion} - #{GerenciaCriterioGBn.checkListEjecucion.codigo}
+                         </f:facet>
+				<p:columnGroup type="header">
+					<p:row>
+						<p:column headerText="No." style="width:5px" />
+						<p:column headerText="KPI’s" style="width:55px" />
+						<p:column headerText="Criterio Evaluación" style="width:10px" />
+						<p:column headerText="Comentario Plan Acción" style="width:30px" />
+					</p:row>
+				</p:columnGroup>
+				<p:subTable id="dtbSubCheckList" var="checkListKpi"
+					value="#{detalle.checkListKpiEjecucion}">
+					<p:columnGroup type="header">
+						<p:row>
+							<p:column rowspan="2" headerText="#{detalle.orden}"
+								style="text-align:center" />
+						</p:row>
+						<p:row>
+							<p:column headerText="#{detalle.descripcion}" />
+							<p:column />
+							<p:column />
+						</p:row>
+					</p:columnGroup>
+					<p:column>
+						<div align="center">
+							<h:outputText value="#{detalle.orden} . #{checkListKpi.orden}" />
+						</div>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{checkListKpi.descripcion}" />
+					</p:column>
+					<p:column>
+						<div align="center">
+							<h:outputText
+								value="#{checkListKpi.criterioEvaluacionDetalle.nombre}" />
+						</div>
+					</p:column>
+					<p:column>
+						<div align="left">
+							<p:inputTextarea value="#{checkListKpi.comentarioPlanAccion}"
+								placeholder="Ingresar plan de acción" rows="4" styleClass="w100"
+								maxlength="500"></p:inputTextarea>
+						</div>
+					</p:column>
+				</p:subTable>
+			</p:dataTable>
+
+		</h:form>
+		<p:confirmDialog widgetVar="dlg_conf_0" header="Confirmar"
+			appendTo="@(body)" message="Esta seguro de guardar Plan de Acción ?"
+			severity="alert" closeOnEscape="true" showEffect="fade"
+			hideEffect="fade">
+			<div align="center">
+				<p:commandButton styleClass="ui-confirmdialog-no"
+					icon="ui-icon-close" value="Cancelar" immediate="true"
+					oncomplete="PF('dlg_conf_0').hide()"></p:commandButton>
+				<p:commandButton value="Aceptar" styleClass="ui-confirmdialog-yes"
+					immediate="true" icon="ui-icon-check"
+					oncomplete="PF('dlg_conf_0').hide()" update="frm_ger_002"
+					action="#{GerenciaCriterioGBn.guardar()}" process="@this"></p:commandButton>
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>
